@@ -17,7 +17,104 @@ In the following chapters, the different Types and the used models will be expla
 
 source: https://www.ibm.com/topics/large-language-models
 
-\section{Used LLMs}
+\section{Utilized LLMs}
+
+In the context of this diploma thesis, various free and commercial large language models (LLMs) 
+were evaluated to determine their suitability for integration. Leveraging the Ollama application, 
+we were able to test and compare several LLMs. Additionally, we explored different ChatGPT models available through the OpenAI API.
+OpenAI offers a range of models that vary in terms of size and complexity, with more advanced models incurring higher usage costs.
+
+\cite{OpenAI_API_overview}
+
+\section{Models Accessed via Ollama}
+
+For this project, we tested multiple models available through the Ollama application, 
+which can be obtained via the Ollama download server.
+
+Since Ollama operates locally, the selected models needed to meet specific requirements to ensure efficient performance. 
+Consequently, we evaluated models of varying sizes and levels of complexity.
+
+\subsection{Model Selection Criteria}
+
+The selection of models was guided by the following criteria:
+
+\begin{itemize}
+\item \textbf{Model Size:} The model must be capable of running on the server without exceeding available memory capacity.
+\item \textbf{Performance Speed:} The response time of the model, i.e., how quickly it can generate output.
+\item \textbf{Complexity:} The model's ability to handle complex prompts and generate coherent, contextually accurate text.
+\item \textbf{Accuracy:} The overall precision of the model's responses, particularly in terms of factual correctness and linguistic quality.
+\item \textbf{Language Support:} The model's proficiency in understanding and generating text in multiple languages, particularly English and German.
+\item \textbf{User Experience:} The model's overall usability and user-friendliness, including ease of integration and customization.
+\end{itemize}
+
+There is often a trade-off between these criteria. 
+Larger models tend to exhibit higher accuracy and greater contextual understanding but are generally slower and 
+require more computational resources.
+
+\subsection{Challenges in Model Testing and Updates}
+
+A notable challenge is the rapid pace at which new models are released, 
+making it difficult to continuously integrate and thoroughly evaluate the latest advancements. 
+Regular testing and updates are essential to ensure the integration of state-of-the-art models.
+
+\subsection{Model Selection for the Final Application}
+
+In the final implementation, users are provided with a curated list of recommended models from which they can select their preferred option. 
+This list was carefully compiled based on our comprehensive testing and reflects the models that demonstrated 
+the best balance between performance, accuracy, and resource efficiency.
+
+For the production version of the application, 
+this list must be updated periodically to include newly released models and maintain optimal performance.
+
+\subsection{Models Evaluated During Testing}
+
+A detailed comparison of the models tested during the evaluation phase is provided in the following sections, 
+highlighting their respective strengths and limitations.
+
+\subsection{Models Integrated into the Final Application}
+
+The final selection of models integrated into the application reflects the outcomes of our performance benchmarks and user-centric assessments, 
+ensuring a robust and adaptable solution for end-users.
+
+% ############################################
+
+\section{Ollama Model Testing and Evaluation}
+
+Based on the aforementioned criteria, we conducted an extensive evaluation of the following models:
+
+\subsection{Quantitative Evaluation Methods}
+
+For the quantitative evaluation, we focused on key performance metrics to assess the efficiency and reliability of each model:
+
+\begin{itemize}
+    \item \textbf{Response Time:} The time taken by the model to generate a response after receiving input.
+    \item \textbf{CPU Usage:} The percentage of CPU resources utilized during model execution.
+    \item \textbf{GPU Usage:} The extent to which GPU resources were leveraged to enhance performance.
+    \item \textbf{Memory Usage:} The amount of RAM consumed while the model was running.
+    \item \textbf{Multiple Choice Question Answering:} The accuracy of the model when answering structured multiple-choice questions.
+    \item \textbf{Translation Quality:} Measured using the BLEU (Bilingual Evaluation Understudy) score, which evaluates the similarity between the model-generated translation and a human reference translation. \cite{BLUE-Score-Wikipedia}
+    \item \textbf{Text Generation Quality:} Assessed using the ROUGE (Recall-Oriented Understudy for Gisting Evaluation) score to measure the overlap between the generated text and reference texts.
+\end{itemize}
+
+\cite{ROUGE-BLUE-Score}
+
+\subsection{Qualitative Evaluation Methods}
+
+Qualitative evaluation requires human judgment and is inherently resource-intensive. Therefore, our primary focus was placed on the quantitative evaluation. Nevertheless, we conducted qualitative assessments for specific criteria where human input was indispensable:
+
+\begin{itemize}
+    \item \textbf{Contextual Understanding:} The model's ability to interpret and respond accurately to the context of the input text.
+    \item \textbf{Factual Correctness:} The accuracy of the factual information provided in the model's output.
+    \item \textbf{Linguistic Quality:} The grammatical correctness, fluency, and coherence of the generated text.
+    \item \textbf{Emotional Intelligence:} The extent to which the model's output mimics human-like empathy, tone, and emotional nuance.
+\end{itemize}
+
+By combining both quantitative and qualitative evaluation methods, 
+we obtained a comprehensive understanding of each model's strengths and limitations.
+
+
+
+
 
 
 
