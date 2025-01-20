@@ -124,13 +124,135 @@ Qualitative evaluation requires human judgment and is inherently resource-intens
 By combining both quantitative and qualitative evaluation methods, 
 we obtained a comprehensive understanding of each model's strengths and limitations.
 
-%############################################
 
-\subsection{Models which were tested}
+\subsection{Models Evaluated During Testing}
 
-list all the tested models and why they were tested
+For the evaluation process, we selected the most popular models available in the Ollama application and conducted extensive testing on each.
+
+\begin{itemize}
+    \item \textbf{qwen2.5-coder:0.5b} - A compact model with 0.5 billion parameters, specifically designed for coding tasks.
+    \item \textbf{qwen2.5-coder:7b} - A small-scale model with 7 billion parameters, optimized for coding tasks.
+    \item \textbf{qwen2.5-coder:14b} - A medium-sized model with 14 billion parameters, tailored for coding-related tasks.
+    \item \textbf{llama3.2:1b} - A small model with 1 billion parameters, designed for general-purpose tasks by Meta.
+    \item \textbf{llama3.2:2b} - A medium model with 2 billion parameters, developed for general-purpose tasks by Meta.
+    \item \textbf{mistral:7b} - A medium-sized model with 7 billion parameters, created for general tasks by Mistral AI, a European AI company.
+    \item \textbf{phi4:14b} - A medium-sized model with 14 billion parameters, intended for general tasks by Microsoft.
+\end{itemize}
+
+\cite{Ollama-models-overview}
+
+%#############################################################################################################
 
 \subsection{Data Collection}
+
+For the Data collection we used the School AI Server wich was provided by the HTL Anichstraße, to run the different models in the Evaluation phase.
+For the later Data collection we used our own Server to run the different models.
+
+
+To colletct the data we used a varaitey of different python scripts. For the quantitative data we used the following python script:
+
+\begin{lstlisting}[style=Python, caption={Python-quantitative-data-collection}, captionpos=b]
+import time
+import json
+import psutil  # For CPU, memory usage
+from ollama import chat
+
+# Prompts for testing
+prompts = [
+    "Explain the theory of relativity in simple terms.",
+    "Create a short story about a knight.",
+    "What are the advantages of open-source projects?",
+    "Write a Python function that outputs prime numbers up to 100.",
+    # ...
+]
+
+# Model name
+model_name = "qwen2-math"
+
+# Store results
+results = []
+
+# Function to get GPU usage if available
+def get_gpu_usage():
+    try:
+        import torch
+        if torch.cuda.is_available():
+            gpu_memory = torch.cuda.memory_allocated() / (1024 ** 2)  # Convert to MB
+            gpu_utilization = torch.cuda.utilization(0) if hasattr(torch.cuda, 'utilization') else "N/A"
+            return gpu_memory, gpu_utilization
+        else:
+            return 0, "No GPU detected"
+    except ImportError:
+        return 0, "torch not installed"
+
+# Loop through prompts
+for prompt in prompts:
+    try:
+        # Measure system usage before model execution
+        cpu_before = psutil.cpu_percent(interval=None)
+        memory_before = psutil.virtual_memory().used / (1024 ** 2)  # Convert to MB
+
+        start_time = time.time()
+        # Ollama chat request
+        response = chat(model=model_name, messages=[{'role': 'user', 'content': prompt}])
+        end_time = time.time()
+
+        latency = end_time - start_time
+
+        # Measure system usage after model execution
+        cpu_after = psutil.cpu_percent(interval=None)
+        memory_after = psutil.virtual_memory().used / (1024 ** 2)  # Convert to MB
+
+        cpu_usage = cpu_after - cpu_before
+        memory_usage = memory_after - memory_before
+        gpu_memory_usage, gpu_utilization = get_gpu_usage()
+
+        # Extract content from the Message object
+        if response and hasattr(response["message"], "content"):
+            response_text = response["message"].content  # Accessing the attribute of the Message object
+        else:
+            response_text = "No content returned or unexpected format"
+
+        print(f"Prompt: {prompt}\nResponse Time: {latency:.2f} seconds\n")
+
+        # Save the result
+        results.append({
+            "Prompt": prompt,
+            "Response Time (seconds)": latency,
+            "Response": response_text,
+            "CPU Usage (%)": cpu_usage,
+            "Memory Usage (MB)": memory_usage,
+            "GPU Memory Usage (MB)": gpu_memory_usage,
+            "GPU Utilization (%)": gpu_utilization
+        })
+    except Exception as e:
+        print(f"Error with prompt '{prompt}': {e}")
+        results.append({
+            "Prompt": prompt,
+            "Response Time (seconds)": "Error",
+            "Response": f"Error: {str(e)}",
+            "CPU Usage (%)": "N/A",
+            "Memory Usage (MB)": "N/A",
+            "GPU Memory Usage (MB)": "N/A",
+            "GPU Utilization (%)": "N/A"
+        })20.01.2025
+
+# Save to JSON file
+json_file_name = model_name + "_response_time_results_ressours_usage.json"
+with open(json_file_name, "w") as file:
+    json.dump(results, file, indent=4)
+
+print(f"The results have been saved in {json_file_name}.")
+
+\end{lstlisting}
+
+For this Pyhton Skript we used ChatGPT to help with the psutil library to get the CPU and Memory usage. 
+We also used ChatGPT to get more Questions for the data collection. 
+
+The results were saved as JSON files for the later analysis. One Problem we encountered were the tourch librarys, witch 
+diden't function probally on the School AI Server, so we couldn't get the GPU usage for the models.
+
+% +++++++++++++++++++++++++++++++++++++++++++
 
 Explain how the data was collected and what data was collected.
 with the Python Skripts / Implement a Python Skript that collects the data as an example 
@@ -146,9 +268,17 @@ implement nice Graphics
 
 Explain wich modell is best for what
 
-\subsection{Model Selectied for the Final Application}
+\subsection{Model Selected for the Final Application}
 
 Explain why the selected model was selected and what the criteria were
+
+and explain the different models.
+
+\subsection{Model Integration and Deployment}
+
+Explain how the model was integrated and deployed
+
+\section{OpenAI integration with thier API}
 
 
 
