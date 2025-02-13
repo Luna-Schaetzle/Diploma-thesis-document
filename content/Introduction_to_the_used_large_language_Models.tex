@@ -147,6 +147,7 @@ However, several challenges must be addressed:
 
 In summary, while Ollama offers a flexible and powerful platform for AI model deployment and interaction, addressing its inherent challenges is crucial for optimizing performance and ensuring long-term scalability in practical applications.
 
+\cite{Ollama-Guide-Cohorte-Projects}
 
 %********************************************************************************
 
@@ -216,7 +217,7 @@ this list must be updated periodically to include newly released models and main
 
 \section{Ollama Model Testing and Evaluation}
 
-Based on the aforementioned criteria, we conducted an extensive evaluation of the following models:
+Based on the following criteria, we conducted an extensive evaluation of the upcomming models:
 
 \subsection{Quantitative Evaluation Methods}
 
@@ -228,41 +229,44 @@ For the quantitative evaluation, we focused on key performance metrics to assess
     \item \textbf{GPU Usage:} The extent to which GPU resources were leveraged to enhance performance.
     \item \textbf{Memory Usage:} The amount of RAM consumed while the model was running.
     \item \textbf{Multiple Choice Question Answering:} The accuracy of the model when answering structured multiple-choice questions.
-    \item \textbf{Translation Quality:} Measured using the BLEU (Bilingual Evaluation Understudy) score, which evaluates the similarity between the model-generated translation and a human reference translation. \cite{BLUE-Score-Wikipedia}
-    \item \textbf{Text Generation Quality:} Assessed using the ROUGE (Recall-Oriented Understudy for Gisting Evaluation) score to measure the overlap between the generated text and reference texts.
+\end{itemize}
+
+\subsection{Qualitative Evaluation Methods}
+
+While qualitative evaluation is inherently resource-intensive due to its reliance on human judgment, it remains essential for assessing aspects that cannot be fully captured through quantitative metrics. Consequently, although our primary focus was on quantitative evaluation, we conducted qualitative assessments for key criteria where human input was indispensable:
+
+\begin{itemize}
+  \item \textbf{Translation Quality:} Evaluated using the BLEU (Bilingual Evaluation Understudy) score, which measures the similarity between the model-generated translation and a human reference translation. \cite{BLUE-Score-Wikipedia}
+  \item \textbf{Text Generation Quality:} Assessed through the ROUGE (Recall-Oriented Understudy for Gisting Evaluation) score, which quantifies the lexical overlap between generated text and reference texts.
+  \item \textbf{Grammatical Accuracy:} Manually reviewed by human evaluators to identify grammatical errors and assess syntactic correctness.
+  \item \textbf{Readability:} Measured using the Flesch Reading Ease score, which indicates the complexity and accessibility of the generated text.
+  \item \textbf{Sentiment Polarity:} Analyzed to determine whether the generated text conveys a positive, negative, or neutral sentiment.
 \end{itemize}
 
 \cite{ROUGE-BLUE-Score}
 
-
-\subsection{Qualitative Evaluation Methods}
-
-Qualitative evaluation requires human judgment and is inherently resource-intensive. Therefore, our primary focus was placed on the quantitative evaluation. Nevertheless, we conducted qualitative assessments for specific criteria where human input was indispensable:
-
-\begin{itemize}
-    \item \textbf{Contextual Understanding:} The model's ability to interpret and respond accurately to the context of the input text.
-    \item \textbf{Factual Correctness:} The accuracy of the factual information provided in the model's output.
-    \item \textbf{Linguistic Quality:} The grammatical correctness, fluency, and coherence of the generated text.
-    \item \textbf{Emotional Intelligence:} The extent to which the model's output mimics human-like empathy, tone, and emotional nuance.
-\end{itemize}
-
-By combining both quantitative and qualitative evaluation methods, 
-we obtained a comprehensive understanding of each model's strengths and limitations.
-
+By integrating both quantitative and qualitative evaluation methods, we achieved a more comprehensive understanding of each model’s strengths and weaknesses, allowing for a well-rounded assessment of their performance.
 
 \subsection{Models Evaluated During Testing}
 
-For the evaluation process, we selected the most popular models available in the Ollama application and conducted extensive testing on each.
+For the evaluation process, we selected some of the most popular models available in the Ollama application and conducted extensive testing on each. 
+The models vary in size, specialization, and intended use cases, covering general-purpose, coding, mathematical, reasoning, and image-processing tasks.
 
 \begin{itemize}
-    \item \textbf{qwen2.5-coder:0.5b} - A compact model with 0.5 billion parameters, specifically designed for coding tasks.
-    \item \textbf{qwen2.5-coder:7b} - A small-scale model with 7 billion parameters, optimized for coding tasks.
-    \item \textbf{qwen2.5-coder:14b} - A medium-sized model with 14 billion parameters, tailored for coding-related tasks.
-    \item \textbf{llama3.2:1b} - A small model with 1 billion parameters, designed for general-purpose tasks by Meta.
-    \item \textbf{llama3.2:2b} - A medium model with 2 billion parameters, developed for general-purpose tasks by Meta.
-    \item \textbf{mistral:7b} - A medium-sized model with 7 billion parameters, created for general tasks by Mistral AI, a European AI company.
-    \item \textbf{phi4:14b} - A medium-sized model with 14 billion parameters, intended for general tasks by Microsoft.
-    \item 
+    \item \textbf{qwen2.5-coder:0.5b} – A compact model with 0.5 billion parameters, specifically designed for coding-related tasks.
+    \item \textbf{qwen2.5-coder:7b} – A small-scale model with 7 billion parameters, optimized for software development and code generation.
+    \item \textbf{qwen2.5-coder:14b} – A mid-sized model with 14 billion parameters, tailored for complex coding tasks.7
+    \item \textbf{qwen2-math} – A specialized model with 1 billion parameters, fine-tuned for mathematical computations.
+    \item \textbf{llama3.2:1b} – A lightweight model with 1 billion parameters, designed by Meta for general-purpose applications.
+    \item \textbf{llama3.2:2b} – A medium-sized model with 2 billion parameters, developed by Meta for a broader range of general-purpose tasks.
+    \item \textbf{mistral:7b} – A versatile 7-billion-parameter model created by Mistral AI, a European AI company, for general applications.
+    \item \textbf{mathstral} – A specialized model optimized for mathematical problem-solving, developed by Mistral AI.
+    \item \textbf{phi4:14b} – A mid-sized model with 14 billion parameters, designed by Microsoft for general-purpose reasoning tasks.
+    \item \textbf{deepseek-r1:1.5b} – A small-scale model with 1.5 billion parameters, featuring enhanced reasoning capabilities.
+    \item \textbf{deepseek-r1:7b} – A 7-billion-parameter model optimized for reasoning tasks, offering a balance between performance and hardware compatibility.
+    \item \textbf{deepseek-r1:14b} – A more powerful variant with 14 billion parameters, fine-tuned for complex reasoning tasks.
+    \item \textbf{gemma2} – A lightweight model with 1 billion parameters, designed by Google for general-purpose applications.
+    \item \textbf{llava:13b} – A large-scale model with 13 billion parameters, developed for image processing tasks by a dedicated research team. \cite{llava-introduction}
 \end{itemize}
 
 \cite{Ollama-models-overview}
@@ -399,12 +403,211 @@ making it an efficient tool for developing AI-powered solutions.
 
 \cite{ollama-python-documentation-github}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsection{Data Preperation}
+
+To get more information about the collected data, we used the following Python script to collect more data:
+
+\begin{lstlisting}[style=Python, caption={Python-data-preperation-for-analysis}, captionpos=b]
+  import json
+import os
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from rouge_score import rouge_scorer
+import language_tool_python
+import textstat
+from transformers import pipeline, logging
+
+# Suppress warning messages from the Transformer library for a cleaner output.
+logging.set_verbosity_error()
+
+def load_json(file_path):
+    """
+    Load and parse JSON data from a file.
+
+    Parameters:
+        file_path (str): The file system path to the JSON file.
+
+    Returns:
+        dict or list: The JSON data parsed from the file.
+    """
+    with open(file_path, 'r') as file:
+        return json.load(file)
+
+def calculate_metrics(data):
+    """
+    Compute multiple evaluation metrics for generated text responses.
+
+    For each data item, the function calculates:
+    - BLEU Score: Quantifies the similarity between the generated response and the reference text.
+    - ROUGE Scores: Evaluates the n-gram overlap between the reference and the generated text, using ROUGE-1, ROUGE-2, and ROUGE-L.
+    - Grammar Check: Determines the number of grammatical errors present in the response.
+    - Readability Score: Computes the Flesch Reading Ease score to assess the text's readability.
+    - Sentiment Analysis: Infers the sentiment polarity (e.g., positive or negative) of the response text.
+
+    Parameters:
+        data (list): A list of dictionaries, each containing 'Prompt', 'Response', and 'Reference' keys.
+
+    Returns:
+        list: A list of dictionaries that include the original text elements along with the computed metrics.
+    """
+    results = []
+    rouge = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
+    grammar_tool = language_tool_python.LanguageTool('en-US')
+    sentiment_analyzer = pipeline(
+        'sentiment-analysis', 
+        model="distilbert-base-uncased-finetuned-sst-2-english",
+        truncation=True,
+        max_length=512
+    )
+
+    for item in data:
+        prompt = item['Prompt']
+        response = item['Response']
+        reference = item['Reference']
+
+        try:
+            # Calculate the BLEU Score with smoothing to address potential issues with short sequences.
+            bleu_score = sentence_bleu(
+                [reference.split()], response.split(), 
+                smoothing_function=SmoothingFunction().method4
+            )
+
+            # Calculate ROUGE Scores for comprehensive n-gram overlap assessment.
+            rouge_scores = rouge.score(reference, response)
+
+            # Perform grammatical analysis by counting detected errors in the response.
+            grammar_errors = len(grammar_tool.check(response))
+
+            # Determine the readability score using the Flesch Reading Ease metric.
+            readability_score = textstat.flesch_reading_ease(response)
+
+            # Analyze the sentiment of the response text, with error handling to capture any exceptions.
+            try:
+                sentiment_result = sentiment_analyzer(response)[0]
+                sentiment = sentiment_result['label']
+            except Exception as e:
+                print(f"Sentiment error for prompt '{prompt}': {e}")
+                sentiment = "Error"
+
+            results.append({
+                "Prompt": prompt,
+                "Response": response,
+                "Reference": reference,
+                "BLEU": bleu_score,
+                "ROUGE-1": rouge_scores['rouge1'].fmeasure,
+                "ROUGE-2": rouge_scores['rouge2'].fmeasure,
+                "ROUGE-L": rouge_scores['rougeL'].fmeasure,
+                "Grammar Errors": grammar_errors,
+                "Readability Score": readability_score,
+                "Sentiment": sentiment
+            })
+        except Exception as e:
+            print(f"Error processing prompt '{prompt}': {e}")
+            results.append({
+                "Prompt": prompt,
+                "Response": response,
+                "Reference": reference,
+                "Error": str(e)
+            })
+
+    return results
+
+def save_results(results, output_path):
+    """
+    Persist the computed metrics to a JSON file.
+
+    Parameters:
+        results (list): A list of dictionaries containing evaluation metrics and corresponding texts.
+        output_path (str): The file system path where the output JSON should be saved.
+    """
+    with open(output_path, 'w') as file:
+        json.dump(results, file, indent=4)
+
+def main():
+    """
+    Execute the main workflow of the script.
+
+    This function prompts the user to specify a directory containing preprocessed JSON files.
+    It then iterates through each file that matches the pattern 'processed_*.json',
+    computes the evaluation metrics for the contained data,
+    and saves the results in a new JSON file prefixed with 'scored_'.
+    """
+    directory = input("Enter the directory containing the processed JSON files: ")
+
+    try:
+        for file_name in os.listdir(directory):
+            if file_name.startswith("processed_") and file_name.endswith(".json"):
+                input_file = os.path.join(directory, file_name)
+                model_name = file_name.split("processed_")[1].split(".json")[0]
+                output_file = os.path.join(directory, f"scored_{model_name}.json")
+
+                print(f"Processing file: {input_file}")
+                data = load_json(input_file)
+                metrics = calculate_metrics(data)
+                save_results(metrics, output_file)
+                print(f"Metrics saved to: {output_file}")
+
+    except FileNotFoundError:
+        print(f"Error: The directory {directory} was not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
+\end{lstlisting}
+
+This Python script implements a comprehensive evaluation framework for assessing the quality of generated textual responses. 
+It systematically processes JSON files containing a prompt, a generated response, and a reference text, computing several quantitative metrics: 
+the BLEU score for assessing n-gram overlap, ROUGE metrics for evaluating text similarity, a grammatical error count via LanguageTool, 
+the Flesch Reading Ease score for readability, and sentiment analysis using a Transformer-based model. 
+By integrating these diverse analytical techniques from state-of-the-art natural language processing libraries, 
+the script facilitates a rigorous and multifaceted scientific evaluation of text generation performance.
+
+\subsubsection{Utilized Python Libraries}
+For Collecting those data we used the following Python Libraries:
+
+\paragraph{Natural Language Toolkit (NLTK)}
+The Natural Language Toolkit (NLTK) is a comprehensive library for natural language processing in Python. It provides easy-to-use interfaces to over 50 corpora and lexical resources, along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning. NLTK is widely used for building Python programs that work with human language data and is a leading platform in both research and education \cite{nltk}.
+
+\paragraph{ROUGE Score}
+The \texttt{rouge-score} library is a native Python implementation of the ROUGE metric, which is commonly used for evaluating automatic summarization and machine translation. It replicates the results of the original Perl package and supports the computation of ROUGE-N (N-gram) and ROUGE-L (Longest Common Subsequence) scores. The library also offers functionalities such as text normalization and the use of stemming to enhance evaluation accuracy \cite{rouge-score}.
+
+\paragraph{LanguageTool Python}
+\texttt{language-tool-python} is a wrapper for LanguageTool, an open-source grammar, style, and spell checker. This library enables the integration of LanguageTool's proofreading capabilities into Python applications, supporting the detection and correction of grammatical errors, stylistic issues, and spelling mistakes across multiple languages.
+
+\paragraph{Textstat}
+The \texttt{textstat} library provides simple methods for calculating readability statistics from text. It helps determine the readability, complexity, and grade level of textual content by computing various metrics such as the Flesch Reading Ease, SMOG Index, and Gunning Fog Index. These metrics are valuable for assessing and ensuring the comprehensibility of text, particularly in educational and professional settings \cite{textstat}.
+
+
+%########################################################################
+
+\subsection{Data processing}
+
+To get a better overview about the collected data, we used the Python scripts to generate graphics to visualize the data.
+
+\textbf{Quantitative Data Analysis}
+
+To Visualize the quantitative data we used the following Python script:
+
+\begin{lstlisting}[style=Python, caption={Python-quantitative-data-analysis}, captionpos=b]
+
+
+\end{lstlisting}
+
+\textbf{Qualitative Data Analysis}
+
+To Visualize the qualitative data we used the following Python script:
+
+\begin{lstlisting}[style=Python, caption={Python-qualitative-data-analysis}, captionpos=b]
+
+
+
+\end{lstlisting}
+
 
 \subsection{Testresults and Analysis}
 
-Explain how the data was analyzed and interpreted.
-implement nice Graphics
+Write about the Analysis and include the images of the graphics
 
 \subsection{Model Comparison for different Use Cases and Scenarios}
 
