@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rag-app:latest
+    container_name: rag-app-container
+    ports:
+      - "5000:5000"
+    depends_on:
+      - ollama-service
+    volumes:
+      - .:/Backend-Strucktured
+    networks:
+      - app-network
+
+  ollama-service:
+    image: ollama/ollama:latest
+    container_name: ollama-service
+    ports:
+      - "11436:11436"
+    volumes:
+      - ollama:/root/.ollama
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  ollama:
+    driver: local

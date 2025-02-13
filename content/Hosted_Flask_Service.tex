@@ -5,7 +5,30 @@
 
 \section{Server structure} % how the Python Flask Server is structured
 
+
+
 % Flask etc. (Monolithischer Aufbau)
 % Describe the Structure of the Server
 
 \section{Docker}
+Docker is a platform that allows you to run applications in containers. A container is like a small, isolated environment where software runs with everything it needs – including the operating system, libraries, and dependencies.
+
+No matter which computer or server the container runs on, it always works the same way. This means you don’t have to worry about an application suddenly throwing errors on a different system just because a different software version is installed there.
+
+Docker is often used in software development and cloud applications because it simplifies testing, deployment, and scaling of apps. Developers can store their software as images and share them with others without requiring complicated installations.
+
+\subsection{Used Docker Images}
+A docker image is a bluebrint that specifies how to run the application. The Instructions for the build are stored in the Dockerfile\begin{itemize}
+\cite{dockerize_flask} 
+
+\begin{itemize}
+    \item \textbf{flask_app} The flask image is used to easily implement the flask application in a docker container
+    \item \textbf{ollama} The ollama image is used to avoid running llms globally and use them in a secluded environment.
+\end{itemize}
+
+\subsection{Docker Compose}
+Docker Compose is used for running multiple containers at the same time. It simplifies your application and makes it easier to manage 
+The Configuration is stored in a single YAML file. All the services can be started with a simpel command. It is a very compact way to manage Docker application.
+\cite{docker_compose} 
+
+
