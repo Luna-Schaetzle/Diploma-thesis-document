@@ -409,7 +409,7 @@ making it an efficient tool for developing AI-powered solutions.
 To get more information about the collected data, we used the following Python script to collect more data:
 
 \begin{lstlisting}[style=Python, caption={Python-data-preperation-for-analysis}, captionpos=b]
-  import json
+import json
 import os
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge_score import rouge_scorer
@@ -892,6 +892,7 @@ This script performs a comprehensive performance evaluation of various AI models
 
 It generates high-resolution visualizations—including violin, strip, box, and swarm plots—to effectively illustrate the distributions and central tendencies of these metrics. Additionally, it computes descriptive statistics and presents the results both in the console and as LaTeX-formatted tables, ensuring structured and reproducible scientific reporting.
 
+
 \subsubsection{Qualitative Data Analysis}
 
 To visualize the qualitative data, we utilized the following Python script:
@@ -1025,6 +1026,36 @@ This script aggregates performance metrics from multiple JSON files—each corre
 It then generates high-resolution visualizations, including bar, box, and point plots, to illustrate text quality (BLEU/ROUGE scores), 
 grammatical accuracy, readability, and sentiment distribution. Finally, 
 it computes descriptive statistics for these metrics and exports a summary table in LaTeX format for rigorous scientific reporting.
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+\subsubsection{Utilized Python Libraries}
+
+In this project, several Python libraries were employed to facilitate data manipulation, analysis, and visualization:
+
+\paragraph{Pandas}
+
+Pandas is an open-source data analysis and manipulation library for Python. It provides data structures such as Series and DataFrames, which allow for efficient handling of structured data. Pandas supports operations like data alignment, merging, and reshaping, making it indispensable for data preprocessing and analysis tasks.
+
+\cite{pandas}
+
+\paragraph{Matplotlib}
+
+Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. It offers an object-oriented API for embedding plots into applications and supports various plot types, including line, bar, scatter, and 3D plots. Matplotlib's flexibility and extensive customization options make it a fundamental tool for data visualization.
+
+\cite{matplotlib}
+
+\paragraph{Seaborn}
+
+Seaborn is a statistical data visualization library built on top of Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics, including functions for visualizing univariate and bivariate distributions, categorical data, and linear regression models. Seaborn integrates closely with Pandas data structures, enhancing the aesthetic appeal and interpretability of visualizations.
+
+\cite{seaborn}
+
+\paragraph{NumPy}
+
+NumPy is a foundational library for numerical computing in Python. It introduces support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays. NumPy serves as the backbone for many other libraries, including Pandas and Matplotlib, by providing efficient array operations and numerical computations.
+
+\cite{numpy}
+
 
 %********************************************************************************
 
