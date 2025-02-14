@@ -3,7 +3,28 @@
 
 \section{Introduction}
 
+This chapter provides an overview of the Visual Studio Code extension developed for the project. It describes its core functionalities, and explains how it integrates with the broader system architecture.
+
 \section{what is Visual Studio Code}
 
+Visual Studio Code is a free code editor from Microsoft. It supports many programming languages such as Python, JavaScript, and C++.
 
+A major advantage of VS Code is its extensibility. With extensions, you can customize the editor, for example, with debugging tools, themes, or special functions for specific programming languages. It also offers features like auto-completion, integrated Git support, and a built-in terminal function.
 
+VS Code is lightweight and runs on Windows, macOS, and Linux. Despite this, it provides many features that are also found in a full-fledged integrated development environment. This makes it perfect for both beginners and professionals.
+
+\section{Development}
+
+\begin{itemize}
+    \item TypeScript: The Visual Studio Code extension was developed using TypeScript. TypeScript is well-suited for developing VS Code extensions, as it provides type checking and code completion, making it easier to work with the VS Code API.
+    \item Axios: Axios is used to make HTTP requests from the extension to the Flask Service. It provides an easy implementation of asynchronous requests and simplifies handling responses.
+    \item Visual Studio Code API: The extension interacts with the Visual Studio Code API. The API allows the extension to access and modify the editor's functionality, enabling it to provide a seamless development experience.
+\end{itemize}
+
+\section{Core Functionalities}
+The planed core Functionalities of the extension are, an integrated chatbot and code completion. 
+\subsection{Chatbot Integration}
+The extension integrates a chatbot into the editor, allowing developers to interact with the chatbot directly from the editor. This feature enables developers to quickly get information, ask questions, or perform tasks without leaving the editor.
+%hier screenshot einfügen
+\subsection{Code completion}
+%joa, ne 
