@@ -619,7 +619,7 @@ To visualize the quantitative data, we employed the following Python script:
       'ytick.labelsize': 10,
       'figure.dpi': 300,
       'savefig.dpi': 300,
-      'figure.figsize': (8, 10),  # Erhöhter Standardwert: Breite 8, Höhe 10
+      'figure.figsize': (8, 10), 
       'grid.color': '#e0e0e0',
       'axes.spines.right': False,
       'axes.spines.top': False
@@ -679,7 +679,6 @@ To visualize the quantitative data, we employed the following Python script:
           ylabel (str): The label for the y-axis.
           filename (str): Base filename used for saving the plot.
       """
-      # Noch höhere Grafik: figsize von (10,10)
       plt.figure(figsize=(10, 10))
       
       ax = sns.violinplot(
@@ -799,7 +798,6 @@ To visualize the quantitative data, we employed the following Python script:
       Parameters:
           df (pd.DataFrame): DataFrame containing the 'Response Time (seconds)' and 'Model' columns.
       """
-      # Noch höhere Grafik: figsize von (8,10)
       plt.figure(figsize=(8, 10))
       
       ax = sns.boxplot(
@@ -1220,6 +1218,8 @@ Below is an illustrative example of a Vue.js component that integrates the OpenA
 \end{lstlisting}
 
 \paragraph{JavaScript Logic}
+
+
 \begin{lstlisting}[language=JavaScript, caption=Vue.js Script for OpenAI API Integration]
 <script>
 import OpenAI from "openai";
