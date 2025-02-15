@@ -1,32 +1,38 @@
 \chapter{hosted Flask Service}
 \label{cha:hosted_flask_service}
 
-
 This chapter delineates the implementation, architecture, and deployment of the self-hosted Flask service, 
 which functions as a pivotal interface between the front-end and back-end components of the system. 
 In addition to detailing the technical design, the chapter critically examines the advantages of a self-hosted solution 
 and the rationale behind key architectural decisions.
 
-
 % Hier beschreiben wir wie wir unseren Flask Service gehostet bzw. Geschreiben haben und im Server implementiert haben
 
 % ##########################################
 \section{Introduction}
-This section provides a comprehensive overview of the motivations for developing the Flask service. It discusses the specific requirements that necessitated the service, outlines its core functionalities, and situates the service within the broader system architecture.
+This section offers a comprehensive overview of the motivations underpinning the development of the Flask service. 
+Functioning as the backbone for both the Student AI Hub and the code extension’s backend, 
+the service was conceived to address a range of specific operational requirements. 
+Here, we elaborate on the core functionalities of the service, detail the technical imperatives that drove its inception, 
+and position its role within the broader system architecture, thereby laying the groundwork for subsequent technical discussions.
 
 \section{Advantages of a Self-hosted Service}
-In this section, the benefits of deploying a self-hosted service are explored in depth. The discussion includes:
+A self-hosted service confers a multitude of benefits relative to externally managed or third-party solutions. This section examines these advantages in depth:
 \begin{itemize}
-    \item Enhanced customization and control over the service environment.
-    \item The ability to rapidly prototype and deploy bespoke functionalities.
-    \item Improved data security and compliance with institutional policies.
+    \item \textbf{Enhanced Customization and Environmental Control:} By hosting the service internally, developers gain complete authority over the configuration and optimization of the operating environment. This control facilitates the implementation of domain-specific modifications and enables precise tuning to meet the unique needs of the project.
+    \item \textbf{Rapid Prototyping and Agile Deployment:} The self-hosted nature of the service supports agile development practices. New features and bespoke functionalities can be rapidly prototyped, iteratively tested, and deployed, thereby significantly reducing development cycles and accelerating time-to-market.
+    \item \textbf{Improved Data Security and Regulatory Compliance:} Hosting the service in-house allows for stringent oversight of data management practices. This approach is particularly advantageous in contexts governed by strict data protection regulations and institutional policies, as it enables the implementation of tailored security measures and enhances overall control over sensitive information.
 \end{itemize}
-These factors collectively underscore the strategic choice of a self-hosted approach over third-party solutions.
+Collectively, these factors validate the strategic decision to pursue a self-hosted approach, underscoring its technical, operational, and regulatory merits.
 
 \section{Architecture and Service Structure}
+
 \subsection{System Architecture}
+
 This subsection describes the monolithic architecture of the Python Flask server, elucidating how various components are integrated to form a cohesive whole. The internal workflow and interaction between modules are detailed to provide a clear picture of the service's operational logic.
+
 \subsection{Modularity and Extensibility}
+
 An emphasis is placed on the modular design of the service, which facilitates maintainability and scalability. This part discusses the design choices that allow for future enhancements and the integration of additional functionalities.
 
 \section{Flask as a Web Framework}
@@ -61,12 +67,12 @@ No matter which computer or server the container runs on, it always works the sa
 Docker is often used in software development and cloud applications because it simplifies testing, deployment, and scaling of apps. Developers can store their software as images and share them with others without requiring complicated installations.
 
 \subsection{Used Docker Images}
-A docker image is a bluebrint that specifies how to run the application. The Instructions for the build are stored in the Dockerfile.
+A docker image is a blueprint that specifies how to run the application. The instructions for the build are stored in the Dockerfile.
 \cite{dockerize_flask} 
 
 \begin{itemize}
-    \item \textbf{flask_app} The flask image is used to easily implement the flask application in a docker container
-    \item \textbf{ollama} The ollama image is used to avoid running llms globally and use them in a secluded environment.
+    \item \textbf{flask\_app} The Flask image is used to easily implement the Flask application in a Docker container.
+    \item \textbf{ollama} The Ollama image is used to avoid running LLMs globally and use them in a secluded environment.
 \end{itemize}
 
 \subsection{Docker Compose}
