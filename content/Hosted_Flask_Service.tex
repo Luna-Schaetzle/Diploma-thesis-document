@@ -9,6 +9,7 @@ and the rationale behind key architectural decisions.
 % Hier beschreiben wir wie wir unseren Flask Service gehostet bzw. Geschreiben haben und im Server implementiert haben
 
 % ##########################################
+
 \section{Introduction}
 This section offers a comprehensive overview of the motivations underpinning the development of the Flask service. 
 Functioning as the backbone for both the Student AI Hub and the code extension’s backend, 
@@ -25,19 +26,25 @@ A self-hosted service confers a multitude of benefits relative to externally man
 \end{itemize}
 Collectively, these factors validate the strategic decision to pursue a self-hosted approach, underscoring its technical, operational, and regulatory merits.
 
+% ***************************************************
+
 \section{Architecture and Service Structure}
+
+To provide a comprehensive understanding of the Flask service, this section delves into its architectural design and internal structure.
 
 \subsection{System Architecture}
 
-This subsection describes the monolithic architecture of the Python Flask server, elucidating how various components are integrated to form a cohesive whole. The internal workflow and interaction between modules are detailed to provide a clear picture of the service's operational logic.
+This subsection describes the architecture of the Python Flask server, elucidating how various components are integrated to form a cohesive whole. The internal workflow and interaction between modules are detailed to provide a clear picture of the service's operational logic.
 
 \subsection{Modularity and Extensibility}
 
 An emphasis is placed on the modular design of the service, which facilitates maintainability and scalability. This part discusses the design choices that allow for future enhancements and the integration of additional functionalities.
 
 \section{Flask as a Web Framework}
-\subsection{Core Functionalities}
+
+\subsection{Core Functionalities of Flask}
 This subsection explains the intrinsic capabilities of Flask, such as request routing, templating, and middleware support. It illustrates how these features are employed to manage web requests and responses within the service.
+
 \subsection{Rationale for Selecting Flask}
 A critical discussion is presented on why Flask was chosen for the project. Key factors include its simplicity, extensive documentation, and robust community support, which collectively make it an ideal framework for rapid development and prototyping.
 
