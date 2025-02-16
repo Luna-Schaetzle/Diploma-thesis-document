@@ -240,6 +240,17 @@ export default {
 
 Through these implementations, the Intelligent Student AI Hub not only provides secure authentication and personalized user experiences but also lays the groundwork for future enhancements in user engagement and data security.
 
+\subsection{TSN Integration}
+
+Every student at HTL is provided with a TSN email account, which serves as the primary communication channel within the institution. During the development of the Student AI Hub, integrating the TSN email account was considered as a potential feature. However, after careful evaluation, we decided against this integration for several critical reasons:
+
+\begin{itemize}
+    \item \textbf{Security Concerns:} Incorporating the TSN email account would necessitate accessing sensitive user data. Without robust safeguards, this could significantly increase the risk of security breaches and data leakage.
+    \item \textbf{Technical Complexity:} The integration would require the implementation of more sophisticated authentication mechanisms than those offered by Firebase. This added complexity could result in compatibility issues and pose significant challenges in terms of ongoing maintenance and support.
+    \item \textbf{Impact on User Experience:} Requiring users to navigate additional authentication steps to access the platform could negatively affect the overall user experience. A more complicated login process may lead to reduced adoption rates and lower user satisfaction.
+    \item \textbf{Regulatory and Compliance Challenges:} Ensuring compliance with data protection regulations and institutional policies would be more demanding with the TSN email integration. This approach would require addressing additional legal and technical considerations to maintain adherence to relevant standards.
+\end{itemize}
+
 % ########################
 
 \section{Interactive Chatbot for day to day AI Questions}
