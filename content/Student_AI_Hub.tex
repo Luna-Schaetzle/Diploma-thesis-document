@@ -22,11 +22,11 @@ The frontend of the platform is primarily developed using Vue.js—a progressive
 
 \subsection{Flask API}
 
-The backend infrastructure is powered by a custom-developed Flask API. This API manages client requests and facilitates communication with a suite of self-hosted AI models and tools. Through efficient data handling and secure request management, the Flask API forms a critical link between the frontend interface and the underlying AI services. More comprehensive insights into the backend architecture are available in Chapter \ref{chap:hosted_flask_service}.
+The backend infrastructure is powered by a custom-developed Flask API. This API manages client requests and facilitates communication with a suite of self-hosted AI models and tools. Through efficient data handling and secure request management, the Flask API forms a critical link between the frontend interface and the underlying AI services. More comprehensive insights into the backend architecture are available in Chapter \ref{cha:hosted_flask_service}.
 
 \subsection{ChatGPT API}
 
-To augment the platform's interactive capabilities, the Intelligent Student AI Hub integrates the ChatGPT API via the OpenAI library. This integration supports a sophisticated chatbot feature that enables students to ask questions and receive detailed, context-aware responses on a variety of AI-related topics. Further information on this integration can be found in Chapter \ref{chap:Introduction_to_the_used_Large_Language_Models}, subsection "Integration of OpenAI's API."
+To augment the platform's interactive capabilities, the Intelligent Student AI Hub integrates the ChatGPT API via the OpenAI library. This integration supports a sophisticated chatbot feature that enables students to ask questions and receive detailed, context-aware responses on a variety of AI-related topics. Further information on this integration can be found in Chapter \ref{cha:Introduction_to_the_used_Large_Language_Models}, subsection "Integration of OpenAI's API."
 
 \subsection{Firebase for Authentication and Data Storage}
 
@@ -359,7 +359,7 @@ Should a user exhaust their monthly token quota, they may alternatively direct t
 
 \subsection{Integration of OpenAI's API}
 
-For a comprehensive guide on integrating OpenAI's API into a Vue.js project, please refer to Chapter \ref{chap:Introduction_to_the_used_Large_Language_Models}, Section \ref{subsec:Code Example: Vue.js Component for OpenAI API Integration}.
+For a comprehensive guide on integrating OpenAI's API into a Vue.js project, please refer to Chapter \ref{cha:Introduction_to_the_used_Large_Language_Models}, Section \ref{sec:openai-api-implementation}.
 
 
 % ****************************************************
@@ -381,7 +381,7 @@ Several enhancements have been integrated into the programming bot to improve it
   \item \textbf{Code Rendering and Clipboard Functionality:} The frontend renders responses in Markdown, which facilitates automatic syntax highlighting of code blocks. Additionally, a "copy to clipboard" feature is provided, enabling users to easily extract and reuse the code samples.
 \end{itemize}
 
-Further details regarding the backend implementation are provided in Chapter \ref{chap:Hosted_Flask_Service}.
+Further details regarding the backend implementation are provided in Chapter \ref{cha:hosted_flask_service}.
 
 \subsubsection{Markdown for Code Formatting}
 
@@ -391,7 +391,7 @@ Markdown is a lightweight markup language that supports plain-text formatting an
 
 The following abbreviated Vue.js component demonstrates the key aspects of the programming bot integration. This example illustrates how the user can select a programming language, refine their input, and receive formatted code output:
 
-\begin{lstlisting}[language=Vue, caption={Abbreviated Vue.js Component for the Programming Bot}, frame=single]
+\begin{lstlisting}[language=html, caption={Abbreviated Vue.js Component for the Programming Bot}, frame=single]
 <template>
   <div class="programming-bot">
     <!-- Selection Area for Model and Programming Language -->
@@ -442,9 +442,75 @@ export default {
 
 This concise example encapsulates the core integration features: selecting a programming model and language, refining user input, and rendering code responses with Markdown-enhanced formatting.
 
+\section{Image Recognition Tool}
+
+The Intelligent Student AI Hub incorporates an image recognition feature by leveraging the Ollama API. This functionality allows users to upload images that are subsequently processed by a dedicated endpoint on the Flask API. Detailed information on the backend implementation is provided in Chapter \ref{cha:hosted_flask_service}. On the front end, a Vue.js component has been developed to facilitate image uploads and transmit them, along with user-provided prompts, to the Flask API for analysis.
+
+\subsection{Implementation of the Image Recognition Tool}
+
+The following abbreviated code listing illustrates the key elements of the Vue.js component responsible for handling image uploads and processing the API responses. This example provides an overview of how the component captures a text prompt, manages image upload (by converting the image to a Base64 string), and displays the response from the Flask backend.
+
+\begin{lstlisting}[language=html, caption={Abbreviated Vue.js Component for Image Recognition}, frame=single]
+<template>
+  <div class="image-recognition">
+    <h1>Upload Image and Send to Ollama</h1>
+    <!-- Text prompt input -->
+    <input v-model="userPrompt" placeholder="Enter a prompt..." @keydown.enter="sendRequest" />
+    <!-- File input for image upload -->
+    <input type="file" @change="handleImageUpload" />
+    <!-- Submission button -->
+    <button @click="sendRequest">Submit</button>
+    <!-- Status and response display -->
+    <div v-if="loading">Sending request...</div>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="response">
+      <h3>Ollama Response:</h3>
+      <p>{{ response }}</p>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      userPrompt: "",
+      imageData: "",
+      loading: false,
+      error: "",
+      response: null
+    };
+  },
+  methods: {
+    handleImageUpload(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => { 
+        // Extract the Base64-encoded string from the data URL
+        this.imageData = reader.result.split(",")[1];
+      };
+      if (file) reader.readAsDataURL(file);
+    },
+    async sendRequest() {
+      if (!this.userPrompt || !this.imageData) {
+        this.error = "Both prompt and image are required!";
+        return;
+      }
+      this.loading = true;
+      // Send the prompt and image data to the Flask API (request details omitted)
+      // e.g., using axios.post(url, { prompt: this.userPrompt, image: this.imageData })
+      // Process the response and update this.response accordingly.
+      this.loading = false;
+    }
+  }
+};
+</script>
+\end{lstlisting}
+
+In this implementation, the component first captures a user-defined text prompt and an image file. The image is converted into a Base64 string to facilitate secure and efficient data transmission. Once both inputs are validated, the component sends an HTTP request to the Flask API. The response from the backend—typically a textual analysis or description generated by the Ollama API—is then displayed to the user. This approach ensures a seamless and interactive experience for users engaging with the image recognition functionality.
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\section{Image Recognition Tool}
 
 \section{Image to Text Tool}
 

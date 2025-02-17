@@ -6,10 +6,6 @@ which functions as a pivotal interface between the front-end and back-end compon
 In addition to detailing the technical design, the chapter critically examines the advantages of a self-hosted solution 
 and the rationale behind key architectural decisions.
 
-% Hier beschreiben wir wie wir unseren Flask Service gehostet bzw. Geschreiben haben und im Server implementiert haben
-
-% ##########################################
-
 \section{Introduction}
 This section offers a comprehensive overview of the motivations underpinning the development of the Flask service. 
 Functioning as the backbone for both the Student AI Hub and the code extension’s backend, 
@@ -87,9 +83,11 @@ Docker Compose is used for running multiple containers at the same time. It simp
 The Configuration is stored in a single YAML file. All the services can be started with a simpel command. It is a very compact way to manage Docker application.
 \cite{docker_compose} 
 
-% ########################################
+\section{Scalability and Performance Concerns}
 
-\section{Scalability and Performance concerns}
+One notable limitation of the Flask server is its inherent lack of scalability. Flask, being primarily designed for lightweight applications, is not optimized for handling high volumes of concurrent requests. In our implementation, the server was deployed on a modest PC with limited computational resources. Consequently, if the service were to be deployed in a production environment, it would be imperative to migrate to more robust hardware or consider a distributed, multi-server architecture to effectively manage the anticipated load. Given the constraints of the project timeline and the prototype nature of this work, scalability was not prioritized during development.
+
+% ########################################
 
 \section{Conclusion and Future Work}
 This concluding section synthesizes the chapter’s key points and reflects on the efficacy of the implemented service. It also outlines potential avenues for future enhancements, such as further scalability improvements, additional functionalities, and more robust deployment automation.
