@@ -146,7 +146,7 @@ auth.onAuthStateChanged(user => {
 \vspace{1em}
 \textbf{Vue.js Component Example with Authentication:}
 
-\begin{lstlisting}[language=Vue, caption={Vue.js component for user sign-in}]
+\begin{lstlisting}[language=HTML, caption={Vue.js component for user sign-in}]
 <template>
     <div>
         <!-- Display a welcome message if the user is signed in -->
@@ -253,13 +253,117 @@ Every student at HTL is provided with a TSN email account, which serves as the p
 
 % ########################
 
-\section{Interactive Chatbot for day to day AI Questions}
+\section{Interactive Chatbot for Day-to-Day AI Questions}
 
-\section{Open AI Integration}
+The objective of this feature is to provide students with immediate, context-aware responses to a broad spectrum of AI-related inquiries. To achieve this, the Intelligent Student AI Hub integrates multiple advanced Ollama AI models (e.g., LLaMA 3.2 and Mistral), enabling users to select the model that best fits the complexity and responsiveness required by their query. This modular approach ensures that students receive the most effective and contextually relevant answers, thereby enhancing their learning experience.
 
-\subsection{ChatGPT API}
+A self-hosted Flask API serves as the intermediary between the user interface and the Ollama API. This architecture allows the system to capture user input, forward the request to the selected AI model via the Flask API, and then relay the model's response back to the user in real time. The following abbreviated code listing illustrates the core implementation within a Vue.js component, demonstrating how the integration is achieved:
 
-\subsection{DALL-E API}
+\begin{lstlisting}[language=html, caption={Abbreviated Vue.js Integration Example}, frame=single]
+// Template section: model selection, chat display, and user input
+<template>
+  <div>
+    <!-- AI Model Selection -->
+    <select v-model="selectedModel">
+      <option value="llama3.2:1b">LLaMA 3.2 - 1B (Fast)</option>
+      <option value="llama3.2">LLaMA 3.2 - 2B (Latest)</option>
+      <!-- more Models -->
+    </select>
+    <!-- Chat Display -->
+    <div v-for="msg in currentChat.messages" :key="msg.id">
+      <p v-if="msg.type==='user'">{{ msg.text }}</p>
+      <p v-else>{{ msg.text }}</p>
+    </div>
+    <!-- User Input and Submission -->
+    <input v-model="userInput" @keydown.enter="sendMessage" placeholder="Ask the AI question..." />
+    <button @click="sendMessage">Send</button>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+export default {
+  data() {
+    return {
+      userInput: '',
+      selectedModel: 'llama3.2:1b',
+      currentChat: { messages: [] },
+    };
+  },
+  methods: {
+    async sendMessage() {
+      if (!this.userInput.trim()) return;
+      // Append user message to chat
+      this.currentChat.messages.push({ id: Date.now(), type: 'user', text: this.userInput });
+      // Send the query to the Flask API
+      const response = await axios.post('http://server-address/ask_ollama', {
+        prompt: this.userInput,
+        model: this.selectedModel,
+      });
+      // Append AI response to chat
+      this.currentChat.messages.push({ id: Date.now(), type: 'ollama', text: response.data.choices[0].text });
+      this.userInput = '';
+    },
+  },
+};
+</script>
+\end{lstlisting}
+
+This example demonstrates the fundamental components of the integration:
+\begin{itemize}
+  \item \textbf{Model Selection:} A dropdown menu allows users to choose from various AI models, balancing speed and sophistication.
+  \item \textbf{Real-Time Communication:} User inputs are captured and transmitted asynchronously to the Flask API, which then retrieves responses from the selected Ollama AI model.
+  \item \textbf{Dynamic Chat Interface:} The chat interface updates dynamically with both user queries and AI responses, ensuring an engaging, real-time interaction.
+\end{itemize}
+
+By decoupling the frontend from the backend AI processing via a RESTful API, this design not only simplifies maintenance but also facilitates future scalability. New models or enhanced features can be integrated with minimal changes to the existing codebase, ensuring the platform remains adaptable to evolving educational needs.
+
+% ****************************************************
+
+\section{OpenAI Integration}
+
+Given that locally hosted Ollama AI models may not achieve the same performance level as commercially available state-of-the-art solutions, 
+the Intelligent Student AI Hub integrates advanced OpenAI models—such as ChatGPT and DALL-E—to deliver superior capabilities in text generation and image synthesis. 
+This integration not only augments the quality of responses but also significantly enhances platform scalability. With the OpenAI API, 
+scalability is effectively decoupled from hardware limitations, unlike the self-hosted Ollama API, which is inherently constrained by the available computational 
+resources.
+
+\subsection{ChatGPT API and Its Limitations}
+
+A primary limitation of the ChatGPT API is the cost associated with each API request. 
+Every query incurs a fee that can rapidly accumulate with high usage volumes. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/ChatGPT-API_Pricing.png}
+    \caption{ChatGP API Pricing}
+    \label{fig:chatgpt_api_integration}
+\end{figure}
+
+\cite{ChatGPT-API-Pricing}
+
+For instance, utilizing ChatGPT-4o Mini costs \$0.30 per million input tokens, 
+whereas the full ChatGPT-4o model incurs a cost of \$3.75 per million input tokens equating to a 12.5-fold increase in expense 
+(see Figure~\ref{fig:chatgpt_api_integration}).
+\footnote{Pricing data is current as of 17.02.2025 and may be subject to change.} 
+
+Consequently, the development team has opted to restrict the use of the ChatGPT API. 
+This measured approach enables students to benefit from ChatGPT’s advanced functionalities while effectively managing costs. 
+Moreover, it is more economical for the institution to subsidize access to the API than to provide every student with an individual premium account.
+
+\subsection{User Access to Paid Services}
+
+Standard users are allocated a finite number of ChatGPT API requests per month, with these request tokens being replenished on a monthly basis. The number of tokens consumed per query is contingent upon the chosen model.
+\footnote{Token allocations and model thresholds are periodically adjusted in response to current pricing structures and monthly usage limits.} 
+Should a user exhaust their monthly token quota, they may alternatively direct their queries to the Ollama API. In addition to standard user access, premium, teacher, and administrator accounts are available, each benefiting from a higher monthly token allocation. Initially, all users are granted standard access; any desired upgrade to premium, teacher, or administrator status requires a formal request to the platform administration.
+
+\subsection{Integration of OpenAI's API}
+
+For a comprehensive guide on integrating OpenAI's API into a Vue.js project, please refer to Chapter \ref{chap:Introduction_to_the_used_Large_Language_Models}, Section \ref{subsec:Code Example: Vue.js Component for OpenAI API Integration}.
+
+
+% ****************************************************
+
 
 \section{Programming Bot for different Programming Languages}
 

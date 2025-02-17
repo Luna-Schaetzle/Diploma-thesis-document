@@ -43,36 +43,71 @@ showstringspaces=false}
 
 	%% HTML Code im Stil von Eclipse
 
-\lstdefinestyle{HTML}{
-    language=HTML,
-    basicstyle=\ttfamily,
-    keywordstyle=\color{javapurple}\bfseries,
-    stringstyle=\color{javared},
-    commentstyle=\color{javagreen},
-    morecomment=[s]{<!--}{-->},
-    numbers=left,
-    numberstyle=\tiny\color{black},
-    stepnumber=1,
-    numbersep=10pt,
-    tabsize=4,
-    showspaces=false,
-    showstringspaces=false
-}
 
-%% JavaScript Code im Stil von Eclipse
 
-\lstdefinestyle{JavaScript}{
-    language=JavaScript,
-    basicstyle=\ttfamily,
-    keywordstyle=\color{javapurple}\bfseries,
-    stringstyle=\color{javared},
-    commentstyle=\color{javagreen},
-    morecomment=[s][\color{javadocblue}]{/**}{*/},
-    numbers=left,
-    numberstyle=\tiny\color{black},
-    stepnumber=1,
-    numbersep=10pt,
-    tabsize=4,
-    showspaces=false,
-    showstringspaces=false
-}
+    \definecolor{pblue}{rgb}{0.13,0.13,1}
+    \definecolor{pgreen}{rgb}{0,0.5,0}
+    \definecolor{pred}{rgb}{0.9,0,0}
+    \definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+    
+    \lstset{language=html,
+        tabsize=2,
+        showspaces=false,
+        showtabs=false,
+        breaklines=true,
+        numbers=left, 
+        numberstyle=\tiny\color{black},
+        xleftmargin=2em,
+        frame=single, 
+        showstringspaces=false,
+        breakatwhitespace=true,
+        commentstyle=\color{pgreen},
+        keywordstyle=\color{pblue},
+        stringstyle=\color{pred},
+        basicstyle=\tiny\ttfamily,
+        moredelim=[il][\textcolor{pgrey}]{$$},
+        moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+    }
+    
+    \lstset{literate=%
+        {Ö}{{\"O}}1
+        {Ä}{{\"A}}1
+        {Ü}{{\"U}}1
+        {ß}{{\ss}}1
+        {ü}{{\"u}}1
+        {ä}{{\"a}}1
+        {ö}{{\"o}}1
+    }
+    
+    
+    \lstdefinelanguage{JavaScript}{
+        keywords={const, let, import, typeof, new, true, false, catch, function, return, null, catch, switch, var, if, while, do, else, v{-}else, case, break},
+        keywordstyle=\color{blue}\bfseries,
+        ndkeywords={class, export, boolean, throw, implements, import, this},
+        ndkeywordstyle=\color{darkgray}\bfseries,
+        identifierstyle=\color{black},
+        sensitive=false,
+        comment=[l]{//},
+        morecomment=[s]{/*}{*/},
+        commentstyle=\color{purple}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        morestring=[b]',
+        morestring=[b]"
+    }
+    
+    \lstset{
+        language=JavaScript,
+        extendedchars=true,
+        basicstyle=\tiny\footnotesize\ttfamily,
+        showstringspaces=false,
+        showspaces=false,
+        numbers=left,
+        numberstyle=\footnotesize,
+        numbersep=9pt,
+        tabsize=2,
+        breaklines=true,
+        showtabs=false,
+        captionpos=b
+    }
+    
+
