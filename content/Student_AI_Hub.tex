@@ -365,7 +365,84 @@ For a comprehensive guide on integrating OpenAI's API into a Vue.js project, ple
 % ****************************************************
 
 
-\section{Programming Bot for different Programming Languages}
+\section{Programming Bot for Different Programming Languages}
+
+The Intelligent Student AI Hub incorporates a dedicated programming bot designed to facilitate the learning and practice of various programming languages. Building upon the foundational architecture of the general chatbot, this bot leverages code-centric large language models (LLMs) that have been specifically trained on source code. As with the standard chatbot, users can select from different models that are optimized for programming-related tasks.
+
+\subsection{Programming Bot Features}
+
+Several enhancements have been integrated into the programming bot to improve its functionality and user experience:
+
+\begin{itemize}
+  \item \textbf{Programming Language Selection:} A dropdown menu enables users to specify the programming language for which they require assistance. The selected language is incorporated into the user’s query—modifying the prompt sent to the LLM—to ensure that responses are tailored appropriately. This modification is handled on the backend via a dedicated Flask API endpoint.
+  
+  \item \textbf{Prompt Refinement:} An integrated "refine" option allows users to modify their initial query. By clicking the refine button, users can adjust their question, prompting the LLM to generate a more precise response.
+  
+  \item \textbf{Code Rendering and Clipboard Functionality:} The frontend renders responses in Markdown, which facilitates automatic syntax highlighting of code blocks. Additionally, a "copy to clipboard" feature is provided, enabling users to easily extract and reuse the code samples.
+\end{itemize}
+
+Further details regarding the backend implementation are provided in Chapter \ref{chap:Hosted_Flask_Service}.
+
+\subsubsection{Markdown for Code Formatting}
+
+Markdown is a lightweight markup language that supports plain-text formatting and can be easily converted into various output formats. Given that most LLM responses are delivered in Markdown, this feature simplifies the rendering of code with syntax highlighting. This approach is particularly useful for displaying well-formatted code snippets alongside explanatory text \cite{What-Is-Markdown}.
+
+\paragraph{Illustrative Implementation Example:}
+
+The following abbreviated Vue.js component demonstrates the key aspects of the programming bot integration. This example illustrates how the user can select a programming language, refine their input, and receive formatted code output:
+
+\begin{lstlisting}[language=Vue, caption={Abbreviated Vue.js Component for the Programming Bot}, frame=single]
+<template>
+  <div class="programming-bot">
+    <!-- Selection Area for Model and Programming Language -->
+    <div class="selection-area">
+      <select v-model="selectedModel">
+        <option value="modelA">Model A</option>
+        <option value="modelB">Model B</option>
+      </select>
+      <select v-model="selectedLanguage">
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+      </select>
+    </div>
+    <!-- Chat Interface -->
+    <div class="chat-box">
+      <div v-for="msg in messages" :class="msg.type">{{ msg.text }}</div>
+    </div>
+    <!-- Input Area with Refine Option -->
+    <textarea v-model="userInput" placeholder="Enter your programming question..."></textarea>
+    <button @click="sendMessage">Send</button>
+    <button v-if="isLastUserMessage" @click="prepareRefine">Refine</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      userInput: '',
+      selectedModel: 'modelA',
+      selectedLanguage: 'python',
+      messages: [],
+    };
+  },
+  methods: {
+    async sendMessage() {
+      // Append the selected programming language to the user prompt
+      const prompt = `Language: ${this.selectedLanguage}\n${this.userInput}`;
+      // Send the prompt to the Flask API and process the response...
+    },
+    prepareRefine() {
+      // Open a modal to refine the user prompt for improved accuracy
+    }
+  }
+};
+</script>
+\end{lstlisting}
+
+This concise example encapsulates the core integration features: selecting a programming model and language, refining user input, and rendering code responses with Markdown-enhanced formatting.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \section{Image Recognition Tool}
 
@@ -373,8 +450,23 @@ For a comprehensive guide on integrating OpenAI's API into a Vue.js project, ple
 
 \section{Saved chates}
 
+\section{Website Design and User Experience} 
+
+% Maby overthink the subsections    
+
+\subsection{structured and intuitive navigation}
+
+\subsection{Engaging and interactive content}
+
+\subsection{Responsive design for multi-device compatibility}
+
+\subsection{User-friendly interface for seamless interaction}
+
+\subsection{Styling and Theming}
+
 \section{Features that dident make it into the final version}
 
+Multilangual Website 
 List the planned features that did not make it into the final version of the Student AI Website.
 Explain why they were not included and how they could be implemented in future iterations.
 
