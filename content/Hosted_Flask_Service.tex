@@ -86,6 +86,8 @@ Docker Compose is used for running multiple containers at the same time. It simp
 The Configuration is stored in a single YAML file. All the services can be started with a simpel command. It is a very compact way to manage Docker application.
 \cite{docker_compose} 
 
+\author{Florian Prandstetter}
+
 \section{Scalability and Performance Concerns}
 
 One notable limitation of the Flask server is its inherent lack of scalability. Flask, being primarily designed for lightweight applications, is not optimized for handling high volumes of concurrent requests. In our implementation, the server was deployed on a modest PC with limited computational resources. Consequently, if the service were to be deployed in a production environment, it would be imperative to migrate to more robust hardware or consider a distributed, multi-server architecture to effectively manage the anticipated load. Given the constraints of the project timeline and the prototype nature of this work, scalability was not prioritized during development.

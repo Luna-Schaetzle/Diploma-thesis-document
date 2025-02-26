@@ -33,21 +33,32 @@ Factors like scalability, performance and reliability have to be considered in c
 
 \begin{itemize}
 
-    \item \textbf{Batch Operating Systems} are designed to handle a large number of processes.
+    \item \textbf{Batch Operating Systems} are designed to handle a large number of processes. They are used to process large amounts of data and to run complex calculations.
     \begin{itemize}
         \item \textbf{Advantages} multiple users can share the batch system and it is easy to manage big amounts of traffic
 
         \item \textbf{Disadvantages} The CPU isn't used efficently. Also the response time can be slow, due to processes being processed one by one.
     
-        They are used to process large amounts of data and to run complex calculations.
+        
     
     \end{itemize} 
 
+    %maybe more detailed
     \item \textbf{Multi Programming/Time Sharing Operating System} are used to utilize the available ressources as efficent as possible. They allow using multiple programms at the same time, which allow multiple users to share the system.
+    They are often used for servers and also have been used by the devolpmentt team in the project.
+
     \begin{itemize}
-        \item \textbf{Advantages}
-        \item \textbf{Disadvantages}
+        \item \textbf{Advantages} Allows multiple users to share the ressources. Alos it helps avoiding duplicated software.
+        \item \textbf{Disadvantages} There can be problems with reliable data communication. 
     \end{itemize} 
+
+
+    \item \textbf{Real Time Operating System} are used when a very short response time is needed. They are often used on microcontrollers like the ESP32.
+    \begin{itemize}
+        \item \textbf{Advantages} They utilize the device to it's maximum. Fast and reliable memory allocation. They usally are error free.
+        \item \textbf{Disadvantages} There can omly be a limited amount of tasks. They also require complex algorithms that can be resource heavy.
+    \end{itemize} 
+    
 
 \end{itemize}   
 
@@ -59,3 +70,5 @@ Factors like scalability, performance and reliability have to be considered in c
 
 \subsection
 
+
+\author{Florian Prandstetter}
