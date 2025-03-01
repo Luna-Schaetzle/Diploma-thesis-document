@@ -1,5 +1,6 @@
 \chapter{Intelligent Student AI Hub: An Integrated Learning Platform} 
 \label{chap:Student_AI_Hub}
+\textbf{Authors:} Luna P. I. Schaetzle
 
 This chapter presents an in-depth overview of the Intelligent Student AI Hub, 
 a comprehensive web platform designed to empower students in exploring artificial intelligence (AI) concepts. 
@@ -52,8 +53,6 @@ Some of the key features of the platform include:
     \item \textbf{Saved Chats:} The platform allows users to save and revisit previous chat interactions with the AI chatbot, enabling seamless continuity in learning and knowledge retention.
     \item \textbf{User Profiles and Authentication:} Each user can create a personalized profile, manage their learning progress, and access customized content based on their preferences and history.
 \end{itemize}
-
-% ##########################################
 
 \section{Authentication and User Profiles}
 
@@ -690,22 +689,40 @@ export default {
 
 This concise implementation outlines how the platform leverages Firestore to manage and persist chat sessions, providing users with a seamless and consistent learning experience.
 
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Structured and Intuitive Navigation}
 
-\section{Website Design and User Experience} 
+The platform's navigation is designed to ensure that users can efficiently access desired content and features. To achieve this, the primary components of the platform are placed in the main navigation bar at the top of the page. These key elements include:
 
-% Maby overthink the subsections    
+\begin{itemize}
+    \item Home
+    \item Account Management
+    \item Chat Bots
+    \item Image to Text
+    \item Bildgenerierung
+    \item Logout
+\end{itemize}
 
-\subsection{structured and intuitive navigation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/Navigation-Bar-top.png}
+    \caption{Main Navigation Bar}
+    \label{fig:main_navigation_bar}
+\end{figure}
 
-\subsection{Engaging and interactive content}
+To enhance usability when interacting with chat bots, the platform provides a dedicated Chat Bot Section. Within this section, users can select from different chat bots via a navigation bar located on the left side of the page, ensuring an intuitive and structured browsing experience.
 
-\subsection{Responsive design for multi-device compatibility}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Chat-Bot-Navigation-Bar.png}
+    \caption{Chat Bot Navigation}
+    \label{fig:chat_bot_navigation}
+\end{figure}
 
-\subsection{User-friendly interface for seamless interaction}
+\section{Styling and Theming}
 
-\subsection{Styling and Theming}
+The platform's design follows a clean and modern aesthetic. To achieve this, a light and contemporary color scheme has been implemented. The background is predominantly white, with blue serving as the primary accent color and green used for highlights. For instance, buttons are styled in blue, while the currently selected chat bot is indicated in green.
 
+Most of the styling was implemented using a CSS framework, with initial specifications defined by the development team. These were later refined with the assistance of AI tools, including ChatGPT (versions 3.5, 4, 4o, and o1) as well as GitHub Copilot.
 
 \section{Features Excluded from the Final Version}
 
@@ -717,12 +734,30 @@ Due to the limited development time and the emphasis on core functionalities, se
 \item \textbf{Test Preparation:} A module intended to generate practice tests and quizzes based on user preferences and learning progress.
 \item \textbf{Learning Analytics:} Tools for tracking and analyzing user learning patterns, progress, and areas for improvement.
 \item \textbf{Collaborative Learning:} Features enabling users to collaborate on projects, share knowledge, and engage in group learning activities.
+\item \textbf{Enhanced User Profiles:} Additional profile customization options, learning preferences, and progress tracking capabilities.
+\item \textbf{Dark Mode:} An alternative color scheme for the platform to reduce eye strain and improve readability in low-light environments.
 \end{itemize}
 
 The majority of these planned features were not implemented due to their time-intensive nature. For instance, the development of a multilingual website would have required extensive effort to translate and maintain all website content.
 
 \section{Conclusion}
+\section{Conclusion}
 
+The Intelligent Student AI Hub represents a significant advancement in educational technology, 
+providing students with a comprehensive and interactive platform to explore and learn about artificial intelligence. 
+By integrating state-of-the-art technologies such as Vue.js, Flask, Firebase, and advanced AI models from OpenAI and Ollama, 
+the platform offers a robust and scalable solution for AI education.
+
+The core functionalities—including interactive chatbots, programming assistance, image recognition, 
+and image-to-text conversion are designed to enhance the learning experience by making complex AI concepts accessible and engaging. 
+The secure and personalized user management system, powered by Firebase, ensures that users can safely interact with the platform while enjoying a tailored educational journey.
+
+While some planned features were not included in the final version due to time constraints, the platform's modular architecture allows for future enhancements and scalability.
+Potential future developments include multilingual support, collaborative learning tools, and advanced learning analytics, 
+which will further enrich the educational experience.
+
+In conclusion, the Intelligent Student AI Hub stands as a testament to the potential of integrating modern web technologies and AI to create a dynamic and effective learning environment. 
+It not only empowers students to delve into the world of AI but also sets a foundation for continuous improvement and innovation in educational tools.
 
 
 
