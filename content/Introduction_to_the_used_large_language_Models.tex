@@ -1054,14 +1054,82 @@ This box plot provides a clear overview of the central tendencies and variabilit
 
 Response times vary significantly among the models. The Llama models display very low and consistent response times, which is advantageous for the intended use case of the School AI Server. In contrast, the Gemma, Mistral, Mathstral, and two Qwen-coder models exhibit higher response times with a noticeable spread. Larger models, such as the Qwen-coder 14 billion parameter model and the Phi4 model, also show increased response times and variability. Notably, the Deepseek models, particularly the 14 billion parameter variant, record the highest response times and spread, likely due to the additional computational demands required for their reasoning processes.
 
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 \subsection{Qualitative Data Analysis}
 
-The following visualizations provide insights into the text quality metrics of different AI models, including BLEU and ROUGE scores, grammatical errors, readability, and sentiment analysis.
+The visualizations presented in this section provide insights into various text quality metrics of different AI models, including BLEU and ROUGE scores, grammatical error counts, readability, and sentiment analysis.
 
 \paragraph{BLEU and ROUGE Scores}
 
+The bar plot below compares the BLEU and ROUGE scores across multiple AI models.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/bleu_rouge.png}
+  \caption{Comparison of BLEU and ROUGE Scores}
+  \label{fig:bleu_rouge}
+\end{figure}
+
+This visualization offers a comprehensive overview of text quality metrics. The BLEU score quantifies the similarity between generated text and a reference text, while the ROUGE scores (including ROUGE-1, ROUGE-2, and ROUGE-L) measure the n-gram overlap between them.
+
+\textbf{Observations:} \\
+BLEU and ROUGE scores vary significantly among the models, reflecting differences in text generation quality. Specialized models for mathematics and coding (e.g., Mathstral and Qwen-coder models) achieve the highest scores due to their technical focus. In contrast, general-purpose models such as Llama and Gemma exhibit lower scores, likely as a consequence of their broader but less specialized capabilities. An exception is the Llava model, which—despite being a general-purpose model with vision capabilities—demonstrates a relatively high BLEU score, possibly due to its unique text generation approach based on images. Additionally, the Mistral and Gemma2 models display higher scores among general-purpose models, whereas reasoning models like Deepseek yield the lowest BLEU and ROUGE scores, prioritizing complex logical reasoning over text quality.
+
+\paragraph{Grammatical Errors}
+
+The box plot below illustrates the distribution of grammatical errors detected across different AI models. Grammatical error count serves as an important metric for assessing the linguistic accuracy of generated text. The Language Tool library was used to detect and count errors, with English specified as the target language for consistent and reliable results.\footnote{Note that some errors detected in code snippets were manually corrected to preserve the intended meaning of the visualization.}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/grammar_errors.png}
+  \caption{Comparison of Grammatical Errors Across AI Models}
+  \label{fig:grammar_errors}
+\end{figure}
+
+\textbf{Observations:} \\
+The number of grammatical errors varies considerably between models. The Mathstral, Llava, and Llama models exhibit the fewest errors, with the Qwen-coder models also performing well despite their focus on code generation. In contrast, reasoning models such as Deepseek produce a higher number of errors, which may be attributable to their emphasis on complex logical reasoning rather than linguistic precision. Additionally, some models might generate more errors due to non-native English influences. Notably, the Phi4 model, a general-purpose model developed in the United States, also shows a higher error count.
+
+\paragraph{Readability (Flesch Score)}
+
+The Flesch Reading Ease score quantifies text readability based on the average number of syllables per word and words per sentence. Higher scores indicate more accessible text, while lower scores suggest increased complexity.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/readability.png}
+  \caption{Comparison of Readability Scores Across AI Models}
+  \label{fig:readability}
+\end{figure}
+
+\textbf{Observations:} \\
+Readability scores differ markedly among the models. Interestingly, the Deepseek models achieve the highest readability scores despite their lower BLEU, ROUGE, and grammatical accuracy metrics, possibly due to the nature of their reasoning-focused design. On the other hand, the Gemma2, Phi4, and Llama models score lowest in readability, which is unexpected for general-purpose models that typically aim for accessible language. Specialized models generally fall within the mid-range of readability scores.
+
+\paragraph{Sentiment Analysis}
+
+Sentiment analysis evaluates the emotional tone and polarity of the generated text. A Transformer-based model was employed to classify text as positive or negative.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/sentiment.png}
+  \caption{Comparison of Sentiment Analysis Across AI Models}
+  \label{fig:sentiment}
+\end{figure}
+
+\textbf{Observations:} \\
+Most models exhibit similar sentiment distributions, with approximately 50–60\% of the text classified as positive and 40–50\% as negative. However, the Deepseek models deviate from this pattern, showing a notably higher negative sentiment score (around 70–80\%), which is intriguing given their high readability scores.
+
+\paragraph{Combined Metrics Overview}
+
+The subplots below provide a holistic overview of the combined text quality metrics, including BLEU and ROUGE scores, grammatical errors, readability, and sentiment analysis.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/combined_metrics.png}
+  \caption{Combined Metrics Overview for AI Models}
+  \label{fig:combined_metrics}
+\end{figure}
+
+These subplots facilitate a comprehensive comparative analysis of the performance of different AI models with respect to text quality.
+
+% ##############################################################################
 
 \subsection{Model Comparison for different Use Cases and Scenarios}
 
