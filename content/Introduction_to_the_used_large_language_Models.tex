@@ -995,9 +995,73 @@ NumPy is a foundational library for numerical computing in Python. It introduces
 
 %********************************************************************************
 
-\subsection{Testresults and Analysis}
+\subsection{Test Results and Analysis}
 
-Write about the Analysis and include the images of the graphics
+After data collection and processing, the following visualizations were obtained:
+
+\subsubsection{Quantitative Data Analysis}
+
+The visualizations below offer insights into the performance metrics of various AI models, focusing on response times, CPU usage, and memory consumption.
+
+\paragraph{CPU Usage}
+
+The violin plot below illustrates the distribution of CPU usage across different AI models.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/model_cpu_usage_comparison.png}
+  \caption{Comparative Analysis of CPU Utilization Across AI Models}
+  \label{fig:cpu_usage_comparison}
+\end{figure}
+
+This plot highlights the variability and central tendencies in CPU usage among the evaluated models.
+
+\textbf{Observations:}
+
+CPU usage is relatively consistent across the models; however, the Deepseek (reasoning) models exhibit higher CPU usage, with the largest Deepseek model (14 billion parameters) showing the highest utilization.
+
+\paragraph{Memory Usage}
+
+The following violin plot visualizes the memory consumption of various AI models.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/model_memory_usage_comparison.png}
+  \caption{Comparative Analysis of Memory Consumption Across AI Models}
+  \label{fig:memory_usage_comparison}
+\end{figure}
+
+This visualization reveals the memory usage patterns and distributions, providing valuable insights into resource allocation.
+
+\textbf{Observations:}
+
+Memory usage is generally comparable across the models. Nevertheless, the Deepseek (reasoning) models demonstrate higher memory consumption with a wider spread, particularly in the 8 and 7 billion parameter variants.
+
+\paragraph{Response Times}
+
+A box plot was generated to depict the distribution of response times across the different models.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/scores/model_response_times_comparison.png}
+  \caption{Comparative Analysis of Model Response Times}
+  \label{fig:response_times_comparison}
+\end{figure}
+
+This box plot provides a clear overview of the central tendencies and variability in response times.
+
+\textbf{Observations:}
+
+Response times vary significantly among the models. The Llama models display very low and consistent response times, which is advantageous for the intended use case of the School AI Server. In contrast, the Gemma, Mistral, Mathstral, and two Qwen-coder models exhibit higher response times with a noticeable spread. Larger models, such as the Qwen-coder 14 billion parameter model and the Phi4 model, also show increased response times and variability. Notably, the Deepseek models, particularly the 14 billion parameter variant, record the highest response times and spread, likely due to the additional computational demands required for their reasoning processes.
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsection{Qualitative Data Analysis}
+
+The following visualizations provide insights into the text quality metrics of different AI models, including BLEU and ROUGE scores, grammatical errors, readability, and sentiment analysis.
+
+\paragraph{BLEU and ROUGE Scores}
+
 
 \subsection{Model Comparison for different Use Cases and Scenarios}
 
