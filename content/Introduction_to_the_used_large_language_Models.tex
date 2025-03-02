@@ -992,9 +992,6 @@ NumPy is a foundational library for numerical computing in Python. It introduces
 
 \cite{numpy}
 
-
-%********************************************************************************
-
 \subsection{Test Results and Analysis}
 
 After data collection and processing, the following visualizations were obtained:
@@ -1129,17 +1126,57 @@ The subplots below provide a holistic overview of the combined text quality metr
 
 These subplots facilitate a comprehensive comparative analysis of the performance of different AI models with respect to text quality.
 
-% ##############################################################################
 
-\subsection{Model Comparison for different Use Cases and Scenarios}
+\subsection{Model Comparison for Different Use Cases and Scenarios}
 
-Explain wich modell is best for what
+This section presents a comparative analysis of various AI models based on both quantitative and qualitative performance metrics. The evaluation focuses on aspects such as computational efficiency, text generation quality, and overall suitability for specific application scenarios.
+
+\subsubsection{Performance Metrics Overview}
+
+The quantitative analysis reveals significant differences in resource utilization and response times across the models:
+\begin{itemize}
+  \item \textbf{CPU and Memory Usage:} The Deepseek (reasoning) models tend to exhibit higher CPU and memory consumption compared to others. This is indicative of the increased computational demand required for complex logical processing.
+  \item \textbf{Response Times:} Models such as Llama demonstrate very low and consistent response times, making them particularly well-suited for interactive applications. In contrast, larger models (e.g., Qwen-coder 14 billion and Phi4) and the Deepseek models show increased response times and higher variability.
+\end{itemize}
+
+\subsubsection{Text Quality and Accuracy}
+
+The qualitative analysis, based on BLEU and ROUGE scores, grammatical error counts, readability, and sentiment analysis, provides further insights into each model's text generation capabilities:
+\begin{itemize}
+  \item \textbf{BLEU and ROUGE Scores:} Specialized models (e.g., Mathstral and Qwen-coder) achieve the highest scores, reflecting superior performance in generating technical content. General-purpose models like Llama and Gemma tend to score lower due to their broader, less specialized focus.
+  \item \textbf{Grammatical Accuracy:} Models such as Mathstral, Llava, and Llama exhibit fewer grammatical errors, while reasoning models like Deepseek show a higher error count, potentially due to their prioritization of logical reasoning over linguistic precision.
+  \item \textbf{Readability:} Interestingly, the Deepseek models score highest on the Flesch Reading Ease metric, despite other text quality metrics indicating lower overall quality. In contrast, some general-purpose models such as Gemma2 and Phi4 show lower readability scores.
+  \item \textbf{Sentiment Analysis:} Most models present a balanced sentiment distribution. However, the Deepseek models are characterized by a higher proportion of negative sentiment, which may be attributed to the inherent complexity of their reasoning processes.
+\end{itemize}
+
+\subsubsection{Use Case Recommendations}
+
+Based on the integrated analysis of both performance and text quality, the following recommendations can be made for various use cases:
+
+\paragraph{Interactive and Real-Time Applications} 
+For scenarios requiring rapid response and minimal latency—such as the School AI Server—models like Llama are highly advantageous due to their consistently low response times.
+
+\paragraph{Technical and Domain-Specific Content Generation} 
+Applications demanding high accuracy in technical content, particularly in mathematics and coding, are best served by specialized models like Mathstral and Qwen-coder. These models not only achieve superior BLEU and ROUGE scores but also exhibit fewer grammatical errors.
+
+\paragraph{Complex Reasoning Tasks} 
+For tasks that necessitate advanced logical reasoning, the Deepseek models are appropriate despite their higher computational resource demands and slower response times. However, users should be aware of the trade-offs, including higher negative sentiment and a greater number of grammatical errors.
+
+\paragraph{General-Purpose Applications} 
+For broader applications where versatility is key, general-purpose models such as Gemma, Gemma2, and Phi4 offer a balanced performance. Although they may not excel in any single metric, they provide reliable performance across a range of tasks.
+
+\subsubsection{Overall Evaluation}
+
+The comparative analysis underscores that no single model excels universally across all metrics. Instead, the choice of an AI model should be closely aligned with the specific requirements and constraints of the intended application. Developers must weigh the trade-offs between computational efficiency, text quality, and domain-specific accuracy when selecting the most appropriate model for a given scenario.
 
 \subsection{Model Selected for the Final Application}
 
-Explain why the selected model was selected and what the criteria were
+For the initial version of the Student AI Hub application, the decision was made to allow users to choose between the models. This approach enables users to select the model that best meets their specific use cases and requirements, while also effectively demonstrating the distinct capabilities of each model.
 
-and explain the different models.
+Specialized models, such as Qwen-coder and LLava, are accessible through dedicated application tabs within the Student AI Hub. In contrast, general-purpose models, including Gemma 2, Phi4, and Llama, are available under the General AI tab.
+
+While reasoning models are available, they have not been fully integrated into the application. Their unique reasoning processes require specialized formatting to ensure that the output is comprehensible to the user. As a result, this formatting was not completely finalized at the time of the initial release of the Student AI Hub.
+
 
 \subsection{Model Integration and Deployment}
 
@@ -1149,8 +1186,6 @@ Leveraging the user-friendly API provided by the Ollama application, we facilita
 
 A comprehensive discussion of the hosted Flask service, including its architecture and functionality, is presented in Chapter 9: \textit{Hosted Flask Service}.
 
-
-%********************************************************************************
 
 \section{Integration of OpenAI's API}
 
@@ -1350,11 +1385,14 @@ The presented component exemplifies how modern web applications can seamlessly i
 
 In conclusion, this integration not only demonstrates the practical application of AI APIs in modern web development but also reflects best practices in secure and maintainable code design. Such an approach is essential for building reliable applications in both academic research and industrial contexts.
 
-%********************************************************************************
 
 \section{Conclusion}
 
-% Conclusion of the chapter
+The comprehensive evaluation of AI models for the Student AI Hub application has yielded valuable insights into their performance across various metrics, including response times, resource utilization, text quality, and overall suitability for diverse use cases. By integrating both quantitative and qualitative analyses, we have identified the strengths and weaknesses of each model, enabling us to formulate informed recommendations tailored to specific application scenarios.
+
+Furthermore, the integration of the OpenAI API into the School AI Server and the Visual Studio Code extension has significantly enhanced the application's capabilities, providing users with seamless access to advanced AI functionalities. Adherence to best practices in data security and privacy has ensured full compliance with Austrian and EU regulations, thereby safeguarding user data.
+
+In the following three chapters, we will discuss the technical implementation aspects of the project, including the integration of AI into the Flask server, the development of the Student AI Hub application, and the incorporation of AI functionalities into the Visual Studio Code extension. These chapters will provide a detailed exploration of the project's technical architecture, complete with code examples, architectural diagrams, and deployment strategies.
 
 
 
