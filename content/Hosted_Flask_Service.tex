@@ -25,9 +25,10 @@ A self-hosted service confers a multitude of benefits relative to externally man
 \end{itemize}
 Collectively, these factors validate the strategic decision to pursue a self-hosted approach, underscoring its technical, operational, and regulatory merits.
 
-% ***************************************************
 
 \section{Architecture and Service Structure}
+
+The Flask service functions as a robust and flexible backend for the Student AI Hub and the code extension. Its modular and extensible design facilitates the seamless integration of additional functionalities and services. The figure below illustrates the key architectural components of the Flask service and their interactions.
 
 \begin{figure}[h]
     \centering
@@ -36,16 +37,26 @@ Collectively, these factors validate the strategic decision to pursue a self-hos
     \label{fig:flask_service_architecture}
 \end{figure}
 
-
-To provide a comprehensive understanding of the Flask service, this section delves into its architectural design and internal structure.
-
 \subsection{System Architecture}
 
-This subsection describes the architecture of the Python Flask server, elucidating how various components are integrated to form a cohesive whole. The internal workflow and interaction between modules are detailed to provide a clear picture of the service's operational logic.
+The system is organized around a central Python script, \texttt{app.py}, which handles incoming requests, registers endpoints, initiates the server, and manages logging. Server configuration is maintained in \texttt{config.py}, where settings such as the language model, image processing rules, upload folder, and conversion language are defined.
 
-\subsection{Modularity and Extensibility}
+Endpoints are organized within the \texttt{routes} subfolder, with similar endpoints grouped together. They are divided into the following files:
+\begin{itemize}
+    \item \textbf{chatbot\_route.py:} Contains endpoints related to chatbot functionality.
+    \item \textbf{Image\_recognition\_route.py:} Manages endpoints for image recognition tasks.
+    \item \textbf{Programming\_bot\_route.py:} Houses endpoints for the programming bot.
+\end{itemize}
 
-An emphasis is placed on the modular design of the service, which facilitates maintainability and scalability. This part discusses the design choices that allow for future enhancements and the integration of additional functionalities.
+Within these files, endpoints process user requests and return responses, and are designed for easy extension. They also handle error management and user feedback by converting data from the user and the Ollama API into the appropriate format when necessary. Connections to the Ollama API and the OCR (Optical Character Recognition) system are managed within the \texttt{Utils} folder, which contains all utility functions used by the endpoints, including those for sending requests, performing OCR, and converting Markdown to HTML.
+
+\subsection{Expandability and Modularity}
+
+The server is designed for easy expandability and modularity. Endpoints are stored in separate files, which allows for the straightforward addition of new functionality. Similarly, utility functions can be updated or replaced with minimal effort, and the server configuration is flexible enough to accommodate new parameters.
+
+This modular and extensible architecture ensures that the Flask service can readily adapt to future enhancements and integrations. These design principles contribute to a flexible, maintainable server that can be effortlessly updated with new features and functionalities.
+
+% ***************************************************
 
 \section{Flask as a Web Framework}
 
@@ -69,12 +80,13 @@ An overview of auxiliary utility functions is given, focusing on their roles in 
 \section{Utilized Libraries}
 A comprehensive inventory of the external libraries used in the project is presented in this section. For each library, its functionality, role within the project, and integration aspects are discussed.
 
-%###################
 
 \section{Deployment}
 
 % How we deployed the Server on a Laptop, The School Server and on our Server via Docker
 % Explain how we Deployed the Server on a Laptop, The School Server and on our Server via Docker (Docker gets Explained in the next Section)
+
+%###################
 
 \section{Docker}
 \label{sec:docker}
