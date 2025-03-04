@@ -210,20 +210,257 @@ Overall, these endpoints are designed for scalability and robustness, efficientl
 
 \subsection{OCR Endpoints}
 
+This file contains all the OCR endpoints. Currently, there is a single endpoint that handles input for optical character recognition.
 
+The following code snippet illustrates the OCR endpoint:
+
+\begin{lstlisting}[language=Python]
+def allowed_file(filename):
+    """
+    Checks if the file has an allowed extension.
+    """
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
+
+@ocr_bp.route('/ocr', methods=['POST'])
+def process_ocr():
+    """
+    OCR endpoint: Accepts an image (either as a Base64 string or as a file), extracts text using OCR,
+    enhances the extracted text via the Ollama API, and returns both the raw and improved text.
+    Supports both JSON and multipart/form-data requests.
+    """
+    img_path = None  # Initialize img_path for cleanup
+    try:
+        # Check if the request contains JSON data
+        if request.is_json:
+            data = request.get_json()
+            image_str = data.get('image')
+            if not image_str:
+                logger.warning('Image data missing in JSON request')
+                return jsonify({'error': 'Image data missing'}), 400
+
+            # Decode the Base64 image
+            if ',' in image_str:
+                header, encoded = image_str.split(',', 1)
+            else:
+                header, encoded = '', image_str
+            try:
+                img_data = base64.b64decode(encoded)
+                img = Image.open(BytesIO(img_data))
+            except Exception as e:
+                logger.error(f'Error decoding Base64 image: {str(e)}')
+                return jsonify({'error': 'Invalid Base64 image data'}), 400
+
+        else:
+            # Handle multipart/form-data request
+            if 'image' not in request.files:
+                logger.warning('No image file provided in multipart/form-data request')
+                return jsonify({'error': 'No image file provided'}), 400
+
+            file = request.files['image']
+            if file.filename == '':
+                logger.warning('Empty filename in multipart/form-data request')
+                return jsonify({'error': 'Empty filename'}), 400
+
+            if file and allowed_file(file.filename):
+                try:
+                    img = Image.open(file.stream)
+                except Exception as e:
+                    logger.error(f'Error opening uploaded image file: {str(e)}')
+                    return jsonify({'error': 'Invalid image file'}), 400
+            else:
+                logger.warning(f'Invalid image format: {file.filename}')
+                return jsonify({'error': f'Invalid image format. Allowed: {", ".join(Config.ALLOWED_EXTENSIONS)}'}), 400
+
+        # Validate the image format
+        if img.format.lower() not in Config.ALLOWED_EXTENSIONS:
+            logger.warning(f'Invalid image format: {img.format}')
+            return jsonify({'error': f'Invalid image format: {img.format}'}), 400
+
+        # Optionally resize the image to reduce processing time
+        img.thumbnail((1024, 1024))  # Example: maximum size 1024x1024
+
+        # Save the image temporarily if required by the OCR tool
+        img_filename = "temp_ocr.png"
+        img_path = os.path.join(Config.UPLOAD_FOLDER, img_filename)
+        try:
+            img.save(img_path)
+        except Exception as e:
+            logger.error(f'Error saving temporary image: {str(e)}')
+            return jsonify({'error': 'Error saving image'}), 500
+
+        # Perform OCR using Tesseract
+        try:
+            extracted_text = pytesseract.image_to_string(img, lang=Config.TESSERACT_LANG)
+            if not extracted_text.strip():
+                logger.warning('OCR could not extract any text')
+                return jsonify({'error': 'OCR could not extract any text'}), 400
+        except Exception as e:
+            logger.error(f'OCR processing error: {str(e)}')
+            return jsonify({'error': 'OCR processing error'}), 500
+
+        # Enhance the extracted text using the Ollama API
+        try:
+            improved_text = improve_text_with_ollama(extracted_text, model='llama3.2')
+        except Exception as e:
+            logger.error(f'Error improving text with Ollama: {str(e)}')
+            return jsonify({'error': 'Error improving text'}), 500
+
+        return jsonify({
+            'raw_text': extracted_text,
+            'improved_text': improved_text
+        }), 200
+
+    except Exception as e:
+        logger.error(f'General error in OCR endpoint: {str(e)}')
+        return jsonify({'error': f'General error: {str(e)}'}), 500
+
+    finally:
+        # Clean up the temporary image
+        if img_path and os.path.exists(img_path):
+            try:
+                os.remove(img_path)
+            except Exception as e:
+                logger.error(f'Error removing temporary image: {str(e)}')
+\end{lstlisting}
+
+This endpoint accepts image data in both JSON and multipart/form-data formats. It decodes the image, validates its format, and processes it using Optical Character Recognition (OCR). The raw text extracted from the image is then enhanced through the Ollama API, and both the original and improved texts are returned as part of the response. Additionally, the endpoint manages errors effectively and ensures that temporary image files are cleaned up after processing.
+
+The following utility functions play a crucial role in the OCR process:
+\begin{itemize}
+    \item \texttt{allowed\_file}: Verifies whether the uploaded file has an allowed extension.
+    \item \texttt{improve\_text\_with\_ollama}: Sends the extracted text to the Ollama API for enhancement.
+    \item \texttt{pytesseract.image\_to\_string}: Extracts text from images using the Tesseract OCR engine.
+\end{itemize}
+
+These functions are essential for processing image data, interfacing with external APIs, and ensuring the accuracy and reliability of the OCR workflow.
 
 \subsection{Programming Bot Endpoints}
 
-\subsection{Code Illustrations}
-To enhance understanding, code examples are provided to demonstrate the implementation of key endpoints. These examples highlight the methods used to process requests and generate responses.
+The Programming Bot endpoints manage all requests related to the Programming Bot functionality within the Student AI Hub and the Code Extension. These endpoints route user queries to the Ollama API and return code-based responses, tailored specifically for programming inquiries.
+
+The following code snippet illustrates the endpoint for the Programming Bot:
+
+\begin{lstlisting}[language=Python]
+@chat_bp.route('/ask_programming_bot', methods=['POST'])
+def ask_programming_bot_endpoint():
+    """
+    Programming Bot Endpoint: Receives a user query, communicates with Ollama, and returns the response.
+    """
+    data = request.get_json()
+
+    if not data:
+        logger.warning('No JSON data provided')
+        return jsonify({'error': 'No JSON data provided'}), 400
+
+    prompt = data.get('prompt')
+    model = data.get('model', 'qwen2.5-coder:0.5b')
+
+    if not prompt:
+        logger.warning('Prompt missing')
+        return jsonify({'error': 'Prompt missing'}), 400
+
+    try:
+        # Define a specialized system message for the programming bot
+        messages = [
+            {
+                'role': 'system',
+                'content': (
+                    "You are an experienced programmer and technical advisor named Luminara. "
+                    "Answer programming questions precisely and provide clear code examples in the requested programming language."
+                )
+            },
+            {
+                'role': 'user',
+                'content': prompt
+            }
+        ]
+
+        # Send the request to Ollama
+        response = chat(
+            model=model,
+            messages=messages,
+            stream=False
+        )
+
+        # Extract and clean the response
+        bot_response = response.message.content.strip()
+
+        if not bot_response:
+            logger.error('Ollama did not return a response.')
+            raise Exception('Ollama could not generate a response.')
+
+        return {'choices': [{'text': bot_response}]}
+
+    except ResponseError as e:
+        logger.error(f'Ollama ResponseError: {e.error}')
+        return jsonify({'error': f'Ollama API error: {e.error}'}), 500
+    except Exception as e:
+        logger.error(f'Ollama error: {str(e)}')
+        return jsonify({'error': str(e)}), 500 
+\end{lstlisting}
+
+This endpoint follows a structure similar to other endpoints but includes modifications to the prompt to enhance the quality of the AI's response. A system message informs the AI that it is interacting with an experienced programmer and technical advisor named Luminara, which guides it to provide more accurate and context-specific answers. The endpoint handles the connection to the Ollama API, processes the response, and ensures that errors are logged and appropriately returned to the user.
 
 
-\subsection{Utility Functions}
-An overview of auxiliary utility functions is given, focusing on their roles in logging, data validation, and error handling. These functions contribute to the overall robustness and reliability of the service.
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
 
+\section{Utility Functions}
 
-\section{Utilized Libraries}
-A comprehensive inventory of the external libraries used in the project is presented in this section. For each library, its functionality, role within the project, and integration aspects are discussed.
+The following utility functions are essential for the operation of the Flask service. 
+They perform critical tasks such as interfacing with external APIs, processing data, and managing server resources.
+They are designed to be modular, reusable, and efficient, ensuring that the service operates smoothly and reliably.
+
+\subsection{Text Processing Utilities}
+
+\paragraph{ask\_ollama}
+
+The \texttt{ask\_ollama} function communicates with the Ollama API to generate responses to user queries.
+It accepts a prompt and an optional model parameter, sends the request to the Ollama API, and returns the response.
+
+The following code snippet illustrates the \texttt{ask\_ollama} utility function:
+
+\begin{lstlisting}[language=Python]
+    def ask_ollama(prompt, model='llama3.2:1b'):
+    """
+    Sends the user promt to the choosen ollama modell and returnes the answere
+    """
+    try:
+        # Defines the message structure
+        messages = [
+            {
+                'role': 'system',
+                'content': 'Du bist ein hilfreicher Assistent. Bitte beantworte die folgende Benutzeranfrage:'
+            },
+            {
+                'role': 'user',
+                'content': prompt
+            }
+        ]
+
+        # Sends the request to Ollama
+        response = chat(
+            model=model,
+            messages=messages,
+            stream=False
+        )
+
+        # Extracts the answere
+        bot_response = response.message.content.strip()
+
+        if not bot_response:
+            logger.error('Ollama hat keine Antwort zurückgegeben.')
+            raise Exception('Ollama konnte keine Antwort generieren.')
+
+        return {'choices': [{'text': bot_response}]}
+
+    except ResponseError as e:
+        logger.error(f'Ollama ResponseError: {e.error}')
+        return {'error': f'Ollama API Fehler: {e.error}'}
+    except Exception as e:
+        logger.error(f'Ollama Fehler: {str(e)}')
+        return {'error': str(e)}
+\end{lstlisting}
+
 
 
 \section{Deployment}
