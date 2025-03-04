@@ -72,7 +72,7 @@ The system is organized around a central Python script, \texttt{app.py}, which h
 Endpoints are organized within the \texttt{routes} subfolder, with similar endpoints grouped together. They are divided into the following files:
 \begin{itemize}
     \item \textbf{chatbot\_route.py:} Contains endpoints related to chatbot functionality.
-    \item \textbf{Image\_recognition\_route.py:} Manages endpoints for image recognition tasks.
+    \item \textbf{OCR\_route.py:} Manages endpoints for image to Text conversion.
     \item \textbf{Programming\_bot\_route.py:} Houses endpoints for the programming bot.
 \end{itemize}
 
@@ -84,16 +84,133 @@ The server is designed for easy expandability and modularity. Endpoints are stor
 
 This modular and extensible architecture ensures that the Flask service can readily adapt to future enhancements and integrations. These design principles contribute to a flexible, maintainable server that can be effortlessly updated with new features and functionalities.
 
-% ***************************************************
-
 \section{RESTful Endpoints and Functionalities}
 \label{sec:endpoints}
 
-In this section the different Endpoints with the maching utils of the Flask Service are described in detailed 
+This section provides a comprehensive overview of the RESTful endpoints implemented in the Flask service. Each endpoint is detailed in terms of its input parameters, expected output, and the underlying logic that processes incoming requests.
 
 \subsection{Chatbot Endpoints}
 
-\subsection{Image Recognition Endpoints}
+The Chatbot endpoints are responsible for handling all server requests associated with both the general chatbot and the image recognition chatbot.
+
+\paragraph{Chatbot Endpoint}
+The following code snippet illustrates the endpoint for the general chatbot:
+
+\begin{lstlisting}[language=Python]
+@chat_bp.route('/ask_ollama', methods=['POST'])  # Defines the endpoint
+def ask_ollama_endpoint():
+    """
+    Chat endpoint: Receives a user query and a model, communicates with Ollama, and returns the response.
+    """
+    data = request.get_json()
+
+    if not data:
+        logger.warning('No JSON data provided')
+        return jsonify({'error': 'No JSON data provided'}), 400
+
+    prompt = data.get('prompt')
+    model = data.get('model', Config.OLLAMA_MODEL_DEFAULT)  # Default model
+
+    if not prompt:
+        logger.warning('Prompt missing')
+        return jsonify({'error': 'Prompt missing'}), 400
+
+    try:
+        response = ask_ollama(prompt, model=model)
+
+        if 'choices' in response:
+            return jsonify(response), 200
+        else:
+            return jsonify(response), 500
+
+    except Exception as e:
+        logger.error(f'Error communicating with Ollama: {str(e)}')
+        return jsonify({'error': 'Error communicating with Ollama'}), 500
+\end{lstlisting}
+
+This endpoint extracts the necessary data from the API request and passes it to the \texttt{ask\_ollama} utility function, which communicates with the Ollama API and returns the corresponding response. If any required data is missing or if the Ollama API is unreachable, the endpoint returns an appropriate error message.
+
+\paragraph{Image Recognition Endpoint}
+The following code snippet demonstrates the endpoint for the Image Recognition Chatbot:
+
+\begin{lstlisting}[language=Python]
+@chat_bp.route('/ask_ollama_vision', methods=['POST'])  # Defines the endpoint using POST method
+def ask_ollama_vision_endpoint():
+    """
+    Vision Chat endpoint: Receives a user query with images and a model, communicates with Ollama Vision, and returns the response.
+    """
+    data = request.get_json()
+
+    if not data:
+        logger.warning('No JSON data provided')
+        return jsonify({'error': 'No JSON data provided'}), 400
+
+    prompt = data.get('prompt')
+    model = data.get('model', 'llama3.2-vision')  # Default model for vision tasks
+    images = data.get('images', [])
+
+    if not prompt and not images:
+        logger.warning('Neither prompt nor images provided')
+        return jsonify({'error': 'Neither prompt nor images provided'}), 400
+
+    # Process the images
+    image_paths = []
+    try:
+        for idx, img_str in enumerate(images):
+            # Extract image data from base64 string
+            if ',' in img_str:
+                header, encoded = img_str.split(',', 1)
+            else:
+                header, encoded = '', img_str
+            img_data = base64.b64decode(encoded)
+            img = Image.open(BytesIO(img_data))
+
+            # Validate the image format
+            if img.format.lower() not in Config.ALLOWED_EXTENSIONS:
+                logger.warning(f'Invalid image format: {img.format}')
+                return jsonify({'error': f'Invalid image format: {img.format}'}), 400
+
+            # Optionally reduce or compress image size
+            img.thumbnail((1024, 1024))  # Example: maximum size 1024x1024
+
+            # Save the image temporarily
+            img_filename = f"temp_{idx}.{img.format.lower()}"
+            img_path = os.path.join(Config.UPLOAD_FOLDER, img_filename)
+            img.save(img_path)
+            image_paths.append(img_path)
+
+    except Exception as e:
+        logger.error(f'Error processing images: {str(e)}')
+        return jsonify({'error': f'Error processing images: {str(e)}'}), 400
+
+    try:
+        response = ask_ollama_vision(prompt, model=model, image_paths=image_paths)
+
+        if 'choices' in response:
+            return jsonify(response), 200
+        else:
+            return jsonify(response), 500
+
+    except Exception as e:
+        logger.error(f'Error communicating with Ollama Vision: {str(e)}')
+        return jsonify({'error': 'Error communicating with Ollama Vision'}), 500
+
+    finally:
+        # Delete temporary images
+        for img_path in image_paths:
+            if os.path.exists(img_path):
+                os.remove(img_path)
+\end{lstlisting}
+
+The Image Recognition endpoint functions similarly to the general chatbot endpoint, with the added capability of processing image data. It decodes the base64-encoded images, saves them temporarily, validates their format, and resizes them if necessary to optimize processing speed and reduce server load. Once processed, the images are passed to the \texttt{ask\_ollama\_vision} utility function. After the request is handled, the endpoint ensures that all temporary images are deleted.
+
+Overall, these endpoints are designed for scalability and robustness, efficiently managing both text and image inputs while providing meaningful feedback to the user in case of errors.
+
+% ################################################################
+
+\subsection{OCR Endpoints}
+
+
 
 \subsection{Programming Bot Endpoints}
 
