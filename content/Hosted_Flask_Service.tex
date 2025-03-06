@@ -96,7 +96,7 @@ The Chatbot endpoints are responsible for handling all server requests associate
 \paragraph{Chatbot Endpoint}
 The following code snippet illustrates the endpoint for the general chatbot:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Chatbot Endpoint}]
 @chat_bp.route('/ask_ollama', methods=['POST'])  # Defines the endpoint
 def ask_ollama_endpoint():
     """
@@ -133,7 +133,7 @@ This endpoint extracts the necessary data from the API request and passes it to 
 \paragraph{Image Recognition Endpoint}
 The following code snippet demonstrates the endpoint for the Image Recognition Chatbot:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Image Recognition Endpoint}]
 @chat_bp.route('/ask_ollama_vision', methods=['POST'])  # Defines the endpoint using POST method
 def ask_ollama_vision_endpoint():
     """
@@ -206,7 +206,6 @@ The Image Recognition endpoint functions similarly to the general chatbot endpoi
 
 Overall, these endpoints are designed for scalability and robustness, efficiently managing both text and image inputs while providing meaningful feedback to the user in case of errors.
 
-% ################################################################
 
 \subsection{OCR Endpoints}
 
@@ -214,7 +213,7 @@ This file contains all the OCR endpoints. Currently, there is a single endpoint 
 
 The following code snippet illustrates the OCR endpoint:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={OCR Endpoint}]
 def allowed_file(filename):
     """
     Checks if the file has an allowed extension.
@@ -340,7 +339,7 @@ The Programming Bot endpoints manage all requests related to the Programming Bot
 
 The following code snippet illustrates the endpoint for the Programming Bot:
 
-\begin{lstlisting}[language=Python]
+\begin{lstlisting}[language=Python, caption={Programming Bot Endpoint}]
 @chat_bp.route('/ask_programming_bot', methods=['POST'])
 def ask_programming_bot_endpoint():
     """
@@ -401,35 +400,31 @@ def ask_programming_bot_endpoint():
 
 This endpoint follows a structure similar to other endpoints but includes modifications to the prompt to enhance the quality of the AI's response. A system message informs the AI that it is interacting with an experienced programmer and technical advisor named Luminara, which guides it to provide more accurate and context-specific answers. The endpoint handles the connection to the Ollama API, processes the response, and ensures that errors are logged and appropriately returned to the user.
 
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
-
 \section{Utility Functions}
 
-The following utility functions are essential for the operation of the Flask service. 
-They perform critical tasks such as interfacing with external APIs, processing data, and managing server resources.
-They are designed to be modular, reusable, and efficient, ensuring that the service operates smoothly and reliably.
+The utility functions presented in this section are fundamental to the operation of the Flask service. They execute critical tasks—such as interfacing with external APIs, processing data, and managing server resources—in a modular, reusable, and efficient manner. This design ensures that the service operates reliably and seamlessly.
 
 \subsection{Text Processing Utilities}
 
+The text processing utilities are used to enhance the quality and readability of text extracted from images or user queries. They leverage the Ollama API to refine the text, correct errors, and improve coherence, thereby enhancing the overall user experience.
+
 \paragraph{ask\_ollama}
 
-The \texttt{ask\_ollama} function communicates with the Ollama API to generate responses to user queries.
-It accepts a prompt and an optional model parameter, sends the request to the Ollama API, and returns the response.
+The \texttt{ask\_ollama} function facilitates communication with the Ollama API to generate responses for user queries. It accepts a prompt along with an optional model parameter, dispatches the request to the Ollama API, and returns the resulting response.
 
-The following code snippet illustrates the \texttt{ask\_ollama} utility function:
+The code snippet below demonstrates the implementation of the \texttt{ask\_ollama} utility function:
 
-\begin{lstlisting}[language=Python]
-    def ask_ollama(prompt, model='llama3.2:1b'):
+\begin{lstlisting}[language=Python, caption={ask\_ollama Utility Function}]
+def ask_ollama(prompt, model='llama3.2:1b'):
     """
-    Sends the user promt to the choosen ollama modell and returnes the answere
+    Sends the user prompt to the selected Ollama model and returns the response.
     """
     try:
-        # Defines the message structure
+        # Define the message structure
         messages = [
             {
                 'role': 'system',
-                'content': 'Du bist ein hilfreicher Assistent. Bitte beantworte die folgende Benutzeranfrage:'
+                'content': 'You are a helpful assistant. Please answer the following user query:'
             },
             {
                 'role': 'user',
@@ -437,38 +432,189 @@ The following code snippet illustrates the \texttt{ask\_ollama} utility function
             }
         ]
 
-        # Sends the request to Ollama
+        # Send the request to Ollama
         response = chat(
             model=model,
             messages=messages,
             stream=False
         )
 
-        # Extracts the answere
+        # Extract the response content
         bot_response = response.message.content.strip()
 
         if not bot_response:
-            logger.error('Ollama hat keine Antwort zurückgegeben.')
-            raise Exception('Ollama konnte keine Antwort generieren.')
+            logger.error('Ollama did not return any response.')
+            raise Exception('Ollama was unable to generate a response.')
 
         return {'choices': [{'text': bot_response}]}
 
     except ResponseError as e:
         logger.error(f'Ollama ResponseError: {e.error}')
-        return {'error': f'Ollama API Fehler: {e.error}'}
+        return {'error': f'Ollama API error: {e.error}'}
     except Exception as e:
-        logger.error(f'Ollama Fehler: {str(e)}')
+        logger.error(f'Ollama error: {str(e)}')
         return {'error': str(e)}
 \end{lstlisting}
 
+This function encapsulates the logic necessary for transmitting user prompts to the Ollama API and processing the responses. It is engineered to handle diverse user queries, thereby generating accurate and contextually relevant answers. Consequently, it serves as a critical component underpinning the chatbot functionality of the Flask service.
 
+\paragraph{ask\_ollama\_vision}
+
+The \texttt{ask\_ollama\_vision} function augments the capabilities of the standard \texttt{ask\_ollama} utility by incorporating support for image-based queries. It processes image data, integrates it with textual prompts, and dispatches the combined input to the Ollama Vision API for response generation. This extension enables the Flask service to handle multimodal inputs, thereby broadening its applicability and enhancing user interaction.
+
+The following code snippet demonstrates the implementation of the \texttt{ask\_ollama\_vision} function:
+
+\begin{lstlisting}[language=Python, caption={ask\_ollama\_vision Utility Function}]
+def ask_ollama_vision(prompt, model='llama3.2-vision', image_paths=[]):
+    """
+    Dispatches the user's prompt along with associated images to the selected Ollama Vision model,
+    and returns the generated response.
+    """
+    try:
+        # Define the message structure with associated image paths
+        messages = [
+            {
+                'role': 'user',
+                'content': prompt,
+                'images': image_paths  # Attach image paths to the user message
+            }
+        ]
+
+        # Send the request to Ollama Vision
+        response = chat(
+            model=model,
+            messages=messages,
+            stream=False
+        )
+
+        # Extract the response content
+        bot_response = response.message.content.strip()
+
+        if not bot_response:
+            logger.error('Ollama did not return any response.')
+            raise Exception('Ollama was unable to generate a response.')
+
+        return {'choices': [{'text': bot_response}]}
+
+    except ResponseError as e:
+        logger.error(f'Ollama ResponseError: {e.error}')
+        return {'error': f'Ollama API error: {e.error}'}
+    except Exception as e:
+        logger.error(f'Ollama error: {str(e)}')
+        return {'error': str(e)}
+\end{lstlisting}
+
+This function is instrumental in enabling the Flask service to process and interpret image data in conjunction with textual prompts. By integrating image recognition capabilities, it enhances the service's versatility and responsiveness, thereby significantly enriching the overall user experience.
+
+\paragraph{improve\_text\_with\_ollama}
+
+The \texttt{improve\_text\_with\_ollama} function is designed to refine text extracted through the OCR process by leveraging the Ollama API. It improves readability, grammar, and coherence, converting raw text into a well-structured Markdown format that is both clear and professionally formatted.
+
+The code snippet below illustrates the implementation of the \texttt{improve\_text\_with\_ollama} function:
+
+\begin{lstlisting}[language=Python, caption={improve\_text\_with\_ollama Utility Function}]
+def improve_text_with_ollama(text, model='llama3.2'):
+    """
+    Enhances the provided text using the Ollama API and returns the refined Markdown text.
+    """
+    try:
+        # Define the message structure with system and user roles to improve the text
+        messages = [
+            {
+                'role': 'system',
+                'content': (
+                    "You are a highly proficient text processor and Markdown expert. "
+                    "Your task is to enhance the following text, which has been extracted via OCR from an image, "
+                    "and convert it into a well-structured Markdown format. "
+                    "Ensure correct spelling, grammar, and syntax, and format the text using appropriate Markdown elements "
+                    "such as headings, lists, code blocks, and emphasis. "
+                    "Provide only the enhanced Markdown text without any additional commentary or explanations."
+                )
+            },
+            {
+                'role': 'user',
+                'content': (
+                    "Here is the text to be processed:\n\n"
+                    f"```\n{text}\n```"
+                )
+            }
+        ]
+
+        # Send the request to Ollama
+        response = chat(
+            model=model,
+            messages=messages,
+            stream=False
+        )
+
+        # Retrieve the improved text from the response
+        markdown_text = response.message.content.strip()
+
+        if not markdown_text:
+            logger.error('Ollama did not return any text.')
+            raise Exception('Ollama was unable to improve the text.')
+
+        return markdown_text
+
+    except ResponseError as e:
+        logger.error(f'Ollama ResponseError: {e.error}')
+        raise e
+    except Exception as e:
+        logger.error(f'Ollama error: {str(e)}')
+        raise e
+\end{lstlisting}
+
+This utility function plays a pivotal role in enhancing the quality and coherence of OCR-extracted content. By refining the raw text into a structured Markdown format, it ensures that the final output is both accurate and user-friendly, thereby improving the overall efficacy of the OCR workflow.
+
+
+\subsection{OCR (Optical Character Recognition) Utilities}
+
+This section details the OCR utilities integrated within the Flask service, which are responsible for processing images and extracting textual content. Currently, the primary function implemented is \texttt{perform\_ocr}, which utilizes the \texttt{pytesseract} library to perform OCR operations.
+
+\paragraph{perform\_ocr}
+
+The \texttt{perform\_ocr} function harnesses the Tesseract OCR engine to extract text from an image file. It accepts an image file path and an optional language parameter, processes the image, and returns the extracted text. The function is designed to handle a variety of image formats and ensures accurate text retrieval, thus streamlining the OCR workflow within the Flask service.
+
+The code snippet below demonstrates the implementation of the \texttt{perform\_ocr} function:
+
+\begin{lstlisting}[language=Python, caption={perform\_ocr Utility Function}]
+import pytesseract
+from PIL import Image
+
+def perform_ocr(image_path, lang='deu'):
+    """
+    Performs OCR on the specified image file and returns the extracted text.
+    """
+    try:
+        # Load the image and convert it to grayscale
+        image = Image.open(image_path).convert('L')  # Convert to grayscale
+
+        # Optional: Apply image preprocessing techniques (e.g., denoising, thresholding, etc.)
+        custom_config = r'--oem 3 --psm 6'
+        text = pytesseract.image_to_string(image, lang=lang, config=custom_config)
+        return text
+    except Exception as e:
+        logger.error(f'OCR error: {str(e)}')
+        raise e
+\end{lstlisting}
+
+This function encapsulates the essential logic for image processing and text extraction using the Tesseract OCR engine. By leveraging robust libraries, it ensures that the Flask service can efficiently convert image-based data into readable text.
+
+The key libraries utilized are:
+
+\textbf{pytesseract:} A Python wrapper for Google's Tesseract-OCR Engine, used for extracting text from images via optical character recognition (OCR).
+
+\textbf{PIL (Python Imaging Library):} An image processing library that enables the opening, manipulation, and saving of various image file formats, thereby enhancing Python's capabilities in handling visual data.
 
 \section{Deployment}
 
-% How we deployed the Server on a Laptop, The School Server and on our Server via Docker
-% Explain how we Deployed the Server on a Laptop, The School Server and on our Server via Docker (Docker gets Explained in the next Section)
+The Flask service was deployed across multiple platforms to support comprehensive testing, evaluation, and integration with other system components. The deployment process involved configuring the server environment, establishing required dependencies, and ensuring seamless operation across various hosting infrastructures.
 
-%###################
+For development and testing, the Flask service is deployed locally on a laptop or desktop machine. This setup enables rapid iteration, feature testing, and effective troubleshooting in a controlled environment. Local deployment requires installing Python, setting up a virtual environment, and running the Flask server on the local system.
+
+In production environments, the Flask service is hosted on dedicated servers or cloud platforms to ensure high availability, scalability, and reliability. This approach enables the service to handle a high volume of requests and users efficiently. Production deployment typically involves meticulous server configuration, dependency management, and the implementation of robust security measures to mitigate potential threats.
+
+To further streamline production deployment, a Docker container was developed. More information on the Docker-based deployment approach is provided in Section \ref{sec:docker}.
 
 \section{Docker}
 \label{sec:docker}
@@ -498,12 +644,18 @@ The Configuration is stored in a single YAML file. All the services can be start
 
 One notable limitation of the Flask server is its inherent lack of scalability. Flask, being primarily designed for lightweight applications, is not optimized for handling high volumes of concurrent requests. In our implementation, the server was deployed on a modest PC with limited computational resources. Consequently, if the service were to be deployed in a production environment, it would be imperative to migrate to more robust hardware or consider a distributed, multi-server architecture to effectively manage the anticipated load. Given the constraints of the project timeline and the prototype nature of this work, scalability was not prioritized during development.
 
-% ########################################
 
 \section{Conclusion and Future Work}
-This concluding section synthesizes the chapter’s key points and reflects on the efficacy of the implemented service. It also outlines potential avenues for future enhancements, such as further scalability improvements, additional functionalities, and more robust deployment automation.
 
+In summary, this chapter has detailed the architecture, functionality, and deployment strategy of the self-hosted Flask service. 
+The design emphasizes modularity and expandability, allowing for rapid prototyping, tailored configurations, and seamless integration with external APIs. 
+The clear separation of concerns across endpoints and utility functions ensures both maintainability and flexibility, which are essential for evolving project requirements.
 
+However, practical limitations regarding scalability and performance on modest hardware were also noted. 
+Addressing these challenges through distributed architectures and enhanced concurrency mechanisms will be crucial for future deployments. 
+As a result, future work should focus on optimizing resource management, scaling the service to meet higher demand, and further refining API integrations for improved robustness and security.
+
+The next two chapters will delve into the front-end components of the Student AI Hub and the code extension, providing a comprehensive overview of their design, functionalities, and integration with the Flask service.
 
 
 
