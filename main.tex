@@ -111,10 +111,9 @@
 %% Choose your desired title page:
 \input{\mytitlepage}            %% include title page
 
-\input{template/lock_flag} % Wenn kein Sperrvermerk gemacht werden soll, dann diesen Import einfach auskommentieren
+%\input{template/lock_flag} % Wenn kein Sperrvermerk gemacht werden soll, dann diesen Import einfach auskommentieren
 
 %%\input{template/declaration_TU_Graz}  %% Statutory Declaration
-% \input{thanks}                %% this is a suggestion: you have to create this file on demand
 % \input{foreword}              %% this is a suggestion: you have to create this file on demand
 
 
@@ -124,7 +123,11 @@
 \addcontentsline{toc}{chapter}{Abstract}
 
 \include{content/abstract}              %% Abstract
+
+
 \input{template/affirmation} %%EIDESSTATTLICHE ERKLÄRUNG  
+\input{content/thanks}                %% this is a suggestion: you have to create this file on demand
+\input{content/Use-of-AI}                %% this is a suggestion: you have to create this file on demand
 
 \tableofcontents                %% this produces the table of contents - you might have guessed :-)
 
