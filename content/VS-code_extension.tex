@@ -3,7 +3,7 @@
 
 \section{Introduction}
 
-This chapter provides an overview of the Visual Studio Code extension developed for the project. It describes its core functionalities, and explains how it integrates with the broader system architecture.
+This chapter provides an overview of the Visual Studio Code extension developed for the project. It describes its core functionality, and explains how it integrates with the broader system architecture.
 
 \section{what is Visual Studio Code}
 
@@ -15,16 +15,282 @@ VS Code is lightweight and runs on Windows, macOS, and Linux. Despite this, it p
 
 \section{Development}
 
+\subsection{Technologys used}
+
 \begin{itemize}
     \item TypeScript: The Visual Studio Code extension was developed using TypeScript. TypeScript is well-suited for developing VS Code extensions, as it provides type checking and code completion, making it easier to work with the VS Code API.
     \item Axios: Axios is used to make HTTP requests from the extension to the Flask Service. It provides an easy implementation of asynchronous requests and simplifies handling responses.
     \item Visual Studio Code API: The extension interacts with the Visual Studio Code API. The API allows the extension to access and modify the editor's functionality, enabling it to provide a seamless development experience.
 \end{itemize}
 
-\section{Core Functionalities}
-The planed core Functionalities of the extension are, an integrated chatbot and code completion. 
-\subsection{Chatbot Integration}
-The extension integrates a chatbot into the editor, allowing developers to interact with the chatbot directly from the editor. This feature enables developers to quickly get information, ask questions, or perform tasks without leaving the editor.
+\section{Core Functionality}
+The planed core functionality of the extension is an integrated chatbot, that can answer questions without leaving the IDE. 
+The chatbot should send the request to the server where the prompt is executed. Then the respones is directly sent to the chat in the IDE. 
+
 %hier screenshot einfügen
-\subsection{Code completion}
-%joa, ne 
+\subsection{Chat}
+
+The chat is integrated into the IDE with an webview. 
+Webviews are a tool provided by the VS Code API. They can be used to implemnt various GUIs into the IDE. 
+
+The following code, defines the properties of the Webview an initiates the GUI.
+
+\begin{lstlisting}[language=TypeScript, caption={Create webview}]
+
+    // defining the properties of the webview
+    const panel = vscode.window.createWebviewPanel(
+        'inlineChat', // Identifier
+        'Inline Chat', // Title
+        vscode.ViewColumn.Beside, // Position
+        {
+        enableScripts: true, // Allow JavaScript
+        retainContextWhenHidden: true, // Keep the webview state
+        }
+    );
+
+    //executing the getWebviewContent function to implemnt the GUI
+    panel.webview.html = getWebviewContent();
+
+\end{lstlisting}
+
+The getWebviewContent function defines the HTML and CSS elements of the Webview.
+It also defines the interactions fo the GUI with the TypeScript code. 
+
+\begin{lstlisting}[language=HTML, caption={IDE Chat GUI}]
+
+    function getWebviewContent(): string {
+        return `
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Inline Chat</title>
+
+            <!--Style for the Chatbot -->
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                background: #f3f3f3;
+                color: #000;
+                height: 100vh;
+                overflow: hidden;
+              }
+              .chat-container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                background: white;
+              }
+              .messages {
+                flex: 1;
+                padding: 10px;
+                overflow-y: auto;
+                background: #f9f9f9;
+                border-bottom: 1px solid #ddd;
+              }
+              .message {
+                margin-bottom: 10px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                background: #007acc;
+                color: white;
+                max-width: 80%;
+              }
+              .bot-reply {
+                margin-bottom: 10px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                background: #28a745; /* Green background for bot replies */
+                color: white;
+                max-width: 80%;
+              }
+              .input-box {
+                display: flex;
+                padding: 10px;
+                background: #f3f3f3;
+                border-top: 1px solid #ddd;
+              }
+              .input-box input {
+                flex: 1;
+                padding: 10px;
+                font-size: 14px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                margin-right: 5px;
+              }
+              .input-box button {
+                padding: 10px 15px;
+                font-size: 14px;
+                color: white;
+                background-color: #007acc;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+              }
+              .input-box button:hover {
+                background-color: #005f9e;
+              }
+              .mode-switch {
+                padding: 10px;
+                background: #007acc;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                align-self: flex-end;
+                margin: 10px;
+              }
+              .mode-switch:hover {
+                background: #005f9e;
+              }
+              .dark-mode {
+                background: #1e1e1e;
+                color: #c7c7c7;
+              }
+              .dark-mode .messages {
+                background: #2e2e2e;
+                border-bottom: 1px solid #555;
+              }
+              .dark-mode .input-box {
+                background: #2e2e2e;
+                border-top: 1px solid #555;
+              }
+              .dark-mode .input-box input {
+                background: #3e3e3e;
+                color: #c7c7c7;
+                border: 1px solid #555;
+              }
+            </style>
+
+
+          </head>
+          <body>
+            <!--Button to switch between dark and light mode -->
+            <button class="mode-switch" id="modeSwitch">Switch to Dark Mode</button>
+
+            <!--Container for the message -->
+            <div class="chat-container">
+              <div class="messages" id="messages"></div>
+              <div class="input-box">
+                <input type="text" id="input" placeholder="Type your message..." />
+                <button id="send">Send</button>
+              </div>
+            </div>
+
+            <!--Backend logic for the chat -->
+            <script>
+              const vscode = acquireVsCodeApi();
+
+              <!--Sends the message and updates the GUI -->
+              document.getElementById('send').addEventListener('click', () => {
+                const input = document.getElementById('input');
+                const message = input.value.trim();
+                if (message) {
+                  vscode.postMessage({ command: 'sendMessage', text: message });
+      
+                  <!--Add user message to chat display -->
+                  
+                  const messagesDiv = document.getElementById('messages');
+                  const newMessage = document.createElement('div');
+                  newMessage.className = 'message';
+                  newMessage.textContent = message;
+                  messagesDiv.appendChild(newMessage);
+      
+                  <!--Scroll to the latest message -->
+                  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      
+                  input.value = '';
+                }
+              });
+              <!--Logic for dark and lightmode switch -->
+              document.getElementById('modeSwitch').addEventListener('click', () => {
+                const body = document.body;
+                const modeSwitch = document.getElementById('modeSwitch');
+      
+                if (body.classList.contains('dark-mode')) {
+                  body.classList.remove('dark-mode');
+                  modeSwitch.textContent = 'Switch to Dark Mode';
+                } else {
+                  body.classList.add('dark-mode');
+                  modeSwitch.textContent = 'Switch to Light Mode';
+                }
+              });
+      
+              <!--Handles the display of the reply message -->
+              window.addEventListener('message', (event) => {
+                const message = event.data;
+                if (message.command === 'displayReply') {
+                  const messagesDiv = document.getElementById('messages');
+                  const newReply = document.createElement('div');
+                  newReply.className = 'bot-reply';
+                  newReply.textContent = message.text;
+                  messagesDiv.appendChild(newReply);
+      
+                  <!--Scroll to the latest message -->
+                  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }
+              });
+            </script>
+          </body>
+          </html>
+        `;
+\end{lstlisting}
+
+The webview is 
+
+\subsection{Server Request}
+
+
+After the user clicks send in the chats GUI, the onDidReceiveMessage command is executed.This command initiates the server request.
+It also defines the payload that the server recieves. The payload contains the question asked, aswell as the baseprompt defined by the developers. 
+
+The request to the server is handled with Axios. Axios sends the respond to one of the flask service endpoints that are hosted on the server.
+\ref{cha:hosted_flask_service}
+
+After the response reaches the client, the responses text is displayed in the chat GUI.
+On a failed request an error message is displayed.
+
+\begin{lstlisting}[language=TypeScript, caption={Axios request}]
+    // executes when the "send" button is clicked in the GUI
+    panel.webview.onDidReceiveMessage(
+        async (message) => {
+          if (message.command === 'sendMessage') {
+            //defines the payload that is sent
+            const payload = {
+              model: 'qwen2.5-coder:0.5b',
+              prompt: message.text
+            };  
+
+    try {
+        const response = await axios.post('http://10.10.11.11:5001/ask_programming_bot', payload ); //Selecting the endpoint for the request and sending the payload. 
+        const reply = await response.data.choices[0].text; //the response is then stored in the "reply" variable
+
+        //formating the reply and showing it in the editor
+        editor.edit((editBuilder) => {
+          reply.split('```').forEach((reply: string) => {
+            editBuilder.insert(position, `\n  # ${reply} \n`);
+          });
+        });
+
+        // Send the reply to the webview to display it
+        panel.webview.postMessage({
+          command: 'displayReply',
+          text: reply.split('```').map((reply: string) => reply)
+        });
+
+    //Display and error message on failed request
+      } catch (error) {
+        vscode.window.showErrorMessage('Failed to get response from the server.');
+      }
+
+\end{lstlisting}
+
+
