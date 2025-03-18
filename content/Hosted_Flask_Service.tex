@@ -1,20 +1,16 @@
-\chapter{hosted Flask Service}
+\chapter{Self-hosted Flask Service}
 \label{cha:hosted_flask_service}
 \textbf{Author:} Luna Schätzle
 
 \textbf{Author:} Florian Prandstetter (docker section \ref{sec:docker})
 
-This chapter delineates the implementation, architecture, and deployment of the self-hosted Flask service, 
-which functions as a pivotal interface between the front-end and back-end components of the system. 
-In addition to detailing the technical design, the chapter critically examines the advantages of a self-hosted solution 
-and the rationale behind key architectural decisions.
+This chapter details the implementation, architecture, and deployment of a self-hosted Flask service that serves as a critical 
+interface linking the front-end and back-end components of the system. It outlines the technical design and deployment strategies 
+while critically evaluating the benefits of a self-hosted solution and the rationale behind key architectural decisions. The service, 
+which underpins both the Student AI Hub and the code extension’s backend, was developed to address specific operational requirements. 
+This section provides a comprehensive overview of the motivations for its development, elaborates on its core functionalities, 
+and situates its role within the broader system architecture—thus laying the groundwork for the ensuing technical discussion.
 
-\section{Introduction}
-This section offers a comprehensive overview of the motivations underpinning the development of the Flask service. 
-Functioning as the backbone for both the Student AI Hub and the code extension’s backend, 
-the service was conceived to address a range of specific operational requirements. 
-Here, we elaborate on the core functionalities of the service, detail the technical imperatives that drove its inception, 
-and position its role within the broader system architecture, thereby laying the groundwork for subsequent technical discussions.
 
 \section{Advantages of a Self-hosted Service}
 A self-hosted service confers a multitude of benefits relative to externally managed or third-party solutions. This section examines these advantages in depth:
@@ -27,14 +23,13 @@ Collectively, these factors validate the strategic decision to pursue a self-hos
 
 \section{Flask as a Web Framework}
 
-Flask is a lightweight, yet versatile web framework that plays a central role in the development of our Student AI Hub. Its minimalistic design and powerful capabilities make it an excellent choice for both rapid prototyping and scalable application development.
+Flask is a lightweight, yet versatile web Python framework that plays a central role in the development of our Student AI Hub. Its minimalistic design and powerful capabilities make it an excellent choice for both rapid prototyping and scalable application development.
 
 \subsection{Core Functionalities of Flask}
 
 Flask's architecture is built around several core functionalities that streamline web application development:
 \begin{itemize}
     \item \textbf{Request Routing:} Flask’s routing system allows for the efficient mapping of URLs to Python functions. This ensures that incoming web requests are correctly handled and directed to the appropriate endpoints, which is crucial for managing user interactions.
-    \item \textbf{Templating Engine:} By leveraging the Jinja2 templating engine, Flask enables dynamic content generation. This allows developers to create flexible HTML templates that can be easily populated with data, ensuring a seamless user experience.
     \item \textbf{Middleware Support:} Flask supports middleware, facilitating the insertion of additional processing layers before or after a request is handled. This capability is essential for tasks such as authentication, logging, and error handling.
     \item \textbf{Extensibility:} Its modular design allows developers to integrate third-party extensions or develop custom modules, thereby expanding Flask's functionalities to meet the evolving demands of the project.
     \item \textbf{Simplicity and Clarity:} Flask’s clear and concise API encourages clean, maintainable code. This simplicity does not come at the expense of power; rather, it provides a robust foundation upon which complex systems can be built.
@@ -56,16 +51,17 @@ In summary, Flask’s combination of ease-of-use, extensibility, and strong comm
 
 \section{Architecture and Service Structure}
 
-The Flask service functions as a robust and flexible backend for the Student AI Hub and the code extension. Its modular and extensible design facilitates the seamless integration of additional functionalities and services. The figure below illustrates the key architectural components of the Flask service and their interactions.
+The Flask service functions as a robust and flexible backend for the Student AI Hub and the code extension. Its modular and extensible design facilitates the seamless integration of additional functionalities and services. 
 
+\subsection{System Architecture}
+
+The figure below illustrates the key architectural components of the Flask service and their interactions.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/flask_service.png}
     \caption{Flask Service Architecture}
     \label{fig:flask_service_architecture}
 \end{figure}
-
-\subsection{System Architecture}
 
 The system is organized around a central Python script, \texttt{app.py}, which handles incoming requests, registers endpoints, initiates the server, and manages logging. Server configuration is maintained in \texttt{config.py}, where settings such as the language model, image processing rules, upload folder, and conversion language are defined.
 
