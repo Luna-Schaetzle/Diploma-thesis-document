@@ -2,7 +2,7 @@
 \label{cha:Introduction_to_the_used_Large_Language_Models}
 \textbf{Author:} Luna P. I. Schätzle
 
-For the Diploma thesis, there are many different AI models that are in use. There are different Types of AI models, such as:
+For the Diploma thesis, there are many different AI models that are in use, such as:
 \begin{itemize}
     \item LLMs (Large Language Models)
     \item Diffusion Models (Models that are used to create images)
@@ -22,7 +22,7 @@ LLMs are built on the concept of deep learning, utilizing neural networks with b
 and coherent manner. These models are trained on vast datasets encompassing diverse topics, allowing them to handle a wide range of tasks, such as translation, 
 summarization, content generation, and conversational AI.
 
-\subsection{Key Characteristics of LLMs}
+\paragraph{Key Characteristics of LLMs}
 
 \begin{itemize}
 \item \textbf{Scale and Complexity:} LLMs are distinguished by their immense size, often containing billions of parameters, enabling them to capture intricate patterns in language.
@@ -31,7 +31,7 @@ summarization, content generation, and conversational AI.
 \item \textbf{Multilingual Capabilities:} Many LLMs are trained on datasets in multiple languages, enabling them to process and generate text in various languages.
 \end{itemize}
 
-\subsection{Applications of LLMs}
+\paragraph{Applications of LLMs}
 
 \begin{itemize}
 \item Text summarization and paraphrasing.
@@ -41,7 +41,7 @@ summarization, content generation, and conversational AI.
 \item Creative writing, including story and poetry generation.
 \end{itemize}
 
-\subsection{Examples of Popular LLMs}
+\paragraph{Examples of Popular LLMs}
 
 \begin{itemize}
 \item \textbf{GPT Models:} Developed by OpenAI, these models include GPT-3, GPT-4, and ChatGPT, known for their state-of-the-art performance in text generation and comprehension.
@@ -50,7 +50,7 @@ summarization, content generation, and conversational AI.
 \item \textbf{Mistral Models:} Aimed at specialized tasks with high precision and multilingual capabilities.
 \end{itemize}
 
-\subsection{Advantages and Challenges of LLMs}
+\paragraph{Advantages and Challenges of LLMs}
 
 \textbf{Advantages:}
 \begin{itemize}
@@ -218,7 +218,7 @@ this list must be updated periodically to include newly released models and main
 
 \section{Ollama Model Testing and Evaluation}
 
-Based on the following criteria, we conducted an extensive evaluation of the upcomming models:
+Based on the following criteria, we conducted an extensive evaluation of the upcoming models:
 
 \subsection{Quantitative Evaluation Methods}
 
@@ -278,8 +278,7 @@ The models vary in size, specialization, and intended use cases, covering genera
 For the Data collection we used the School AI Server wich was provided by the HTL Anichstraße, to run the different models in the Evaluation phase.
 For the later Data collection we used our own Server to run the different models.
 
-
-To colletct the data we used a varaitey of different python scripts. For the quantitative data we used the following python script:
+To collect the data we used different python scripts. For the quantitative data we used the following python script:
 
 \begin{lstlisting}[style=Python, caption={Python-quantitative-data-collection}, captionpos=b]
 import time
@@ -377,11 +376,10 @@ print(f"The results have been saved in {json_file_name}.")
 \end{lstlisting}
 
 
-For this Pyhton Skript we used ChatGPT to help with the psutil library to get the CPU and Memory usage. 
-We also used ChatGPT to get more Questions for the data collection. 
-
-The results were saved as JSON files for the later analysis. One Problem we encountered were the tourch librarys, witch 
-diden't function probally on the School AI Server, so we couldn't get the GPU usage for the models.
+In this Python script, ChatGPT was employed as an auxiliary tool to facilitate the integration of the psutil library for monitoring CPU 
+and memory usage. Additionally, ChatGPT assisted in generating supplementary questions to enhance the data collection process. 
+The resulting data were subsequently stored in JSON format for later analysis. However, a significant challenge was encountered: 
+the Torch libraries did not function properly on the school AI server, which prevented the collection of GPU usage data for the models.
 
 \subsubsection{Used python libaries}
 
@@ -390,7 +388,7 @@ diden't function probally on the School AI Server, so we couldn't get the GPU us
 The \texttt{psutil} library is a Python module that provides an interface for retrieving information on system utilization, 
 including CPU, memory, disk, network, and processes. It is commonly used for monitoring and managing system performance and is 
 highly efficient due to its low overhead. \texttt{psutil} is cross-platform, supporting major operating systems like Windows, 
-Linux, and macOS. It enables developers to create scripts for system diagnostics, process control, and resource management, 
+Linux, and MacOS. It enables developers to create scripts for system diagnostics, process control, and resource management, 
 making it an essential tool for performance optimization and system administration in Python-based projects.
 
 \cite{psutil-library-explanation}
@@ -1243,10 +1241,12 @@ of these models.
 
 \subsection{Data Security and Privacy in Compliance with Austrian and EU Regulations}
 
-The integration of OpenAI's API into our systems necessitates a thorough examination of data security and privacy considerations, 
-particularly in the context of Austrian and European Union (EU) regulations. 
-The General Data Protection Regulation (GDPR) serves as the cornerstone of data protection within the EU, imposing stringent requirements on the 
-processing of personal data.
+The integration of OpenAI's API into our systems necessitates a comprehensive examination of data security and privacy, 
+particularly with regard to compliance with both Austrian and European Union regulatory frameworks. 
+In this context, our approach adheres to the stringent requirements set forth in Regulation (EU) 2016/679
+(General Data Protection Regulation, GDPR) \cite{EU2016GDPR}, which forms the cornerstone of data protection within the EU. Additionally,
+the relevant provisions of the Austrian Data Protection Act (Datenschutzgesetz DSG) \cite{AustrianDSG} have been carefully 
+to ensure that personal data is handled in accordance with national standards.
 
 OpenAI has implemented several measures to safeguard user data and align with GDPR mandates. 
 Notably, they support compliance with privacy laws such as the GDPR and the California Consumer Privacy Act (CCPA), 
@@ -1264,9 +1264,9 @@ data may be accessible to third-party subprocessors, introducing further privacy
 To address these concerns, we have proactively informed our user community through a notice on the school website. 
 This notice outlines the data handling practices associated with the OpenAI API and provides guidance on how users can manage their data when 
 interacting with our systems. By maintaining transparency and offering clear instructions, 
-we aim to uphold the highest standards of data security and privacy in our academic environment.
+we aim to uphold the highest standards of data security and privacy in our school environment.
 
-In light of the evolving regulatory landscape, it is imperative to remain vigilant and responsive to any changes in data protection laws within 
+In light of the evolving regulatory landscape, it is important to remain vigilant and responsive to any changes in data protection laws within 
 Austria and the broader EU. Continuous monitoring and adaptation of our data handling practices will ensure ongoing compliance and the safeguarding of user privacy. 
 
 
@@ -1288,7 +1288,7 @@ The component is designed with a clear separation between presentation and busin
 \subsubsection{Explanation of the Used Libraries}
 
 \paragraph{OpenAI Library}  
-The \texttt{openai} library is employed as the primary interface to interact with OpenAI’s API endpoints. This library abstracts the complexities of HTTP communication and provides a user-friendly API to access advanced AI functionalities such as natural language generation and image synthesis. Its integration simplifies the process of constructing API requests and handling responses, which is critical for developing robust AI-driven applications.
+The library is employed as the primary interface to interact with OpenAI’s API endpoints. This library abstracts the complexities of HTTP communication and provides a user-friendly API to access advanced AI functionalities such as natural language generation and image synthesis. Its integration simplifies the process of constructing API requests and handling responses, which is critical for developing robust AI-driven applications.
 
 \paragraph{API Key Management}  
 To ensure secure handling of sensitive credentials, the OpenAI API key is imported from an external module (i.e., \texttt{OPENAI\_API\_KEY} from the \texttt{secrets} file). This approach adheres to security best practices by preventing the direct embedding of API keys within the source code, thereby mitigating the risk of unauthorized exposure.
