@@ -67,107 +67,9 @@ It also defines the interactions fo the GUI with the TypeScript code.
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Inline Chat</title>
 
-            <!--Style for the Chatbot -->
+
             <style>
-              body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                background: #f3f3f3;
-                color: #000;
-                height: 100vh;
-                overflow: hidden;
-              }
-              .chat-container {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-                background: white;
-              }
-              .messages {
-                flex: 1;
-                padding: 10px;
-                overflow-y: auto;
-                background: #f9f9f9;
-                border-bottom: 1px solid #ddd;
-              }
-              .message {
-                margin-bottom: 10px;
-                padding: 5px 10px;
-                border-radius: 5px;
-                background: #007acc;
-                color: white;
-                max-width: 80%;
-              }
-              .bot-reply {
-                margin-bottom: 10px;
-                padding: 5px 10px;
-                border-radius: 5px;
-                background: #28a745; /* Green background for bot replies */
-                color: white;
-                max-width: 80%;
-              }
-              .input-box {
-                display: flex;
-                padding: 10px;
-                background: #f3f3f3;
-                border-top: 1px solid #ddd;
-              }
-              .input-box input {
-                flex: 1;
-                padding: 10px;
-                font-size: 14px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                margin-right: 5px;
-              }
-              .input-box button {
-                padding: 10px 15px;
-                font-size: 14px;
-                color: white;
-                background-color: #007acc;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-              }
-              .input-box button:hover {
-                background-color: #005f9e;
-              }
-              .mode-switch {
-                padding: 10px;
-                background: #007acc;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                align-self: flex-end;
-                margin: 10px;
-              }
-              .mode-switch:hover {
-                background: #005f9e;
-              }
-              .dark-mode {
-                background: #1e1e1e;
-                color: #c7c7c7;
-              }
-              .dark-mode .messages {
-                background: #2e2e2e;
-                border-bottom: 1px solid #555;
-              }
-              .dark-mode .input-box {
-                background: #2e2e2e;
-                border-top: 1px solid #555;
-              }
-              .dark-mode .input-box input {
-                background: #3e3e3e;
-                color: #c7c7c7;
-                border: 1px solid #555;
-              }
+            <!--Style for the Chatbot -->
             </style>
 
 
@@ -290,7 +192,7 @@ On a failed request an error message is displayed.
         vscode.window.showErrorMessage('Failed to get response from the server.');
       }
 
-\end{lstlisting}s
+\end{lstlisting}
 
 \subsection{Status Bar Item} 
 
