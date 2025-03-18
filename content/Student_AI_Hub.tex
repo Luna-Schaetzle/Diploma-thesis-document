@@ -227,8 +227,8 @@ export default {
 \textbf{Explanation:}
 \begin{itemize}
     \item \textbf{Conditional Rendering:} The template uses Vue.js directives (\texttt{v-if} and \texttt{v-else}) to conditionally display content based on whether a user is authenticated. A personalized welcome message is shown when the user is signed in, while a sign-in form is presented otherwise.
-    \item \textbf{Data Binding and State Management:} The component’s data properties (\texttt{email}, \texttt{password}, \texttt{user}, and \texttt{errorMessage}) are used to manage form inputs, the authenticated user state, and error messages.
-    \item \textbf{Sign-In Method:} The \texttt{signIn} method invokes Firebase Authentication’s \texttt{signInWithEmailAndPassword} function. Proper error handling is implemented to provide feedback to the user in case of sign-in failures.
+    \item \textbf{Data Binding and State Management:} The component’s data properties (\texttt{email}, \texttt{password}, \texttt{user}, and \texttt{error messages}) are used to manage form inputs, the authenticated user state, and error messages.
+    \item \textbf{Sign-In Method:} The \texttt{Sign-in} method invokes Firebase Authentication’s \texttt{signInWithEmailAndPassword} function. Proper error handling is implemented to provide feedback to the user in case of sign-in failures.
     \item \textbf{Real-time Authentication Updates:} The \texttt{onAuthStateChanged} listener, set up in the \texttt{created} hook, ensures that the component’s state is kept in sync with the authentication status, thereby reflecting any changes immediately in the UI.
     \item \textbf{Google Sign-In:} The \texttt{signInWithGoogle} method demonstrates how to enable Google sign-in using Firebase’s GoogleAuthProvider. This method follows a similar pattern to the email/password sign-in process.
     \item \textbf{Styling and Error Handling:} The component includes scoped styles for error messages and provides visual feedback to users when authentication errors occur.
@@ -388,7 +388,7 @@ For a comprehensive guide on integrating OpenAI's API into a Vue.js project, ple
 
 The Intelligent Student AI Hub incorporates a dedicated programming bot designed to facilitate the learning and practice of various programming languages. Building upon the foundational architecture of the general chatbot, this bot leverages code-centric large language models (LLMs) that have been specifically trained on source code. As with the standard chatbot, users can select from different models that are optimized for programming-related tasks.
 
-\subsection{Programming Bot Features}
+\textbf{Programming Bot Features}
 
 Several enhancements have been integrated into the programming bot to improve its functionality and user experience:
 
@@ -693,11 +693,11 @@ This concise implementation outlines how the platform leverages Firestore to man
 The platform's navigation is designed to ensure that users can efficiently access desired content and features. To achieve this, the primary components of the platform are placed in the main navigation bar at the top of the page. These key elements include:
 
 \begin{itemize}
-    \item Home
-    \item Account Management
-    \item Chat Bots
-    \item Image to Text
-    \item Bildgenerierung
+    \item Home: Overview of the platform
+    \item Account: User Profile
+    \item Chat Bots: Selection of available chat bots
+    \item OCR: Image-to-Text Conversion
+    \item OpenAI Image: Image Genderation with OpenAI
     \item Logout
 \end{itemize}
 
@@ -719,7 +719,11 @@ To enhance usability when interacting with chat bots, the platform provides a de
 
 \section{Styling and Theming}
 
-The platform's design follows a clean and modern aesthetic. To achieve this, a light and contemporary color scheme has been implemented. The background is predominantly white, with blue serving as the primary accent color and green used for highlights. For instance, buttons are styled in blue, while the currently selected chat bot is indicated in green.
+The platform's design follows a clean and modern aesthetic. 
+To achieve this, a light and contemporary color scheme has been implemented. The background is predominantly white, 
+with blue serving as the primary accent color and green used for highlights. 
+For instance, buttons are styled in blue, while the currently selected chat bot is indicated in green. As seen in
+Figure~\ref{fig:main_navigation_bar} and Figure~\ref{fig:chat_bot_navigation}.
 
 Most of the styling was implemented using a CSS framework, with initial specifications defined by the development team. These were later refined with the assistance of AI tools, including ChatGPT (versions 3.5, 4, 4o, and o1) as well as GitHub Copilot.
 
@@ -754,8 +758,8 @@ While some planned features were not included in the final version due to time c
 Potential future developments include multilingual support, collaborative learning tools, and advanced learning analytics, 
 which will further enrich the educational experience.
 
-In conclusion, the Intelligent Student AI Hub stands as a testament to the potential of integrating modern web technologies and AI to create a dynamic and effective learning environment. 
-It not only empowers students to delve into the world of AI but also sets a foundation for continuous improvement and innovation in educational tools.
-
+In summary, the Intelligent Student AI Hub exemplifies the transformative potential of integrating contemporary web technologies
+with artificial intelligence to cultivate a dynamic and effective learning environment. This platform not only enables students 
+to explore the realm of AI but also establishes a foundation for ongoing enhancement and innovation in educational tools. 
 
 
