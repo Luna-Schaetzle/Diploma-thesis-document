@@ -2,14 +2,12 @@
 \label{chap:Server_Hardware}
 \textbf{Author:} Florian Prandstetter
 
-
 \section{Introduction}
 
-The foundation of every server is the hardware. The hardware is the physical components that make up the server.
-The hardware is responsible for the performance, reliability, and scalability of the server.
+The foundation of every server is its hardware. The hardware consists of the physical components that make up the server.
+It is responsible for the performance, reliability, and scalability of the server.
 
-In this chapter, the different components of a server will be discussed. The importance of each component will be explained.
-
+In this chapter, the different components of a server will be discussed, and the importance of each component will be explained.
 
 \section{Server Components}
 
@@ -17,70 +15,70 @@ The main components of a server are the following:
 
 \subsection{Processor}
 
-The Central Processing Units is the brain of the server. It is responsible for executing the instructions of the software. 
+The Central Processing Unit (CPU) is the brain of the server. It is responsible for executing the instructions of the software. 
 
-If the CPU is too slow, the server will not be able to handle the workload creating a huge bottleneck. But good CPUs are expensive, so it is important to find the right balance between performance and cost.
+If the CPU is too slow, the server will not be able to handle the workload, creating a significant bottleneck. However, high-performance CPUs are expensive, so it is important to find the right balance between performance and cost.
 
-In this project, an Intel Core i5-8600K was used. This CPU has 6 cores and a base clock speed of 3.6 GHz. This is enough to handle the workload of the server.
-
+In this project, an Intel Core i5-8600K was used. This CPU has 6 cores and a base clock speed of 3.6 GHz, which is sufficient to handle the server's workload.
 
 \cite{CPU}
 \cite{i5}
 
 \subsection{Graphics Processing Unit}
 
-The Graphics Processing Unit is responsible for rendering images and videos. It is usally used to process images, videos and other graphical tasks. But it can also be used for AI tasks.
+The Graphics Processing Unit (GPU) is responsible for rendering images and videos. It is usually used to process images, videos, and other graphical tasks, but it can also be used for AI tasks.
 
-The GPU is much faster than the CPU when it comes to parallel tasks. This makes it perfect for AI tasks, which are usually parallel tasks. 
+The GPU is much faster than the CPU when it comes to parallel processing. This makes it ideal for AI tasks, which typically involve parallel computations.
 
-
-In this project, an NVIDIA GeForce RTX 2060 was used. This GPU has 1920 CUDA cores and 6GB of GDDR6 memory. This is enough to handle the AI tasks of the server.
+In this project, an NVIDIA GeForce RTX 2060 was used. This GPU has 1920 CUDA cores and 6GB of GDDR6 memory, which is sufficient for handling the AI tasks of the server.
 
 \cite{GPU}
 \cite{GF2060}
 
 \subsection{Random Access Memory}
 
-The RAM is memory that stores data that is currently being used. It is much faster than the storage memory, but it is also more expensive. The more RAM a server has, the more data it can store and access quickly.
-For servers, it is important to have enough RAM to handle the workload. If the server runs out of RAM, it will start using the storage memory, which is much slower.
+Random Access Memory (RAM) is a type of memory that stores data currently in use. It is much faster than storage memory, but it is also more expensive. The more RAM a server has, the more data it can store and access quickly.
 
-For the AI server in this project, 16GB of DDR4 RAM were used. This is enough to handle the workload of the server while keeping the costs low.
+For servers, it is important to have enough RAM to handle the workload. If the server runs out of RAM, it will start using storage memory, which is significantly slower.
+
+For the AI server in this project, 16GB of DDR4 RAM was used. This is sufficient to handle the workload while keeping costs low.
 
 \cite{RAM}
 
 \subsection{Motherboard}
 
-The motherboard is the main circuit board of the server. It connects all the components of the server and allows them to communicate with each other.
-An important factor when choosing a motherboard is the compatibility with the other components. If the motherboard is not compatible with the CPU, GPU, or RAM, the server will not work.
+The motherboard is the main circuit board of the server. It connects all the components and allows them to communicate with each other.
 
-To not run into compatibility issues, an H370 motherboard with an Intel socket used. This motherboard is compatible with the CPU, GPU, and RAM used in this project.
+An important factor when choosing a motherboard is its compatibility with other components. If the motherboard is not compatible with the CPU, GPU, or RAM, the server will not function properly.
+
+To avoid compatibility issues, an H370 motherboard with an Intel socket was used. This motherboard is compatible with the CPU, GPU, and RAM selected for this project.
 
 \cite{Motherboard}
 
 \subsection{Power Supply}
 
-The power supply is responsible for providing power to the server. It converts the electricity into the right voltage for the components of the server.
-It is important to choose a power supply that can handle the power requirements of the server. If the power supply is too weak, the server will not work. If it is too strong, it will waste energy.
+The power supply is responsible for providing power to the server. It converts electricity into the appropriate voltage for the server components.
 
-In this project, a 500W power supply was used. This is enough to power the CPU, GPU, and RAM of the server.
+It is crucial to select a power supply that can handle the server's power requirements. If the power supply is too weak, the server will not function. If it is too strong, it will waste energy.
+
+In this project, a 500W power supply was used. This is sufficient to power the CPU, GPU, and RAM of the server.
 
 \cite{PowerSupply}
 
 \subsection{Storage}
 
-To store an AI model and the data, storage memory is needed. The storage memory is much slower than the RAM, but it is also much cheaper. 
-There are different types of storage memory, like Hard Disk Drives (HDD) and Solid State Drives (SSD). SSDs are much faster than HDDs, but they are also more expensive.
+To store AI models and data, storage memory is required. Storage memory is much slower than RAM, but it is also much more affordable. 
 
-In this project a 512GB NVMe SSD was used. This is enough to store the AI models.
+There are different types of storage memory, such as Hard Disk Drives (HDDs) and Solid State Drives (SSDs). SSDs are much faster than HDDs, but they are also more expensive.
+
+In this project, a 512GB NVMe SSD was used. This provides enough storage capacity for AI models.
 
 \cite{DataStorage}
 
-
-
 \section{Conclusion}
 
-The hardware of a server is the foundation of its performance, reliability, and scalability. It is important to choose the right components to build a server that can handle the workload while keeping the costs low.
+The hardware of a server is the foundation of its performance, reliability, and scalability. Selecting the right components is essential to building a server that can handle its workload while keeping costs manageable.
 
-The Parts used in this project are mostly consumer-grade components. This keeps the costs low while providing enough performance for the server.
+The components used in this project are mostly consumer-grade. This keeps costs low while providing adequate performance for the server.
 
-For a production server, it is recommended to use server-grade components. These components are more expensive but also more reliable and have better performance.
+For a production server, it is recommended to use server-grade components. These components are more expensive but offer greater reliability and better performance.
