@@ -12,7 +12,7 @@ In this chapter, the different components of a server infrastructure will be dis
 
 \section{Server Infrastructure Components}
 
-The main components of a server infrastructure are the following:
+The main components of the projects server infrastructure are the following:
 
 \subsection{Server Hardware}
 
@@ -29,6 +29,8 @@ Security is also an important aspect of networking. Firewalls and other security
 
 To ensure security and reliability, the server in this project is connected to a secure network. The network is protected by a firewall and other security measures to prevent unauthorized access.
 
+\cite{networking}
+
 \subsection{Remote Management}
 
 Remote management tools are used to monitor and manage the server from a remote location.
@@ -39,6 +41,9 @@ There are different remote management tools available, such as SSH, RDP, and VNC
 The server in this project is managed using SSH. This allows the server administrator to access the server remotely and perform maintenance tasks.
 To access the server from a different network, a VPN connection is used. This ensures that the connection is secure and encrypted.
 The tool used for the VPN connection is Tailscale.
+
+\cite{remote_management}
+\cite{Tailscale}
 
 \subsection{Backup and Recovery}
 
@@ -58,7 +63,8 @@ This makes it easy to deploy applications and services across different environm
 The server in this project uses Docker for containerization. Docker allows the server administrator to package applications and services in containers and deploy them on the server.
 This makes it easy to manage and scale the server infrastructure. For a more detailed explanation of Docker, refer to Chapter \ref{sec:docker}.
 
- 
+\cite{containerization} 
+
 \section{Conclusion}
 
 The server infrastructure is a critical component of any IT system. It is responsible for hosting the applications and services that are used by the clients.
