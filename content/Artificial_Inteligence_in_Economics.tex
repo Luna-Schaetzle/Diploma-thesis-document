@@ -1,60 +1,82 @@
 \chapter{Artificial Intelligence in Economics}
 \label{chap:Artificial_Intelligence_in_Economics}
-\textbf{Author:} Florian Prandstetter
-\textbf{Author:} Luna Schaetzle: ~\ref{sec:applications-of-ai}, 
+\textbf{Author:} Florian Prandstetter: ~\ref{sec:introduction}, ~\ref{sec:role-of-ai-in-economics}, ~\ref{sec:risks-of-ai}, ~\ref{subsec:job-displacement}, ~\ref{subsec:bias-in-algorithms-and-data}, ~\ref{subsec:transparence}, 
+\textbf{Author:} Luna Schaetzle: ~\ref{subsec:training-data-and-ethical-concerns},
 
 
 \section{Introduction}
+\label{sec:introduction}
 
-In this chapter, we explore the role of artificial intelligence in economics and its impact on various sectors of the economy. We discuss the potential benefits and challenges of integrating AI technologies into economic processes, as well as the implications for businesses, consumers, and policymakers. Furthermore, we examine the current applications of AI in economics and highlight key trends that are shaping the future of this field.
-
+In this chapter, we examine the transformative role of artificial intelligence (AI) within economic systems and its broad impact on various sectors. We assess the potential benefits and challenges of integrating AI into economic processes, considering the implications for businesses, consumers, and policymakers. Additionally, we review current AI applications in economics and highlight emerging trends that are poised to shape the future of the field.
 
 \section{The Role of AI in Economics}
+\label{sec:role-of-ai-in-economics}
 
-AI has revolutionized many fields of Economic. It offers a wide range of tools that can be implemented into a companys workflow.
-AI can be used to optimize production processes, improve supply chain management, and enhance customer service. It can also help businesses make more informed decisions by analyzing large amounts of data and identifying patterns and trends that would be difficult for humans to detect. In addition, AI can be used to automate repetitive tasks, freeing up employees to focus on more strategic activities.
+Artificial intelligence has fundamentally reshaped the landscape of economics by introducing advanced analytical tools and automation capabilities. AI-driven solutions are employed to optimize production processes, enhance supply chain management, and improve customer service operations. By processing large volumes of data, AI can identify complex patterns and trends that might otherwise go unnoticed, thereby supporting more informed decision-making. Moreover, the automation of repetitive tasks allows employees to focus on strategic and creative activities, further driving innovation and efficiency within organizations.
 
 \section{Risks of AI}
 \label{sec:risks-of-ai}
 
 While the various benefits of AI seem promising, there are also risks associated with its implementation in economics.
-
-One of the main concerns is the potential for job displacement, as AI technologies have the potential to automate many tasks that are currently performed by humans. This could lead to widespread unemployment and economic instability if not managed properly. 
-
-Additionally, there are ethical concerns related to the use of AI in economics, such as bias in algorithms and the potential for misuse of personal data.
-
 It is essential for businesses and policymakers to address these risks and develop strategies to mitigate them effectively.
 
 \cite{AiEconomics}
 
-\subsection{Bias in Algorithms}
+\subsection{Job displacement}
+\label{subsec:job-displacement}
 
-\section{Benefits of AI use}
-\label{sec:benefits-of-ai-use}
+One of the main concerns is the potential for job displacement, as AI technologies have the potential to automate many tasks that are currently performed by humans. This could lead to widespread unemployment and economic instability if not managed properly. 
 
-But despite the riskst the benefits of AI are numerous. It can help buisness to increase their efficency and productivity.
+Since the benefits of AI are vast, their will be a change in the labor market comparable to the industrial revolution.  
+But in the changing market there also will be openings for new jobs that need to be done. 
 
-\cite{AiEconomics2}
-\cite{AiBenefits}
+\cite{AiAndJobs} 
 
-\subsection{Data Analyisis}
+\subsection{Bias in algorithms and data}
+\label{subsec:bias-in-algorithms-and-data}
 
-One of the most significant benefits of AI in economics is its ability to analyze large amounts of data quickly and accurately. 
-This can help businesses identify trends and patterns that would be difficult for humans to detect, allowing them to make more informed decisions.
+But there also is a riks of bias. Since for many AI models it is unclear how they have been trained. 
+If trained poorly an AI model can easily make devestating mistakes that negetively affect the company.
 
-\cite{AiDataAnalysis}
+One of the main reasons for bias is a flawed dataset. If the training data is missing some curcial data, the results can become very unpleasing. 
+Thus it is very important to check the training data for potential biases.
 
-\subsection{Automation}
+Another factor is a poorly develpoed algorithm. A bad algorithm can amplify the data bias, and create new biases on accident. 
 
-AI can also be used to automate repetitive tasks, thus freeing up employess to focus on more important activities.
-This can help businesses increase their productivity and reduce costs.
+When going to the root of the problem, it often is a cognitve bias that the model inhertis from its creators. 
+These biases can be implemented intentional and unintentional. Since all humans have some kind of bias it is nearly impossible to eliminate them. 
 
-\cite{AiAutomation}
+Mitigation AI bias can be a very resource heavy task. After identifying a bias, the model needs to be retrained. This can cost a lot of both money and time. 
 
-\subsection{Ressource allocation}
+\cite{AiDataBias}
 
-In sectors like manufacturing and agriculture, AI can asist in an optimal distribution of the ressources. The amount of waste reduced and the cost efficeny could be increased significantly.
+\subsection{Transparence}
+\label{subsec:transparence}
 
+Some of the biggest tech companies that offer AI services tend to be very intransparent with their data. 
+The latest example of this is the Deepseek r1 model developed by a chinese startup. But other players like OpenAi's ChatGPT also have similar issues.
+
+Due to the intransparent handling of private information, many concerns arise. Most private users and companys don't want their data to be on unknown servers.
+
+Additionally it is hard to identify the source of biases these models may have. Since both algorithm and training data are not public knowledge, it becomes nearly impossible to mitigate them.
+
+\cite{AiTransparancy}
+
+\subsection{Training data and ethical concerns}
+\label{subsec:training-data-and-ethical-concerns}
+
+Training data forms the foundation of AI systems, fundamentally influencing their performance, biases, and decision-making processes. However, the methods employed in assembling and curating these datasets have sparked significant ethical debates, primarily due to concerns surrounding copyrighted material, transparency, and data privacy.
+
+A primary ethical issue is the incorporation of copyrighted content into training datasets. Many AI models are trained on vast amounts of internet-sourced data, much of which is subject to copyright restrictions. The unauthorized use of such material not only raises legal questions regarding intellectual property rights and fair use but also challenges the ethical legitimacy of reproducing or generating content that may infringe on these rights. This dilemma underscores the need for clear guidelines and licensing frameworks that respect the rights of original content creators.
+
+Equally concerning is the lack of transparency in the disclosure of training data sources. Many state-of-the-art models do not provide comprehensive information about the origin, composition, or curation process of the data they use. This opacity hampers independent verification of data quality and bias, making it difficult for researchers, regulators, and the public to evaluate the fairness, representativeness, and potential ethical implications of the underlying datasets. In the absence of detailed documentation—such as datasheets for datasets—the risks associated with hidden biases and privacy violations remain unaddressed.
+
+Furthermore, the aggregation of large datasets often includes personal information that may have been collected without explicit consent. The use of such data can lead to privacy breaches and raises questions about the ethical treatment of individuals whose information is repurposed for AI training. This issue not only compromises personal privacy but also potentially exposes organizations to legal repercussions under data protection regulations.
+
+In conclusion, while extensive training data is essential for developing robust AI systems, the ethical concerns regarding copyrighted material, lack of transparency, and privacy breaches highlight the urgent need for standardized ethical guidelines and regulatory oversight. Addressing these challenges is crucial to ensure that the development and deployment of AI technologies are both legally compliant and ethically responsible.
+
+
+% ====================================================================================================================================
 
 \section{Applications of AI }
 \label{sec:applications-of-ai}
@@ -127,17 +149,36 @@ Artificial intelligence has become a cornerstone in modern economic forecasting,
 
 These predictive capabilities empower policymakers and business leaders to mitigate risks and capitalize on emerging opportunities by providing a clearer understanding of economic trajectories. However, challenges remain, including the need for high-quality data, addressing model biases, and ensuring transparency in AI methodologies. Continued advancements in AI and data analytics are expected to further refine these predictive techniques, paving the way for even more robust economic forecasting frameworks \cite{Predictive-Analysis-ai}.
 
-\section{Ethical and Legal Implications of AI in Economics}
-\label{sec:ethical-and-legal-implications-of-ai-in-economics}
+\subsection{Data Analyisis}
+\label{subsec:data-analysis}
 
-Descripe the ethical and legal implications of AI in economics. 
+One of the most significant benefits of AI in economics is its ability to analyze large amounts of data quickly and accurately. 
+This can help businesses identify trends and patterns that would be difficult for humans to detect, allowing them to make more informed decisions.
 
+AI often has a more objective view on the provided data. Thus an AI analyisis can help to get a new perspective on the data. 
 
-\subsection{Training Data Issues}
+Another benefit is the visualization of data. Generative AI can give a clear graphical overview of given data, making it easier to find patterns or anomalies. 
 
-\subsection{Privacy Concerns}
+But there are still a lot of Risks that are tied to AI.
+If trained poorly an AI model can easily make devestating mistakes that negetively affect the company.
+So it is essential to still have a human check the results to avoid AI haluzination.
 
-\subsection{Regulatory Challenges}
+\cite{AiDataAnalysis}
+
+\subsection{Automation}
+
+AI can also be used to automate repetitive tasks, thus freeing up employess to focus on more important activities.
+This can help businesses increase their productivity and reduce costs.
+
+Due to the learning capabilities of AI, it can not only repeat a give task, but also adapt quickly to changes without a lot of intervention.
+With the help of AI there are also many ways to automat a detailed documentation of the tasks. This can help to find errors and provide valuable data for process optimizaton. 
+If utilized correctly this will help reduce labor and production costs in many sectors. 
+
+\cite{AiAutomation}
+\cite{AIAutomation2}
+
+\section{Regulatory Challenges}
+\label{sec:regulatory-challanges}
 
 The increasing deployment of artificial intelligence in various economic sectors has introduced a wide range of regulatory challenges, particularly regarding data security, privacy, and compliance with both established legal frameworks and emerging regulatory measures. A landmark initiative addressing these concerns is the EU AI Act (Regulation (EU) 2024/1689 \cite{EU-AI-Act-text}), which represents the first comprehensive legal framework for artificial intelligence on a global scale. This Act is designed to harmonize AI regulations across EU member states by adopting a risk-based approach that categorizes AI systems according to their potential impact on fundamental rights and public safety.
 
@@ -147,20 +188,27 @@ By establishing clear guidelines for AI deployment, the framework seeks to balan
 
 As discussed in Chapter~\ref{chap:Outlook} and Section~\ref{ref:challanges-and-opportunities}, numerous experts advocate for the implementation of more extensive global regulations to effectively mitigate the risks associated with artificial intelligence.
 
-\subsection{Data Security}
+\paragraph{Data security}
 
-As discussed in Chapter~\ref{chap:Introduction_to_the_used_large_language_Models}, particularly in Section~\ref{sec:data-security-privacy-openai} on Data Security and Privacy in Compliance with Austrian and EU Regulations, several regulatory challenges affect the data security and privacy of AI models.
+As discussed in Chapter~\ref{chap:Introduction_to_the_used_Large_Language_Models}, particularly in Section~\ref{sec:data-security-privacy-openai} on Data Security and Privacy in Compliance with Austrian and EU Regulations, several regulatory challenges affect the data security and privacy of AI models.
 
 A key issue is that user data is frequently stored on cloud servers, which increases the risk of security breaches and data leaks. Moreover, many leading AI companies are headquartered outside the European Union, potentially complicating compliance with EU and Austrian data protection laws.
 
 
-\section{Future Trends in AI Economics}
-\label{sec:future-trends-in-ai-economics}
-
 \section{Conclusion}
-Gemeinsam
+\label{sec:conclusion}
 
-%so bissl zahlenwerte und so wären gut
-%https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-market-74851580.html
-%https://www.grandviewresearch.com/industry-analysis/artificial-intelligence-ai-market
-%https://www.statista.com/statistics/607716/worldwide-artificial-intelligence-market-revenues/
+The rapid evolution of artificial intelligence (AI) is poised to significantly transform economic landscapes worldwide. 
+As AI technologies mature, they are expected to drive profound changes in labor markets, productivity, and the overall distribution of economic gains. 
+This transformation is multifaceted, presenting both substantial opportunities for growth and innovation as well as considerable challenges related to workforce displacement,
+income inequality, and the need for robust regulatory frameworks.
+
+Moreover, the shift towards an AI-centric economy underscores the critical importance of workforce adaptation. 
+As routine tasks become increasingly automated, there is a growing imperative for reskilling and continuous learning initiatives that can equip workers with the skills 
+necessary for emerging roles in the digital era. Policymakers are therefore called upon to design inclusive strategies that not only harness the potential 
+of AI but also mitigate the risks of technological disruption.
+
+In summary, although AI presents unprecedented opportunities for economic advancement, 
+it also necessitates careful consideration of its broader societal impacts. As we navigate this transformative era, 
+proactive measures ranging from investment in human capital to the formulation of forward-looking regulatory policies 
+will be crucial to ensuring that the benefits of an AI-powered economy are both sustainable and equitably shared.
