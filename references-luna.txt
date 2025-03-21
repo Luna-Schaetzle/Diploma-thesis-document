@@ -7,12 +7,12 @@
   note         = {Accessed: 2024-12-02}
 }
 
-@misc{Linus_Torvalds_quote_open_source,
+@misc{LinusTorvaldsquoteopensource,
   author = {Linus Torvalds},
-  howpublished = {\url{https://www.brainyquote.com/quotes/linus_torvalds_135583}},
   title = {Linus Torvalds Quotes},
   year = {2024},
-  note = {Accessed: 2024-12-02}
+  howpublished = {\url{https://www.brainyquote.com/quotes/linus_torvalds_135583}},
+  note = "[Accessed: 2024-12-02]"
 }
 
 @misc{Open_Source_Initiative_OS_definition,
@@ -434,6 +434,25 @@ year = {2023},
   note = "[Online; accessed 2025-02-18]"
 }
 
+@misc{WhatIsAnOs,
+author = {manjeetks007},
+  title = {What is an Operating System},
+  url = "https://www.geeksforgeeks.org/what-is-an-operating-system/",
+month = {12},
+year = {2024},
+  note = "[Online; accessed 2025-02-26]"
+}
+
+@misc{TypesOfOs,
+author = {akash1295},
+  title = {What is an Operating System},
+  url = "https://www.geeksforgeeks.org/types-of-operating-systems/",
+month = {1},
+year = {2025},
+  note = "[Online; accessed 2025-02-26]"
+}
+
+
 @misc{Open-Source-EMR-Software,
 author = {Contributors to Wikimedia projects},
   title = {OpenEMR - Wikipedia},
@@ -444,11 +463,11 @@ year = {2005},
 }
 
 @misc{Open-Source-Business-Models,
-author = {},
+author = {Oleg Zinovyev},
   title = {How companies make millions on Open Source – Palark | Blog},
   url = "https://blog.palark.com/open-source-business-models/",
-month = {},
-year = {},
+month = {12},
+year = {2022},
   note = "[Online; accessed 2025-02-26]"
 }
 
@@ -461,12 +480,424 @@ year = {},
   note = "[Online; accessed 2025-02-26]"
 }
 
+@misc{UbuntuAiServer,
+author = {Andreea Munteanu},
+  title = {Top 5 reasons to use Ubuntu for your AI/ML projects},
+  url = "https://ubuntu.com/blog/ubuntu-ai-ml-projects",
+month = {6},
+year = {2024},
+  note = "[Online; accessed 2025-02-27]"
+}
+
+@misc{LinuxPoweredAi,
+author = {Jeremiah Rotich},
+  title = {The Future of Linux-Powered Operating Systems with AI: Unlocking Limitless Potential },
+  url = "https://www.linkedin.com/pulse/future-linux-powered-operating-systems-ai-unlocking-limitless-rotich-qbusf",
+month = {9},
+year = {2024},
+  note = "[Online; accessed 2025-02-27]"
+}
+
+
+@misc{LinuxForServerDebian,
+author = {Christos Pontikis},
+  title = {Five Reasons to use Debian as a Server },
+  url = "https://www.pontikis.net/blog/five-reasons-to-use-debian-as-a-server",
+month = {2},
+year = {2013},
+  note = "[Online; accessed 2025-03-01]"
+}
+
+@misc{LinuxForServerRedhead,
+author = {Red Head},
+  title = {Red Hat Enterprise Linux AI},
+  url = "https://www.redhat.com/de/technologies/linux-platforms/enterprise-linux/ai",
+month = {10},
+year = {2024},
+  note = "[Online; accessed 2025-03-01]"
+}
+
+
+@misc{LinuxForServerUbuntu,
+author = {Canonical Ubuntu},
+  title = {Scale out with Ubuntu Server},
+  url = "https://ubuntu.com/server",
+  month = {},
+year = {},
+  note = "[Online; accessed 2025-03-01]"
+}
+
+@misc{Claude-Computer-use,
+author = {},
+  title = {Computer use (beta) - Anthropic},
+  url = "https://docs.anthropic.com/en/docs/agents-and-tools/computer-use",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-03]"
+}
+
+
+@misc{SAIPIA-Concept,
+author = {DTeK},
+  title = {(51) DIY: Cyberdeck multi-function backup computer - YouTube},
+  url = "https://www.youtube.com/watch?v=88tgZ6Xq3J0&list=PLoyOhsqi57GmrL0mvDFnLXHn17OD3onLs&index=1&t=1199s",
+month = {9},
+year = {2023},
+  note = "[Online; accessed 2025-03-03]"
+}
+
+
+@misc{OsMarketShare,
+author = {Shivam Singla},
+  title = {What is the Operating System Market Share?},
+  url = "https://www.scaler.com/topics/operating-system-market-share/",
+month = {13},
+year = {2022},
+  note = "[Online; accessed 2025-03-10]"
+}
+
+@misc{OsWikipedia,
+author = {Contributors to Wikimedia projects},
+  title = {Operating system},
+  url = "https://en.m.wikipedia.org/wiki/Operating_system",
+month = {1},
+year = {2025},
+  note = "[Online; accessed 2025-03-10]"
+}
+
+@misc{OsMarketShare2,
+author = {statcounter},
+  title = {Operating System Market Share Worldwide},
+  url = "https://gs.statcounter.com/os-market-share",
+month = {2},
+year = {2025},
+  note = "[Online; accessed 2025-03-10]"
+}
+
+
+@misc{ServerOsMarketShare,
+author = {T4},
+  title = {Server Operating System Market Share},
+  url = "https://www.t4.ai/industry/server-operating-system-market-share",
+month = {12},
+year = {2022},
+  note = "[Online; accessed 2025-03-10]"
+}
+
+@misc{OsMarketShare3,
+author = {businesswire},
+  title = {Operating Systems Global Market to Reach $48.18 Billion by 2026},
+  url = "https://www.businesswire.com/news/home/20220825005370/en/Operating-Systems-Global-Market-to-Reach-48.18-Billion-by-2026---ResearchAndMarkets.com",
+month = {8},
+year = {2022},
+  note = "[Online; accessed 2025-03-11]"
+}
+
+
+@misc{ServerOsMarketShare2,
+author = {fortune business insights},
+  title = {Server Operating System Market },
+  url = "https://www.fortunebusinessinsights.com/server-operating-system-market-106601",
+month = {2},
+year = {2025},
+  note = "[Online; accessed 2025-03-12]"
+}
+
+
+@misc{EmbeddedOsMarketShare,
+author = {Swasti Dharmadhikari},
+  title = {embedded operating systems market report},
+  url = "https://www.cognitivemarketresearch.com/embedded-operating-systems-market-report",
+month = {1},
+year = {2025},
+  note = "[Online; accessed 2025-03-12]"
+}
 
 
 
+@misc{WindriverSold,
+author = {Aptiv},
+  title = {Aptiv Completes the Acquisition of Wind River from TPG},
+  url = "https://www.aptiv.com/en/newsroom/article/aptiv-completes-the-acquisition-of-wind-river-from-tpg",
+month = {13},
+year = {2022},
+  note = "[Online; accessed 2025-03-12]"
+}
 
 
 
+@misc{DesktopOsMarketShare,
+author = {statcounter},
+  title = {Desktop Operating System Market Share Worldwide
+},
+  url = "https://gs.statcounter.com/os-market-share/desktop/worldwide",
+month = {2},
+year = {2025},
+  note = "[Online; accessed 2025-03-12]"
+}
+
+@misc{Microsoft,
+author = {Contributors to  Wikimedia projects},
+  title = {Microsoft},
+  url = "https://de.wikipedia.org/wiki/Microsoft",
+month = {1},
+year = {2025},
+  note = "[Online; accessed 2025-03-12]"
+}
+
+
+@misc{AppleOnWikipedia,
+author = {Contributors to  Wikimedia projects},
+  title = {Apple},
+  url = "https://de.wikipedia.org/wiki/Apple",
+month = {3},
+year = {2025},
+  note = "[Online; accessed 2025-03-12]"
+}
+
+@misc{RedHatWiki,
+author = {Contributors to  Wikimedia projects},
+  title = {Red Hat},
+  url = "https://de.wikipedia.org/wiki/Red_Hat#%C3%9Cbernahme_durch_IBM",
+month = {9},
+year = {2024},
+  note = "[Online; accessed 2025-03-12]"
+}
+
+@misc{Windriver,
+author = {Contributors to  Wikimedia projects},
+  title = {Wind River Systems},
+  url = "https://de.wikipedia.org/wiki/Wind_River_Systems",
+month = {},
+year = {2022},
+  note = "[Online; accessed 2025-03-12]"
+}
+
+
+@misc{EU2016GDPR,
+  title = {Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data},
+  howpublished = {\url{https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679}},
+  year = {2016},
+  note = {Accessed: 2025-03-18}
+}
+
+@misc{AustrianDSG,
+  title        = {Datenschutzgesetz (DSG)},
+  howpublished = {\url{https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001597}},
+  year         = {1999},
+  note = {Accessed: 2025-03-18}
+}
+
+
+
+@misc{Kernel,
+  title        = {Kernel in Operating System},
+  author = {pp_pankaj},
+  howpublished = {\url{https://www.geeksforgeeks.org/kernel-in-operating-system/}},
+  month = {1},
+  year  = {2025},
+  note = {Accessed: 2025-03-18}
+}
+
+@misc{AiEconomics,
+  title        = {What do we know about the economics of AI?},
+  author = {Peter Dizikes},
+  howpublished = {\url{https://news.mit.edu/2024/what-do-we-know-about-economics-ai-1206}},
+  month = {6},
+  year  = {2024},
+  note = {Accessed: 2025-03-18}
+}
+
+
+@misc{AiEconomics2,
+  title        = {Artificial Intelligence and Its Potential Effects on the Economy and the Federal Budget},
+  author = {Congressional Budget Office},
+  howpublished = {\url{https://www.cbo.gov/publication/61147}},
+  month = {12},
+  year  = {2024},
+  note = {Accessed: 2025-03-18}
+}
+
+@misc{AiDataAnalysis,
+  title        = {Using AI for Data Analysis: The Ultimate Guide},
+  author = {Mieke Houbrechts},
+  howpublished = {\url{https://www-luzmo-com.translate.goog/blog/ai-data-analysis?_x_tr_sl=en&_x_tr_tl=de&_x_tr_hl=de&_x_tr_pto=sc}},
+  month = {7},
+  year  = {2024},
+  note = {Accessed: 2025-03-18}
+}
+@misc{AiAutomation,
+  title        = {What is intelligent automation?},
+  author = {IBM},
+  howpublished = {\url{https://www.ibm.com/think/topics/intelligent-automation}},
+  month = {10},
+  year  = {2021},
+  note = {Accessed: 2025-03-18}
+}
+@misc{AiBenefits,
+  title        = {10 ways AI is being used in Economics},
+  author = {Team DigitalDefynd},
+  howpublished = {\url{https://digitaldefynd.com/IQ/ai-use-in-economics/}},
+  month = {6},
+  year  = {2024},
+  note = {Accessed: 2025-03-18}
+}
+
+@misc{AI-Risk-Statement,
+author = {},
+  title = {Statement on AI Risk | CAIS},
+  url = "https://www.safe.ai/work/statement-on-ai-risk",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+
+@misc{RAMwiki,
+author = {Wikimedia Contributors},
+  title = {Random-Access Memory},
+  url = "https://de.wikipedia.org/wiki/Random-Access_Memory",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+
+@misc{DataStorage,
+author = {IBM},
+  title = {
+What is data storage?
+},
+  url = "https://www.ibm.com/think/topics/data-storage",
+month = {6},
+year = {2024},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{GPUwiki,
+author = {Wikimedia Contributors},
+  title = {Graphics processing unit},
+  url = "https://en.wikipedia.org/wiki/Graphics_processing_unit",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{CPU,
+author = {tanujasm24},
+  title = {
+What is Processor?
+},
+  url = "https://www.geeksforgeeks.org/what-is-processor/",
+month = {5},
+year = {2024},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{GF2060,
+author = {Tech Powerup | NVIDIA},
+  title = {NVIDIA GeForce RTX 2060},
+  url = "https://www.techpowerup.com/gpu-specs/geforce-rtx-2060.c3310
+",
+
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{i5,
+author = {Intel},
+  title = {Intel® Core™ i5-8600K Processor },
+  url = "https://www.intel.com/content/www/us/en/products/sku/126685/intel-core-i58600k-processor-9m-cache-up-to-4-30-ghz/specifications.html",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{Motherboard,
+author = {Paul Kirvan},
+  title = {Motherboard},
+  url = "https://www.computerweekly.com/de/definition/Motherboard",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{containerization,
+author = {IBM},
+  title = {
+What is containerization?
+},
+  url = "https://www.ibm.com/think/topics/containerization",
+month = {5},
+year = {2024},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+
+
+@misc{remote_management,
+author = {Thomas Joos},
+  title = {Die 12 besten Remote Administration Tools},
+  url = "https://www.ip-insider.de/die-12-besten-remote-administration-tools-a-a5b8f65d154f5a5c3953dde613eb3e16/",
+month = {10},
+year = {2023},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+
+@misc{Tailscale,
+author = {Tailscale},
+  title = {Tailscale},
+  url = "https://tailscale.com/",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+
+@misc{networking,
+author = {IBM},
+  title = {Was ist Computer-Networking? },
+  url = "https://www.ibm.com/de-de/topics/networking",
+month = {7},
+year = {2024},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{PowerSupply,
+author = {Wikimedia Contributors},
+  title = {Power Supply},
+  url = "https://en.wikipedia.org/wiki/Power_supply",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{pythonDocumentation,
+  author       = {Guido van Rossum and the Python development team},
+  title        = {The Python Language Reference Manual},
+  year         = {2025},
+  month         = {3},
+  url          = {https://docs.python.org/3/reference/},
+  note         = {Accessed: 2025-03-19}
+}
+
+@misc{EU-AI-Act-text,
+author = {},
+  title = {Regulation - EU - 2024/1689 - EN - EUR-Lex},
+  url = "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689",
+month = {6},
+year = {2024},
+  note = "[Online; accessed 2025-03-19]"
+}
+
+@misc{EURegFrameworkAI,
+  author = {},
+  title   = {Regulatory Framework for Artificial Intelligence},
+  url = "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+  month = {},
+  year = {},
+  note = "[Online; accessed 2025-03-19]"
+}
 
 
 @misc{Customer-Service-AI-Chatbots,
@@ -502,4 +933,40 @@ year = {2023},
   year         = {2021},
   note         = {Accessed: 2025-03-19},
   publisher    = {OECD}
+}
+
+@misc{AiAndJobs,
+author = {Robert Farrell},
+  title = {The Impact of AI on Job Roles, Workforce, and Employment: What You Need to Know},
+  url = "https://www.innopharmaeducation.com/blog/the-impact-of-ai-on-job-roles-workforce-and-employment-what-you-need-to-know",
+month = {3},
+year = {2025},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{AiDataBias,
+author = {IBM Data and AI Team},
+  title = {Shedding light on AI bias with real world examples },
+  url = "https://www.ibm.com/think/topics/shedding-light-on-ai-bias-with-real-world-examples",
+month = {10},
+year = {2023},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+
+@misc{AiTransparancy,
+  author = {Hannah Wren},
+  title = {What is AI transparency? A comprehensive guide},
+  url = "https://www.zendesk.com/blog/ai-transparency/",
+month = {1},
+year = {2024},
+  note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{AIAutomation2,
+author = {Alexis Veenendaal},
+  title = {Exploring AI and Generative AI Automation},
+  url = "https://www.blueprism.com/guides/ai-automation/",
+  year = {2022},
+  note = "[Online; accessed 2025-03-18]"
 }
