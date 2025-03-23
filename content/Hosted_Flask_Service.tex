@@ -7,7 +7,7 @@
 This chapter details the implementation, architecture, and deployment of a self-hosted Flask service that serves as a critical 
 interface linking the front-end and back-end components of the system. It outlines the technical design and deployment strategies 
 while critically evaluating the benefits of a self-hosted solution and the rationale behind key architectural decisions. The service, 
-which underpins both the Student AI Hub and the code extension’s backend, was developed to address specific operational requirements. 
+which underpins both the Student AI Hub and the code extensions backend, was developed to address specific operational requirements. 
 This section provides a comprehensive overview of the motivations for its development, elaborates on its core functionalities, 
 and situates its role within the broader system architecture—thus laying the groundwork for the ensuing technical discussion.
 
@@ -29,10 +29,10 @@ Flask is a lightweight, yet versatile web Python framework that plays a central 
 
 Flask's architecture is built around several core functionalities that streamline web application development:
 \begin{itemize}
-    \item \textbf{Request Routing:} Flask’s routing system allows for the efficient mapping of URLs to Python functions. This ensures that incoming web requests are correctly handled and directed to the appropriate endpoints, which is crucial for managing user interactions.
+    \item \textbf{Request Routing:} Flask's routing system allows for the efficient mapping of URLs to Python functions. This ensures that incoming web requests are correctly handled and directed to the appropriate endpoints, which is crucial for managing user interactions.
     \item \textbf{Middleware Support:} Flask supports middleware, facilitating the insertion of additional processing layers before or after a request is handled. This capability is essential for tasks such as authentication, logging, and error handling.
     \item \textbf{Extensibility:} Its modular design allows developers to integrate third-party extensions or develop custom modules, thereby expanding Flask's functionalities to meet the evolving demands of the project.
-    \item \textbf{Simplicity and Clarity:} Flask’s clear and concise API encourages clean, maintainable code. This simplicity does not come at the expense of power; rather, it provides a robust foundation upon which complex systems can be built.
+    \item \textbf{Simplicity and Clarity:} Flask's clear and concise API encourages clean, maintainable code. This simplicity does not come at the expense of power; rather, it provides a robust foundation upon which complex systems can be built.
 \end{itemize}
 
 These features collectively contribute to an efficient workflow, ensuring that web requests and responses are managed in a structured and scalable manner.
@@ -41,13 +41,13 @@ These features collectively contribute to an efficient workflow, ensuring that w
 
 The decision to adopt Flask as the backbone of our web service was influenced by several key considerations:
 \begin{itemize}
-    \item \textbf{Simplicity and Flexibility:} Flask’s minimalistic core allows for rapid development and iterative prototyping without the overhead of a full-stack framework. This flexibility is invaluable during the early stages of project development and testing.
+    \item \textbf{Simplicity and Flexibility:} Flask's minimalistic core allows for rapid development and iterative prototyping without the overhead of a full-stack framework. This flexibility is invaluable during the early stages of project development and testing.
     \item \textbf{Extensive Documentation and Community Support:} With comprehensive documentation and a vibrant community, Flask offers abundant resources for troubleshooting and extending functionality. This support network accelerates development and helps resolve challenges efficiently.
     \item \textbf{Scalability:} Despite its simplicity, Flask is designed to scale. Its modular nature means that as the project grows, new features can be seamlessly integrated, ensuring that the framework remains robust even under increased demand.
     \item \textbf{Integration Capabilities:} Flask can be easily combined with various libraries and APIs. This makes it particularly well-suited for integrating AI models, data processing tools, and other external services—core requirements of the Student AI Hub.
 \end{itemize}
 
-In summary, Flask’s combination of ease-of-use, extensibility, and strong community support provides a solid and adaptable framework for developing a dynamic web service. Its ability to handle everything from simple routing to complex middleware interactions makes it the ideal choice for building a robust backend that meets the diverse needs of our project.
+In summary, Flask's combination of ease-of-use, extensibility, and strong community support provides a solid and adaptable framework for developing a dynamic web service. Its ability to handle everything from simple routing to complex middleware interactions makes it the ideal choice for building a robust backend that meets the diverse needs of our project.
 
 \section{Architecture and Service Structure}
 
@@ -616,7 +616,7 @@ To further streamline production deployment, a Docker container was developed. M
 \label{sec:docker}
 Docker is a platform that allows you to run applications in containers. A container is like a small, isolated environment where software runs with everything it needs – including the operating system, libraries, and dependencies.
 
-No matter which computer or server the container runs on, it always works the same way. This means you don’t have to worry about an application suddenly throwing errors on a different system just because a different software version is installed there.
+No matter which computer or server the container runs on, it always works the same way. This means you do not have to worry about an application suddenly throwing errors on a different system just because a different software version is installed there.
 
 Docker is often used in software development and cloud applications because it simplifies testing, deployment, and scaling of apps. Developers can store their software as images and share them with others without requiring complicated installations.
 
@@ -625,13 +625,13 @@ A docker image is a blueprint that specifies how to run the application. The ins
 \cite{dockerize_flask} 
 
 \begin{itemize}
-    \item \textbf{flask\_app} The Flask image is used to easily implement the Flask application in a Docker container.
+    \item \textbf{Flask Application} The Flask image is used to easily implement the Flask application in a Docker container.
     \item \textbf{ollama} The Ollama image is used to avoid running LLMs globally and use them in a secluded environment.
 \end{itemize}
 
 \subsection{Docker Compose}
 Docker Compose is used for running multiple containers at the same time. It simplifies your application and makes it easier to manage 
-The Configuration is stored in a single YAML file. All the services can be started with a simpel command. It is a very compact way to manage Docker application.
+The Configuration is stored in a single YAML file. All the services can be started with a simple command. It is a very compact way to manage Docker applications.
 \cite{docker_compose} 
 
 \author{Florian Prandstetter}

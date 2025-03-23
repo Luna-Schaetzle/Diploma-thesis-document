@@ -1,14 +1,14 @@
-\chapter{Visual Studio code extension}
+\chapter{Visual Studio Code extension}
 \label{chap:VS_code_extension}
 \textbf{Author:} Florian Prandstetter
 
 \section{Introduction}
 
-This chapter provides an overview of the Visual Studio Code extension developed for the project. It describes its core functionality, and explains how it integrates with the broader system architecture.
+This chapter provides an overview of the VS Code extension developed for the project. It describes its core functionality, and explains how it integrates with the broader system architecture.
 
-\section{what is Visual Studio Code}
+\section{What is VS Code}
 
-Visual Studio Code is a free code editor from Microsoft. It supports many programming languages such as Python, JavaScript, and C++.
+VS Code is a free code editor from Microsoft. It supports many programming languages such as Python, JavaScript, and C++.
 
 A major advantage of VS Code is its extensibility. With extensions, you can customize the editor, for example, with debugging tools, themes, or special functions for specific programming languages. It also offers features like auto-completion, integrated Git support, and a built-in terminal function.
 
@@ -16,23 +16,35 @@ VS Code is lightweight and runs on Windows, macOS, and Linux. Despite this, it p
 
 \section{Development}
 
-\subsection{Technologys used}
+\subsection{Technologies used}
 
 \begin{itemize}
-    \item TypeScript: The Visual Studio Code extension was developed using TypeScript. TypeScript is well-suited for developing VS Code extensions, as it provides type checking and code completion, making it easier to work with the VS Code API.
+    \item TypeScript: The VS Code extension was developed using TypeScript. TypeScript is well-suited for developing VS Code extensions, as it provides type checking and code completion, making it easier to work with the VS Code API.
     \item Axios: Axios is used to make HTTP requests from the extension to the Flask Service. It provides an easy implementation of asynchronous requests and simplifies handling responses.
-    \item Visual Studio Code API: The extension interacts with the Visual Studio Code API. The API allows the extension to access and modify the editor's functionality, enabling it to provide a seamless development experience.
+    \item VS Code API: The extension interacts with the VS Code API. The API allows the extension to access and modify the editor's functionality, enabling it to provide a seamless development experience.
 \end{itemize}
 
 \section{Core Functionality}
-The planed core functionality of the extension is an integrated chatbot, that can answer questions without leaving the IDE. 
-The chatbot should send the request to the server where the prompt is executed. Then the respones is directly sent to the chat in the IDE. 
+The planned core functionality of the extension is an integrated chatbot, that can answer questions without leaving the IDE. 
+The chatbot should send the request to the server where the prompt is executed. Then the response is directly sent to the chat in the IDE. 
+This chat should be accessible with an item that can be found in the VS Code Status Bar. 
 
-%hier screenshot einfügen
+The final extension can be seen in the screenshot presented. \ref{fig:Extension_in_VS_Code}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/Extension.png}
+  \caption{Extension in VS Code}
+  \label{fig:Extension_in_VS_Code}
+\end{figure}
+
+
+
+
 \subsection{Chat}
 
-The chat is integrated into the IDE with an webview. 
-Webviews are a tool provided by the VS Code API. They can be used to implemnt various GUIs into the IDE. 
+The chat is integrated into the IDE with a webview. 
+Webviews are a tool provided by the VS Code API. They can be used to implement various GUIs into the IDE. 
 
 The following code, defines the properties of the Webview an initiates the GUI.
 
@@ -49,13 +61,13 @@ The following code, defines the properties of the Webview an initiates the GUI.
         }
     );
 
-    //executing the getWebviewContent function to implemnt the GUI
+    //executing the getWebviewContent function to implement the GUI
     panel.webview.html = getWebviewContent();
 
 \end{lstlisting}
 
 The getWebviewContent function defines the HTML and CSS elements of the Webview.
-It also defines the interactions fo the GUI with the TypeScript code. 
+It also defines the interactions for the GUI with the TypeScript code. 
 
 \begin{lstlisting}[language=HTML, caption={IDE Chat GUI}]
 
@@ -152,13 +164,12 @@ It also defines the interactions fo the GUI with the TypeScript code.
 \subsection{Server Request}
 
 After the user clicks send in the chats GUI, the onDidReceiveMessage command is executed.This command initiates the server request.
-It also defines the payload that the server recieves. The payload contains the question asked, aswell as the baseprompt defined by the developers. 
+It also defines the payload that the server receives. The payload contains the question asked, aswell as the baseprompt defined by the developers. 
 
-The request to the server is handled with Axios. Axios sends the respond to one of the flask service endpoints that are hosted on the server.
+The request to the server is handled with Axios. Axios sends the respond to one of the Flask Service endpoints that are hosted on the server.
 \ref{cha:hosted_flask_service}
 
-After the response reaches the client, the responses text is displayed in the chat GUI.
-On a failed request an error message is displayed.
+After the response reaches the client, the responses text is displayed in the chat GUI. On a failed request an error message is displayed.
 
 \begin{lstlisting}[language=TypeScript, caption={Axios request}]
     // executes when the "send" button is clicked in the GUI
@@ -202,7 +213,7 @@ The extension also provides a status bar button that can be used to open the cha
 In the following code the Status Bar Item is created and the commands are registered.
 
 \begin{lstlisting}[language=TypeScript, caption={Status Bar}]
-  //Creats a status bar item
+  //Creates a status bar item
   const commandId = 'luminara-coworker.statusBarClicked';
 
   //Registers the command
@@ -213,7 +224,7 @@ In the following code the Status Bar Item is created and the commands are regist
 			{ placeHolder: 'select a function' });
 \end{lstlisting}
 
-To assign a command it first has to be registerd into the extension. This is done at the start of every TypeScript file that defines an command.
+To assign a command it first has to be registered into the extension. This is done at the start of every TypeScript file that defines an command.
 
 \begin{lstlisting}[language=TypeScript, caption={registering Command}]
 
@@ -238,7 +249,7 @@ After registering a command it can be assigned to the status bar. After selectin
 \subsection{Deploying the Extension}
 
 After programming all the necessary components for the extension, they have to be registered into the extension.ts file.
-There they can be assigned to a specific extenstion context. Only files that are registered in the activate function are deployed when the extension is started.
+There they can be assigned to a specific extension context. Only files that are registered in the activate function are deployed when the extension is started.
 
 \begin{lstlisting}[language=TypeScript, caption={Deploying the Extension}]
 
@@ -265,4 +276,4 @@ There they can be assigned to a specific extenstion context. Only files that are
 
 \section{Conclusion}
 
-The Visual Studio Code extension provides a seamless integration of the chatbot functionality into the IDE. By leveraging the VS Code API and Axios, the extension enables users to interact with the chatbot directly within the editor, enhancing the development experience. The extension's core features, such as the chat interface and server request handling, are designed to streamline the user's workflow and provide quick access to AI-powered assistance.
+The VS Code extension provides a seamless integration of the chatbot functionality into the IDE. By leveraging the VS Code API and Axios, the extension enables users to interact with the chatbot directly within the editor, enhancing the development experience. The extension's core features, such as the chat interface and server request handling, are designed to streamline the user's workflow and provide quick access to AI-powered assistance.
