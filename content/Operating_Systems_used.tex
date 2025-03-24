@@ -16,7 +16,7 @@ An important part of building an AI Service is to host an API endpoint for all a
 Having a good foundation to build upon is thus unavoidable to build a strong and secure API endpoint. 
 
 This chapter is going to briefly explain what an Operating System (OS) is and its importance.
-It will also evaluate different options suitable for hosting the AI Server.
+It will also evaluate different options suitable for hosting the AI server.
 
 \section{What is an Operating System?}
 \label{sec:WhatIsAnOs}
@@ -100,20 +100,23 @@ While both Linux and Microsoft Windows serve as the core of their respective ope
 
 
 
-\section {Operating Systems used on the server}
+\section {Operating Systems used on the Server}
 
 To host the required AI service, choosing a suitable Operating System is a crucial part to guarantee a satisfying performance.
 For the project, multiple users need to access the server simultaneously, so the development team decided to use a Multi Programming OS.
 
 \subsection {Evaluating different Operating Systems}
 
-The preferred OS for an AI Server is Linux distributions like Ubuntu or Red Hat.
+The preferred OS for an AI server is Linux distributions like Ubuntu or Red Hat.
 Their open-source nature makes it very easy to customize and integrate AI frameworks.
+The OS needs to be sutiable to performe many different tasks on a high levle to be suitable for an AI server. 
+Tasks like containerization, netwrok monitoring, process monitoring and scripting tasks are essential for ths server to operate
+
 
 The Operating Systems that were taken into consideration are Ubuntu Server, Debian, and Red Hat Enterprise. 
 
-\cite{LinuxPoweredAi}
 
+\cite{cao2024managing}
 
 \subsection{Windows for Server}
 
@@ -140,7 +143,9 @@ The main downside is that it is a commercial distribution and requires a subscri
 Ubuntu Server is a popular choice for hosting AI services. It is based on Debian and has a large package repository. It is easy to use and has a large community that provides good documentation and support. It also provides NVIDIA drivers and CUDA support, which is useful for running AI applications that require GPU acceleration.
 The OS can flawlessly run Docker multiple Docker containers even on lower end hardware due the the lightweight structure. Also it Debian foundation makes it easy to install any needed packages. 
 
-\cite{LinuxForServerUbuntu} 
+
+\cite{lacroix2022mastering}
+
 
 \subsection {Outcome of the Evaluation}
 
