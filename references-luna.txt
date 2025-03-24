@@ -1,18 +1,20 @@
 
 @misc{opensource_what_is,
-  author       = {OpenSource.com},
-  title        = {What is Open Source?},
-  year         = {2024},
-  howpublished = {\url{https://opensource.com/resources/what-open-source}},
-  note         = {Accessed: 2024-12-02}
+author = {Opensource.com},
+  title = {What is open source? | Opensource.com},
+  url = "https://opensource.com/resources/what-open-source",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-23]"
 }
 
-@misc{LinusTorvaldsquoteopensource,
-  author = {Linus Torvalds},
-  title = {Linus Torvalds Quotes},
-  year = {2024},
-  howpublished = {\url{https://www.brainyquote.com/quotes/linus_torvalds_135583}},
-  note = "[Accessed: 2024-12-02]"
+@misc{linus_torvalds_qoute,
+author = {},
+  title = {Linus Torvalds - Software is like sex: it's better when...},
+  url = "https://www.brainyquote.com/quotes/linus_torvalds_135583",
+month = {7},
+year = {1999},
+  note = "[Online; accessed 2025-03-23]"
 }
 
 @misc{Open_Source_Initiative_OS_definition,
@@ -169,10 +171,10 @@ year = {2022},
   note = "[Online; accessed 2025-01-28]"
 }
 
-@misc{Pros-and-cons-of-open-source-software,
+@misc{pros_and_cons_of_open_source_software,
   author = {},
   title = {The Pros and Cons of Open-Source Software: A Guide for Developers and Executives},
-  url = "https://www.bairesdev.com/blog/the-pros-and-cons-of-open-source-software-a-guide-for-developers-and-executives/",
+  url = "https://www.bairesdev.com/blog/the-pros-and-cons-of-open-source-software-a-guide-for-developers-and-executives",
   month = {5},
   year = {2023},
   note = "[Online; accessed 2025-01-28]"
@@ -668,7 +670,7 @@ year = {2024},
 author = {Contributors to  Wikimedia projects},
   title = {Wind River Systems},
   url = "https://de.wikipedia.org/wiki/Wind_River_Systems",
-month = {},
+month = {1},
 year = {2022},
   note = "[Online; accessed 2025-03-12]"
 }
@@ -969,4 +971,22 @@ author = {Alexis Veenendaal},
   url = "https://www.blueprism.com/guides/ai-automation/",
   year = {2022},
   note = "[Online; accessed 2025-03-18]"
+}
+
+@misc{Open-source-Success-Stories,
+author = {Sam Galope},
+  title = {Open Source Case Studies: Success Stories of Impactful Projects},
+  url = "https://www.samgalope.dev/2024/11/08/open-source-case-studies-success-stories-of-impactful-projects/",
+month = {11},
+year = {2024},
+  note = "[Online; accessed 2025-03-21]"
+}
+
+@misc{LibreOffice-Website,
+author = {},
+  title = {Home | LibreOffice - Free and private office suite - Based on OpenOffice - Compatible with Microsoft},
+  url = "https://www.libreoffice.org/",
+month = {},
+year = {},
+  note = "[Online; accessed 2025-03-21]"
 }
