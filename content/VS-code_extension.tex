@@ -105,7 +105,8 @@ It also defines the interactions for the GUI with the TypeScript code.
               const vscode = acquireVsCodeApi();
 
               <!--Sends the message and updates the GUI -->
-              document.getElementById('send').addEventListener('click', () => {
+              document.getElementById('send')
+              .addEventListener('click', () => {
                 const input = document.getElementById('input');
                 const message = input.value.trim();
                 if (message) {
@@ -126,7 +127,8 @@ It also defines the interactions for the GUI with the TypeScript code.
                 }
               });
               <!--Logic for dark and lightmode switch -->
-              document.getElementById('modeSwitch').addEventListener('click', () => {
+              document.getElementById('modeSwitch')
+              .addEventListener('click', () => {
                 const body = document.body;
                 const modeSwitch = document.getElementById('modeSwitch');
       
@@ -183,7 +185,9 @@ After the response reaches the client, the responses text is displayed in the ch
             };  
 
     try {
-        const response = await axios.post('http://10.10.11.11:5001/ask_programming_bot', payload ); //Selecting the endpoint for the request and sending the payload. 
+        const response = await axios.post('http://10.10.11.11:5001
+        /ask_programming_bot', payload ); 
+        //Selecting the endpoint for the request and sending the payload. 
         const reply = await response.data.choices[0].text; //the response is then stored in the "reply" variable
 
         //formating the reply and showing it in the editor
@@ -217,7 +221,8 @@ In the following code the Status Bar Item is created and the commands are regist
   const commandId = 'luminara-coworker.statusBarClicked';
 
   //Registers the command
-	context.subscriptions.push(vscode.commands.registerCommand(commandId, async () => {
+	context.subscriptions.push(vscode.commands
+  .registerCommand(commandId, async () => {
     // Defines the options of the Quick Pick menu
 		const pageType = await vscode.window.showQuickPick(
 			['Message', 'Chat GPT-04', 'Chat Ollama', 'Inline chat'],
@@ -230,7 +235,8 @@ To assign a command it first has to be registered into the extension. This is do
 
   export async function createInlineChat(context: vscode.ExtensionContext ) {
 
-  const disposable = vscode.commands.registerCommand('luminara_coworker.startInlineChat', () => {
+  const disposable = vscode.commands
+  .registerCommand('luminara_coworker.startInlineChat', () => {
     // Code for the Command
   }
 \end{lstlisting}
@@ -241,7 +247,8 @@ After registering a command it can be assigned to the status bar. After selectin
 \begin{lstlisting}[language=TypeScript, caption={assigning Command}]
   if (pageType === 'Inline chat') {
         
-    vscode.commands.executeCommand("luminara_coworker.startInlineChat");
+    vscode.commands
+    .executeCommand("luminara_coworker.startInlineChat");
   }
 \end{lstlisting}
     
@@ -257,7 +264,8 @@ There they can be assigned to a specific extension context. Only files that are 
 
 	console.log('Congratulations, your extension "luminara-coworker" is now active!');
 	
-	const disposable = vscode.commands.registerCommand('luminara-coworker.helloWorld', () => {
+	const disposable = vscode.commands
+  .registerCommand('luminara-coworker.helloWorld', () => {
 		vscode.window.showInformationMessage('Hello World from luminara_coworker!');
 	});
 			

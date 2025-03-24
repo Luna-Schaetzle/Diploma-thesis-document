@@ -1,6 +1,6 @@
 \chapter{Intelligent Student AI Hub: An Integrated Learning Platform} 
 \label{chap:Student_AI_Hub}
-\textbf{Authors:} Luna P. I. Schaetzle
+\textbf{Author:} Luna Schaetzle
 
 This chapter presents an in-depth overview of the Intelligent Student AI Hub, 
 a comprehensive web platform designed to empower students in exploring Artificial Intelligence (AI) concepts. 
@@ -664,12 +664,14 @@ export default {
       this.chats = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     },
     async loadChat(chatId) {
-      const doc = await firebase.firestore().collection('chats').doc(chatId).get();
+      const doc = await firebase.firestore().collection('chats')
+      .doc(chatId).get();
       this.currentChat = { id: doc.id, ...doc.data() };
     },
     async saveChat() {
       if (this.currentChat) {
-        await firebase.firestore().collection('chats').doc(this.currentChat.id)
+        await firebase.firestore().collection('chats')
+        .doc(this.currentChat.id)
           .set(this.currentChat);
       }
     },
