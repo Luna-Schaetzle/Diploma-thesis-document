@@ -67,7 +67,36 @@ Factors like scalability, performance, and reliability have to be considered in 
 The Kernel is the core of the Operating System. It is responsible for managing the system's resources and providing a bridge between the hardware and software components. The Kernel is responsible for managing the CPU, memory, and input/output devices. It also provides essential services like process management, memory management, and device management.
 When building an AI Service, the Kernel plays a crucial role in ensuring the system's stability and performance.
 
+Kernels can classified into different categories. The categories depend on the architecture of the OS. There are two main types of kernel architectures, monolithic kernels and microkernels.
+
+\subsection{Monolithic Kernels}
+In this architecture, the entire kernel operates as a single large block of code that directly controls and manages hardware resources. While this can provide greater performance because all operations run in one space, it can also lead to higher complexity and harder maintenance.
+
+\subsection{Microkernels}
+A microkernel design is more minimalistic, with only essential services like process management and communication being handled by the kernel. Other functions, like device management or file systems, are run as separate processes. This separation can improve stability and security but may come at the cost of performance since communication between the kernel and other components can introduce overhead.
+
+\section{Key Differnceses of Microsoft Windows and Linux Kernels}
+While both Linux and Microsoft Windows serve as the core of their respective operating systems, their kernels differ significantly in terms of design and functionality.
+
+\subsection{Linux Kernel}
+\begin{itemize}
+    \item \textbf{Open Source}: The Linux kernel is open-source, anyone can view, modify, and distribute its code. This gives developers a high level of flexibility and customization.
+    \item \textbf{Monolithic Architecture}: The Linux kernel is considered monolithic, meaning it includes all the key components necessary for running the system in one large block of code. This results in faster communication between components and potentially better performance, but at the cost of complexity in its implementation.
+    \item \textbf{Modular}: While Linux is monolithic, it also allows modularity. You can add or remove specific kernel modules dynamically without rebooting the system.
+    \item \textbf{Stability and Performance}: The Linux kernel is renowned for its stability and performance, especially in server environments. It is highly optimized for resource management and efficient multitasking, making it a popular choice for high-performance AI servers.
+\end{itemize}
+
+\subsection{Microsoft Windows Kernel}
+\begin{itemize}
+    \item \textbf{Closed Source}: The Windows kernel is proprietary and closed-source, which limits the ability for users to modify or extend the kernel's capabilities. However, it provides a highly integrated user experience designed for ease of use and compatibility.
+    \item \textbf{Hybrid Architecture}: While the Windows kernel is primarily based on a hybrid architecture, it blends aspects of both monolithic and microkernel designs. The core kernel handles basic tasks like process management and system calls, while additional services are handled by user-space applications.
+    \item \textbf{Compatibility}: The Windows kernel is designed to provide excellent compatibility with a wide range of hardware, especially consumer devices like laptops and desktops. While it offers strong support for graphical interfaces and is known for its user-friendly experience, it is not as well-suited for high-performance AI workloads when compared to Linux.
+    \item \textbf{System Overhead}: Due to its larger footprint and the inclusion of more background services the Windows kernel can sometimes introduce more system overhead, which may not be ideal for resource-intensive applications like AI modeling or training.
+\end{itemize}
+
 \cite{Kernel}
+
+
 
 \section {Operating Systems used on the server}
 
@@ -83,22 +112,31 @@ The Operating Systems that were taken into consideration are Ubuntu Server, Debi
 
 \cite{LinuxPoweredAi}
 
+
+\subsection{Windows for Server}
+
+Microsoft provides a stable and secure OS to use on servers. There is a wide span of easy to implement native services that are can be implement easily.
+But due to many compatibility, performance and flexibility issues with popular AI development tools, it is not widely used for AI servers. 
+Linux based systems offer a more resource efficient and flexible enviorment. Thus Windows does not make the cut for the projects needs.
+
 \subsubsection{Debian}
 
 Debian is a good choice for servers due to its stability and security. It is widely used since it has a large package repository and offers long-term support. It also has a large community that provides good documentation and resources. The distribution is well-suited for hosting AI services and provides a good foundation for building and deploying applications.
+Trough the apt packet manager it provides a consistent tool to install and update any relevant packages.
 
 \cite{LinuxForServerDebian}
 
 \subsubsection{Red Hat Enterprise}
 
 Red Hat Enterprise is a commercial Linux distribution. It is the most popular distribution for servers. It comes with a lot of features that are useful for hosting AI services. It is a good choice for companies that need a stable and secure server. It also provides long-term support and has good documentation.
-The main downside is that it is a commercial distribution and requires a subscription.
+The main downside is that it is a commercial distribution and requires a subscription. But due to the frequent updates, good support and large amount of available packages the cost does not proove to be a big hinderance.
 
 \cite{LinuxForServerRedhat}
 
 \subsubsection{Ubuntu Server}
 
 Ubuntu Server is a popular choice for hosting AI services. It is based on Debian and has a large package repository. It is easy to use and has a large community that provides good documentation and support. It also provides NVIDIA drivers and CUDA support, which is useful for running AI applications that require GPU acceleration.
+The OS can flawlessly run Docker multiple Docker containers even on lower end hardware due the the lightweight structure. Also it Debian foundation makes it easy to install any needed packages. 
 
 \cite{LinuxForServerUbuntu} 
 
