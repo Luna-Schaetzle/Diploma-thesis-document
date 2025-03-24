@@ -4,25 +4,31 @@
 
 \section{Introduction}
 
-This chapter provides an overview of the VS Code extension developed for the project. It describes its core functionality, and explains how it integrates with the broader system architecture.
+This chapter provides an overview of the VS Code extension developed for the project. It describes its core functionality and explains how it integrates with the broader system architecture.
 
 \section{What is VS Code}
 
-VS Code is a free code editor from Microsoft. It supports many programming languages such as Python, JavaScript, and C++.
+VS Code is a free code editor from Microsoft. It supports many programming languages, such as Python, JavaScript, and C++.
 
 A major advantage of VS Code is its extensibility. With extensions, you can customize the editor, for example, with debugging tools, themes, or special functions for specific programming languages. It also offers features like auto-completion, integrated Git support, and a built-in terminal function.
 
 VS Code is lightweight and runs on Windows, macOS, and Linux. Despite this, it provides many features that are also found in a full-fledged integrated development environment. This makes it perfect for both beginners and professionals.
 
-\section{Development}
+\section{Technologies used}
 
-\subsection{Technologies used}
+The technologies used for developing the VS Code extension are listed in the following section.
 
-\begin{itemize}
-    \item TypeScript: The VS Code extension was developed using TypeScript. TypeScript is well-suited for developing VS Code extensions, as it provides type checking and code completion, making it easier to work with the VS Code API.
-    \item Axios: Axios is used to make HTTP requests from the extension to the Flask Service. It provides an easy implementation of asynchronous requests and simplifies handling responses.
-    \item VS Code API: The extension interacts with the VS Code API. The API allows the extension to access and modify the editor's functionality, enabling it to provide a seamless development experience.
-\end{itemize}
+\subsection{Tpye Script}
+
+The VS Code extension was developed using TypeScript. TypeScript is well-suited for developing VS Code extensions, as it provides type checking and code completion, making it easier to work with the VS Code API.
+
+\subsection{Axios}
+
+Axios is used to make HTTP requests from the extension to the Flask Service. It provides an easy implementation of asynchronous requests and simplifies handling responses. Additionally there is a large quantity of online ressources and an in depth documentation.
+
+\subsection{Visual Studio Code API}
+
+The VS Code API is an API directly provided by Microsoft. By communicating with the API, the extension can smoothly modify the editor's core functionalities, enabling it to provide a seamless development experience.
 
 \section{Core Functionality}
 The planned core functionality of the extension is an integrated chatbot, that can answer questions without leaving the IDE. 
@@ -43,7 +49,7 @@ The final extension can be seen in the screenshot presented. \ref{fig:Extension_
 
 \subsection{Chat}
 
-The chat is integrated into the IDE with a webview. 
+The chat is integrated into the IDE with a Webview. 
 Webviews are a tool provided by the VS Code API. They can be used to implement various GUIs into the IDE. 
 
 The following code, defines the properties of the Webview an initiates the GUI.
@@ -57,7 +63,7 @@ The following code, defines the properties of the Webview an initiates the GUI.
         vscode.ViewColumn.Beside, // Position
         {
         enableScripts: true, // Allow JavaScript
-        retainContextWhenHidden: true, // Keep the webview state
+        retainContextWhenHidden: true, // Keep the Webview state
         }
     );
 
@@ -165,10 +171,10 @@ It also defines the interactions for the GUI with the TypeScript code.
 
 \subsection{Server Request}
 
-After the user clicks send in the chats GUI, the onDidReceiveMessage command is executed.This command initiates the server request.
-It also defines the payload that the server receives. The payload contains the question asked, aswell as the baseprompt defined by the developers. 
+After the user clicks send in the chat's GUI, the onDidReceiveMessage command is executed. This command initiates the server request.
+It also defines the payload that the server receives. The payload contains the question asked, as well as the baseprompt defined by the developers. 
 
-The request to the server is handled with Axios. Axios sends the respond to one of the Flask Service endpoints that are hosted on the server.
+The request to the server is handled with Axios. Axios sends the respons to one of the Flask Service endpoints that are hosted on the server.
 \ref{cha:hosted_flask_service}
 
 After the response reaches the client, the responses text is displayed in the chat GUI. On a failed request an error message is displayed.
@@ -214,7 +220,7 @@ After the response reaches the client, the responses text is displayed in the ch
 
 The extension also provides a status bar button that can be used to open the chat.
 
-In the following code the Status Bar Item is created and the commands are registered.
+In the following code, the Status Bar Item is created, and the commands are registered.
 
 \begin{lstlisting}[language=TypeScript, caption={Status Bar}]
   //Creates a status bar item
@@ -229,7 +235,7 @@ In the following code the Status Bar Item is created and the commands are regist
 			{ placeHolder: 'select a function' });
 \end{lstlisting}
 
-To assign a command it first has to be registered into the extension. This is done at the start of every TypeScript file that defines an command.
+To assign a command, it first has to be registered into the extension. This is done at the start of every TypeScript file that defines a command.
 
 \begin{lstlisting}[language=TypeScript, caption={registering Command}]
 
@@ -242,7 +248,7 @@ To assign a command it first has to be registered into the extension. This is do
 \end{lstlisting}
 
 
-After registering a command it can be assigned to the status bar. After selecting the command the defined code will be executed.
+After registering a command, it can be assigned to the status bar. After selecting the command, the defined code will be executed.
 
 \begin{lstlisting}[language=TypeScript, caption={assigning Command}]
   if (pageType === 'Inline chat') {

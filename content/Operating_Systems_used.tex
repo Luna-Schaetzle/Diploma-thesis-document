@@ -23,12 +23,12 @@ It will also evaluate different options suitable for hosting the AI server.
 
 An Operating System (OS) acts as an intermediary between the user and the computer hardware, ensuring smooth and efficient operation of the system. It is responsible for managing hardware components such as the CPU, memory, storage devices, and input/output peripherals, allowing users and applications to interact with them seamlessly.
 
-The OS provides essential functions like process management, ensuring that multiple applications can run without conflicts. It also handles memory management by allocating and deallocating memory to different processes. It also prevents unauthorized access to the storage.
+The OS provides essential functions like process management, ensuring that multiple applications can run without conflicts. It also handles memory management by allocating and reallocating memory to different processes. It also prevents unauthorized access to the storage.
 Additionally, the OS handles file system management, enabling organized and efficient data storage. 
 
 Another key role of the OS is device management, where it communicates with hardware components using device drivers.
 
-Furthermore, Operating Systems provide networking capabilities, enabling connection to local and global networks. They try to ensure a stable and secure connection between devices.
+Furthermore, Operating Systems provide networking capabilities, enabling connections to local and global networks. They try to ensure a stable and secure connection between devices.
 
 \cite{WhatIsAnOs}
 
@@ -56,7 +56,7 @@ Factors like scalability, performance, and reliability have to be considered in 
 
     \item \textbf{Real-Time Operating System} is used when a very short response time is needed. They are often used on microcontrollers like the ESP32.
     \begin{itemize}
-        \item \textbf{Advantages} They utilize the device to its maximum. Fast and reliable memory allocation. They usually are error-free.
+        \item \textbf{Advantages} They utilize the device to its maximum. Fast and reliable memory allocation. They are usually error-free.
         \item \textbf{Disadvantages} There can only be a limited number of tasks. They also require complex algorithms that can be resource-heavy.
     \end{itemize} 
 
@@ -69,7 +69,7 @@ Factors like scalability, performance, and reliability have to be considered in 
 The Kernel is the core of the Operating System. It is responsible for managing the system's resources and providing a bridge between the hardware and software components. The Kernel is responsible for managing the CPU, memory, and input/output devices. It also provides essential services like process management, memory management, and device management.
 When building an AI Service, the Kernel plays a crucial role in ensuring the system's stability and performance.
 
-Kernels can classified into different categories. The categories depend on the architecture of the OS. There are two main types of kernel architectures, monolithic kernels and microkernels.
+Kernels can  be classified into different categories. The categories depend on the architecture of the OS. There are two main types of kernel architectures: monolithic kernels and microkernels.
 
 \subsection{Monolithic Kernels}
 In this architecture, the entire kernel operates as a single large block of code that directly controls and manages hardware resources. While this can provide greater performance because all operations run in one space, it can also lead to higher complexity and harder maintenance.
@@ -77,7 +77,7 @@ In this architecture, the entire kernel operates as a single large block of code
 \subsection{Microkernels}
 A microkernel design is more minimalistic, with only essential services like process management and communication being handled by the kernel. Other functions, like device management or file systems, are run as separate processes. This separation can improve stability and security but may come at the cost of performance since communication between the kernel and other components can introduce overhead.
 
-\section{Key Differnceses of Microsoft Windows and Linux Kernels}
+\section{Key Differences of Microsoft Windows and Linux Kernels}
 While both Linux and Microsoft Windows serve as the core of their respective operating systems, their kernels differ significantly in terms of design and functionality.
 
 \subsection{Linux Kernel}
@@ -93,24 +93,25 @@ While both Linux and Microsoft Windows serve as the core of their respective ope
     \item \textbf{Closed Source}: The Windows kernel is proprietary and closed-source, which limits the ability for users to modify or extend the kernel's capabilities. However, it provides a highly integrated user experience designed for ease of use and compatibility.
     \item \textbf{Hybrid Architecture}: While the Windows kernel is primarily based on a hybrid architecture, it blends aspects of both monolithic and microkernel designs. The core kernel handles basic tasks like process management and system calls, while additional services are handled by user-space applications.
     \item \textbf{Compatibility}: The Windows kernel is designed to provide excellent compatibility with a wide range of hardware, especially consumer devices like laptops and desktops. While it offers strong support for graphical interfaces and is known for its user-friendly experience, it is not as well-suited for high-performance AI workloads when compared to Linux.
-    \item \textbf{System Overhead}: Due to its larger footprint and the inclusion of more background services the Windows kernel can sometimes introduce more system overhead, which may not be ideal for resource-intensive applications like AI modeling or training.
+    \item \textbf{System Overhead}: Due to its larger footprint and the inclusion of more background services, the Windows kernel can sometimes introduce more system overhead, which may not be ideal for resource-intensive applications like AI modeling or training.
 \end{itemize}
 
 \cite{Kernel}
 
 
 
-\section {Operating Systems used on the Server}
 
-To host the required AI service, choosing a suitable Operating System is a crucial part to guarantee a satisfying performance.
+\section {Operating Systems Used on the Server}
+
+To host the required AI service, choosing a suitable Operating System is a crucial part of guaranteeing a satisfying performance.
 For the project, multiple users need to access the server simultaneously, so the development team decided to use a Multi Programming OS.
 
 \subsection {Evaluating different Operating Systems}
 
 The preferred OS for an AI server is Linux distributions like Ubuntu or Red Hat.
 Their open-source nature makes it very easy to customize and integrate AI frameworks.
-The OS needs to be sutiable to performe many different tasks on a high levle to be suitable for an AI server. 
-Tasks like containerization, netwrok monitoring, process monitoring and scripting tasks are essential for ths server to operate
+The OS needs to be suitable to perform many different tasks on a high level to be suitable for an AI server. 
+Tasks like containerization, network monitoring, process monitoring and scripting tasks are essential for the server to operate.
 
 
 The Operating Systems that were taken into consideration are Ubuntu Server, Debian, and Red Hat Enterprise. 
@@ -118,42 +119,44 @@ The Operating Systems that were taken into consideration are Ubuntu Server, Debi
 
 \cite{cao2024managing}
 
+
 \subsection{Windows for Server}
 
-Microsoft provides a stable and secure OS to use on servers. There is a wide span of easy to implement native services that are can be implement easily.
-But due to many compatibility, performance and flexibility issues with popular AI development tools, it is not widely used for AI servers. 
-Linux based systems offer a more resource efficient and flexible enviorment. Thus Windows does not make the cut for the projects needs.
+Microsoft provides a stable and secure OS to use on servers. There is a wide span of easy-to-implement native services that can be implemented easily.
+But due to a good deal of compatibility, performance and flexibility issues with popular AI development tools, it is not widely used for AI servers. 
+Linux-based systems offer a more resource-efficient and flexible environment. Thus, Windows does not make the cut for the project's needs.
 
 \subsubsection{Debian}
 
 Debian is a good choice for servers due to its stability and security. It is widely used since it has a large package repository and offers long-term support. It also has a large community that provides good documentation and resources. The distribution is well-suited for hosting AI services and provides a good foundation for building and deploying applications.
-Trough the apt packet manager it provides a consistent tool to install and update any relevant packages.
+Through the apt packet manager, it provides a consistent tool to install and update any relevant packages.
 
 \cite{LinuxForServerDebian}
 
 \subsubsection{Red Hat Enterprise}
 
-Red Hat Enterprise is a commercial Linux distribution. It is the most popular distribution for servers. It comes with a lot of features that are useful for hosting AI services. It is a good choice for companies that need a stable and secure server. It also provides long-term support and has good documentation.
-The main downside is that it is a commercial distribution and requires a subscription. But due to the frequent updates, good support and large amount of available packages the cost does not proove to be a big hinderance.
+Red Hat Enterprise is a commercial Linux distribution. It is the most popular distribution for servers. It comes with a lot of features that are useful for hosting AI services. Furthermore, it is a good choice for companies that need a stable and secure server. It also provides long-term support and has good documentation.
+The main downside is that it is a commercial distribution and requires a subscription. But due to the frequent updates, good support and large amount of available packages, the cost does not prove to be a big hindrance.
 
 \cite{LinuxForServerRedhat}
 
 \subsubsection{Ubuntu Server}
 
-Ubuntu Server is a popular choice for hosting AI services. It is based on Debian and has a large package repository. It is easy to use and has a large community that provides good documentation and support. It also provides NVIDIA drivers and CUDA support, which is useful for running AI applications that require GPU acceleration.
-The OS can flawlessly run Docker multiple Docker containers even on lower end hardware due the the lightweight structure. Also it Debian foundation makes it easy to install any needed packages. 
+Ubuntu Server is a popular choice for hosting AI services. It is based on Debian and has a large package repository. It is easy to use and has a large community that provides good documentation and support. Not only that, but it also provides NVIDIA drivers and CUDA support, which is useful for running AI applications that require GPU acceleration.
+The OS can flawlessly run Docker multiple Docker containers even on lower-end hardware due to the lightweight structure. Also, the Debian foundation makes it easy to install any needed packages. 
 
 
 \cite{lacroix2022mastering}
 
-
 \subsection {Outcome of the Evaluation}
 
-There are many factors that need to be considered when choosing a suitable OS for a specific application. Depending on the requirements the ideal OS for a job can needs to be evaluated very carefully. 
-Often times it also comes down to the experience and skills of the development team working on a project. 
+There are many factors that need to be considered when choosing a suitable OS for a specific application. Depending on the requirements, the ideal OS for a job can need to be evaluated very carefully. 
+Often times, it also comes down to the experience and skills of the development team working on a project. 
 
 After evaluating the different Operating Systems, the development team decided to use Ubuntu Server for hosting the AI Service.
 The main reason for the decision was the experience of the team with Ubuntu and the easy integration of AI frameworks like TensorFlow and PyTorch.
 Also, the large community and the good documentation were important factors in the decision. The NVIDIA drivers were also an important factor that played a role in the decision.
+
+
 
 

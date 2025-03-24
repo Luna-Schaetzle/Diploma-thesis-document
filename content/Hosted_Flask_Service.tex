@@ -68,9 +68,10 @@ The system is organized around a central Python script, \texttt{app.py}, which h
 Endpoints are organized within the \texttt{routes} subfolder, with similar endpoints grouped together. They are divided into the following files:
 \begin{itemize}
     \item \textbf{chatbot\_route.py:} Contains endpoints related to chatbot functionality.
-    \item \textbf{OCR\_route.py:} Manages endpoints for image to Text conversion.
+    \item \textbf{OCR\_route.py:} Manages endpoints for image to text conversion.
     \item \textbf{Programming\_bot\_route.py:} Houses endpoints for the programming bot.
 \end{itemize}
+
 
 Within these files, endpoints process user requests and return responses, and are designed for easy extension. They also handle error management and user feedback by converting data from the user and the Ollama API into the appropriate format when necessary. Connections to the Ollama API and the OCR (Optical Character Recognition) system are managed within the \texttt{Utils} folder, which contains all utility functions used by the endpoints, including those for sending requests, performing OCR, and converting Markdown to HTML.
 
@@ -569,7 +570,7 @@ This section details the OCR utilities integrated within the Flask service, whic
 
 \paragraph{perform\_ocr}
 
-The \texttt{perform\_ocr} function harnesses the Tesseract OCR engine to extract text from an image file. It accepts an image file path and an optional language parameter, processes the image, and returns the extracted text. The function is designed to handle a variety of image formats and ensures accurate text retrieval, thus streamlining the OCR workflow within the Flask service.
+The \texttt{perform\_ocr} function harnesses the Tesseract OCR engine to extract text from an image file. It accepts an image file path and an optional language parameter, processes the image, and returns the extracted text. The function is designed to handle a variety of image formats and ensure accurate text retrieval, thus streamlining the OCR workflow within the Flask service.
 
 The code snippet below demonstrates the implementation of the \texttt{perform\_ocr} function:
 
@@ -621,7 +622,7 @@ No matter which computer or server the container runs on, it always works the sa
 Docker is often used in software development and cloud applications because it simplifies testing, deployment, and scaling of apps. Developers can store their software as images and share them with others without requiring complicated installations.
 
 \subsection{Used Docker Images}
-A docker image is a blueprint that specifies how to run the application. The instructions for the build are stored in the Dockerfile.
+A Docker image is a blueprint that specifies how to run the application. The instructions for the build are stored in the Dockerfile.
 \cite{dockerize_flask} 
 
 \begin{itemize}
