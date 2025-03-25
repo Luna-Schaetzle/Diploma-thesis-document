@@ -15,38 +15,44 @@
 An important part of building an AI Service is to host an API endpoint for all applications to use. To improve the quality of the service, having a flawless and seamless connection with a fast response time is necessary.
 Having a good foundation to build upon is thus unavoidable to build a strong and secure API endpoint. 
 
-This chapter is going to briefly explain what an Operating System (OS) is and its importance.
+This chapter is going to briefly explain what an OS is and its importance.
 It will also evaluate different options suitable for hosting the AI server.
 
 \section{What is an Operating System?}
 \label{sec:WhatIsAnOs}
 
-An Operating System (OS) acts as an intermediary between the user and the computer hardware, ensuring smooth and efficient operation of the system. It is responsible for managing hardware components such as the CPU, memory, storage devices, and input/output peripherals, allowing users and applications to interact with them seamlessly.
+An OS acts as an intermediary between the user and the computer hardware, ensuring smooth and efficient operation of the system. It is responsible for managing hardware components such as the CPU, memory, storage devices, and input/output peripherals, allowing users and applications to interact with them seamlessly.
 
 The OS provides essential functions like process management, ensuring that multiple applications can run without conflicts. It also handles memory management by allocating and reallocating memory to different processes. It also prevents unauthorized access to the storage.
 Additionally, the OS handles file system management, enabling organized and efficient data storage. 
 
 Another key role of the OS is device management, where it communicates with hardware components using device drivers.
 
-Furthermore, Operating Systems provide networking capabilities, enabling connections to local and global networks. They try to ensure a stable and secure connection between devices.
+Furthermore, OSs provide networking capabilities, enabling connections to local and global networks. They try to ensure a stable and secure connection between devices.
 
 \cite{WhatIsAnOs}
 
-\subsection {Types of Operating Systems}
+\section {Types of Operating Systems}
 
-The type of Operating System used is determined by the needs of the user. 
-Different types of Operating Systems use different system architectures to provide varying benefits.
+The type of OS used is determined by the needs of the user. 
+Different types of OSs use different system architectures to provide varying benefits.
 Factors like scalability, performance, and reliability have to be considered in choosing a suitable OS.
+The tyepes that were evaluated for this project will be discussed in the following pages. 
 
-\begin{itemize}
+\cite{TypesOfOs}
 
-    \item \textbf{Batch Operating Systems} are designed to handle a large number of processes. They are used to process large amounts of data and to run complex calculations.
+\subsection{Batch Operating Systems}
+
+    Batch OSs are designed to handle a large number of processes. They are used to process large amounts of data and to run complex calculations.
+  
     \begin{itemize}
         \item \textbf{Advantages} Multiple users can share the batch system, and it is easy to manage large amounts of traffic.
         \item \textbf{Disadvantages} The CPU isn't used efficiently. Also, the response time can be slow due to processes being processed one by one.
     \end{itemize} 
 
-    \item \textbf{Multi Programming/Time Sharing Operating System} is used to utilize the available resources as efficiently as possible. They allow using multiple programs at the same time, which allows multiple users to share the system.
+\subsection{Multi Programming/Time Sharing Operating System}
+
+    Multi Programming/Time Sharing OS is used to utilize the available resources as efficiently as possible. They allow using multiple programs at the same time, which allows multiple users to share the system.
     They are often used for servers and also have been used by the development team in the project.
 
     \begin{itemize}
@@ -54,19 +60,18 @@ Factors like scalability, performance, and reliability have to be considered in 
         \item \textbf{Disadvantages} There can be problems with reliable data communication. 
     \end{itemize} 
 
-    \item \textbf{Real-Time Operating System} is used when a very short response time is needed. They are often used on microcontrollers like the ESP32.
+\subsection{Real-Time Operating System}
+
+
+Real-Time OS is used when a very short response time is needed. They are often used on microcontrollers like the ESP32.
     \begin{itemize}
         \item \textbf{Advantages} They utilize the device to its maximum. Fast and reliable memory allocation. They are usually error-free.
         \item \textbf{Disadvantages} There can only be a limited number of tasks. They also require complex algorithms that can be resource-heavy.
     \end{itemize} 
 
-\end{itemize}   
-
-\cite{TypesOfOs}
-
 \section {Kernel}
 
-The Kernel is the core of the Operating System. It is responsible for managing the system's resources and providing a bridge between the hardware and software components. The Kernel is responsible for managing the CPU, memory, and input/output devices. It also provides essential services like process management, memory management, and device management.
+The Kernel is the core of the OS. It is responsible for managing the system's resources and providing a bridge between the hardware and software components. The Kernel is responsible for managing the CPU, memory, and input/output devices. It also provides essential services like process management, memory management, and device management.
 When building an AI Service, the Kernel plays a crucial role in ensuring the system's stability and performance.
 
 Kernels can  be classified into different categories. The categories depend on the architecture of the OS. There are two main types of kernel architectures: monolithic kernels and microkernels.
@@ -78,7 +83,7 @@ In this architecture, the entire kernel operates as a single large block of code
 A microkernel design is more minimalistic, with only essential services like process management and communication being handled by the kernel. Other functions, like device management or file systems, are run as separate processes. This separation can improve stability and security but may come at the cost of performance since communication between the kernel and other components can introduce overhead.
 
 \section{Key Differences of Microsoft Windows and Linux Kernels}
-While both Linux and Microsoft Windows serve as the core of their respective operating systems, their kernels differ significantly in terms of design and functionality.
+While both Linux and Microsoft Windows serve as the core of their respective OSs, their kernels differ significantly in terms of design and functionality.
 
 \subsection{Linux Kernel}
 \begin{itemize}
@@ -103,7 +108,7 @@ While both Linux and Microsoft Windows serve as the core of their respective ope
 
 \section {Operating Systems Used on the Server}
 
-To host the required AI service, choosing a suitable Operating System is a crucial part of guaranteeing a satisfying performance.
+To host the required AI service, choosing a suitable OS is a crucial part of guaranteeing a satisfying performance.
 For the project, multiple users need to access the server simultaneously, so the development team decided to use a Multi Programming OS.
 
 \subsection {Evaluating different Operating Systems}
@@ -114,7 +119,7 @@ The OS needs to be suitable to perform many different tasks on a high level to b
 Tasks like containerization, network monitoring, process monitoring and scripting tasks are essential for the server to operate.
 
 
-The Operating Systems that were taken into consideration are Ubuntu Server, Debian, and Red Hat Enterprise. 
+The OSs that were taken into consideration are Ubuntu Server, Debian, and Red Hat Enterprise. 
 
 
 \cite{cao2024managing}
@@ -153,7 +158,7 @@ The OS can flawlessly run Docker multiple Docker containers even on lower-end ha
 There are many factors that need to be considered when choosing a suitable OS for a specific application. Depending on the requirements, the ideal OS for a job can need to be evaluated very carefully. 
 Often times, it also comes down to the experience and skills of the development team working on a project. 
 
-After evaluating the different Operating Systems, the development team decided to use Ubuntu Server for hosting the AI Service.
+After evaluating the different OSs, the development team decided to use Ubuntu Server for hosting the AI Service.
 The main reason for the decision was the experience of the team with Ubuntu and the easy integration of AI frameworks like TensorFlow and PyTorch.
 Also, the large community and the good documentation were important factors in the decision. The NVIDIA drivers were also an important factor that played a role in the decision.
 
